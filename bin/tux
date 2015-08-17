@@ -1,0 +1,74 @@
+#!/bin/sh
+export PATH=$PATH:/usr/local/bin
+
+# Check if we're already in a tmux session
+if [[ "$TMUX" != "" ]]
+then
+	exit 0
+fi
+
+PS3="Please choose your session: "
+sessions=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session" "zsh")
+
+# A wrapper function around clocker, lovingly named punch_clock.
+# @param $1 clocker sub-command
+# @param $2 -t Type parameter for clocker
+function punch_clock {
+	if [[ -n $1 && ($(which clocker) != "clocker not found") ]]
+	then
+		if [[ $1 == 'list' ]]
+		then
+			clocker "$1" -t "$2" | tail -n 5
+		else
+			clocker "$1" -t "$2"
+		fi
+	fi
+}
+
+echo "+ ------------------ +"
+echo "  Available Sessions  "
+echo "+ ------------------ +"
+
+export CURRENT_TUX_SESSION=""
+
+# Let's start by punching in.
+#
+select session in "${sessions[@]}"
+do
+	case $session in
+		"New Session")
+			read -p "Enter new session name: " new_session
+			CURRENT_TUX_SESSION="$new_session"
+			punch_clock "start" "$new_session"
+			tmux new-session -s "$new_session"
+			break
+			;;
+		"zsh")
+			zsh --login
+			break
+			;;
+		*)
+			CURRENT_TUX_SESSION="$session"
+			punch_clock "start" $session
+			tmux attach-session -t $session
+			break
+			;;
+	esac
+done
+
+# Don't forget to punch out
+#
+if [[ "$?" == 0 && -n $CURRENT_TUX_SESSION ]]; then
+	punch_clock "stop" $CURRENT_TUX_SESSION
+	echo
+	punch_clock "list" $CURRENT_TUX_SESSION
+fi
+
+echo "+ ------------------- +"
+echo "  You look nice today  "
+echo "+ ------------------- +"
+
+# Wait for it
+#
+sleep 3
+exit 0

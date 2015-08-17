@@ -1,0 +1,330 @@
+" Modeline and Notes {
+" vim: set sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+"
+" Organizing my .vimrc files
+" I'm borrowing everything from [here](https://github.com/spf13/spf13-vim) and
+" am super thankful that Steve Francia has that super helpful guide to his own
+" `.vimrc` but also that [he made this](http://vim.spf13.com) for anyone that
+" wants to use his standards out-of-the-box without much configurations.
+"
+" This is still very much a work-in-progress, but I'm finally at a point where
+" my original `.vimrc` was making me feel disorganized.
+"
+" }
+
+" Basics {
+
+    let mapleader = ","
+    set magic
+    set shell=/bin/sh
+
+" }
+
+" Load Bundle config {
+    if filereadable( expand( "~/.vimrc.bundles" ) )
+        source ~/.vimrc.bundles
+    endif
+" }
+
+" Theme {
+
+    " Allow to trigger background
+    function! ToggleBG()
+        let s:tbg = &background
+        " Inversion
+        if s:tbg == "dark"
+            set background=light
+            colorscheme base16-tomorrow
+        else
+            set background=dark
+            colorscheme base16-hopscotch
+        endif
+    endfunction
+    noremap <leader>bg :call ToggleBG()<CR>
+
+    "if bg_mode == 'light'
+        "set background=light
+        "colorscheme base16-tomorrow
+    "else
+    set background=dark
+    colorscheme base16-hopscotch
+    "endif
+
+    set t_Co=256
+
+" }
+
+" Syntastic {
+
+    " Check on open and not on `wq`
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    " Custom checkers
+    let g:syntastic_php_checkers = [ "php" ]
+    let g:syntastic_javascript_checkers = [ "eslint" ]
+    " Enable some 'road' signs
+    let g:syntastic_enable_signs = 1
+    let g:syntastic_error_symbol = "✗"
+    let g:syntastic_warning_symbol = "⚠"
+    " Other options
+    let g:syntastic_aggregate_errors = 1
+    let g:syntastic_html_tidy_exec = 'tidy'
+
+" }
+
+" Syntax Folding {
+
+    set foldmethod=syntax
+    set foldlevelstart=3
+
+    let javascript_fold = 0
+    let php_folding = 1
+    let ruby_fold = 1
+    let sh_fold_enabled = 1
+    let xml_syntax_folding  = 1
+
+    "if isdirectory( expand( "~/.vim/bundle/vim-javascript-syntax" ) )
+        "au FileType javascript call JavaScriptFold()
+    "endif
+
+" }
+
+" Airline Preferences {
+
+    let g:airline_powerline_fonts = 1
+    let g:airline_theme = 'kolor'
+    let g:airline#extensions#whitespace#mixed_indent_algo = 1
+    let g:airline#extensions#whitespace#enabled = 0
+    let g:airline#extensions#syntastic#enabled = 1
+    let g:airline#extensions#tmuxline#enabled = 1
+
+" }
+
+" Tmuxline Preferences {
+
+    let g:tmuxline_preset = {
+      \'a'    : ['#S:#I.#P',  '#{client_termname}'],
+      \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f 1,2,3)'],
+      \'win'  : ['#I #W'],
+      \'cwin' : ['#I #W #F'],
+      \'x'    : ['#(/usr/local/bin/current_itunes_song)', '#(/usr/local/bin/battery -t)'],
+      \'y'    : ['%l:%M%p', '%A %F'],
+      \'z'    : '#h'}
+
+    let g:tmuxline_separators = {
+          \ 'left' : '',
+          \ 'left_alt': '»',
+          \ 'right' : '',
+          \ 'right_alt' : '«',
+          \ 'space' : ' '}
+
+" }
+
+" Markdown {
+
+    let g:vim_markdown_folding_disabled = 1
+
+" }
+
+" NERDTree {
+
+    silent! nmap <C-k> :NERDTreeToggle<CR>
+    silent! map <C-j> :NERDTreeFind<CR>
+    let g:NERDTreeShowHidden = 1
+
+"}
+
+" NERDCommenter {
+
+    let g:NERDCustomDelimiters = { 'scss': { 'left': '// ' } }
+
+" }
+
+" editorconfig {
+
+    let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
+    let g:EditorConfig_exclude_patterns = [ 'fugitive://.*', 'scp://.*' ]
+
+" }
+
+" Workflow {
+
+    " Shortcut for disabling highlighting
+    nnoremap <silent> <C-l> :nohl<CR><C-l>
+
+    " Shortcut for enabling and disabling paste mode
+    map <leader>pp :setlocal paste!<cr>
+
+    " Shortcut for enabling spelling
+    map <leader>ss :setlocal spell!<cr>
+
+    " Allow for macosx and tmux and vim clipboard sharing.
+    " Following this blog post: http://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
+    set clipboard=unnamed
+
+    " Split 'correctly' for left-to-right readers.
+    set splitbelow
+    set splitright
+
+    set history=700
+
+    " For when you forget to sudo.. Really Write the file.
+    cmap w!! w !sudo tee % >/dev/null
+
+" }
+
+" Tabs {
+
+    set expandtab
+    set smarttab
+    set shiftwidth=4
+    set tabstop=4
+    set tw=9000
+
+" }
+
+
+" GUI Options {
+
+    if has( 'gui_running' )
+
+        set guifont=M\+\ 1mn\ regular:h14
+        let g:airline_powerline_fonts = 0
+
+    endif
+
+" }
+
+let g:indentLine_noConcealCursor=""
+set number
+set ruler
+set colorcolumn=50,72,80,100
+
+set backspace=eol,start,indent
+set whichwrap+=<,>,h,l
+
+set ignorecase
+set smartcase
+"set hlsearch
+set incsearch
+
+set lazyredraw
+
+
+set showmatch
+set mat=2
+
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+syntax enable
+
+set ffs=unix,dos,mac
+set encoding=utf8
+
+set nobackup
+set nowb
+set noswapfile
+
+" GitGutter {
+
+    if isdirectory( expand( "~/.vim/bundle/vim-gitgutter" ) )
+
+        silent! if emoji#available()
+          let g:gitgutter_sign_added = emoji#for( 'rocket' )
+          let g:gitgutter_sign_modified = emoji#for( 'snake' )
+          let g:gitgutter_sign_removed = emoji#for( 'scissors' )
+          let g:gitgutter_sign_modified_removed = emoji#for( 'collision' )
+        endif
+
+    endif
+
+" }
+
+" Fugitive {
+
+    if isdirectory( expand( "~/.vim/bundle/vim-fugitive/" ) )
+
+        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gd :Gdiff<CR>
+        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gb :Gblame<CR>
+        nnoremap <silent> <leader>gl :Glog<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gr :Gread<CR>
+        nnoremap <silent> <leader>gw :Gwrite<CR>
+        nnoremap <silent> <leader>ge :Gedit<CR>
+
+        " Mnemonic _i_nteractive
+        nnoremap <silent> <leader>gi :Git add -p %<CR>
+        nnoremap <silent> <leader>gg :SignifyToggle<CR>
+
+    endif
+
+" }
+
+" YouCompleteMe {
+
+    let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
+    let g:ycm_collect_identifiers_from_comments_and_strings = 1
+    let g:ycm_key_invoke_completion = '<C-Space>'
+
+" }
+
+set completeopt=menuone
+
+"nmap <C-Tab> a<C-t><Esc>
+"nmap <C-S-Tab> a<C-d><Esc>
+"imap <C-Tab> <C-t>
+"imap <C-S-Tab> <C-d>
+
+set listchars=eol:¬,tab:›·,trail:·,extends:›,precedes:‹
+set list
+
+set lbr
+
+set ai
+set si
+set wrap
+
+map <space> /
+
+set laststatus=2
+
+map 0 ^
+
+if has("mac") || has("macunix")
+    nmap <D-j> <M-j>
+    nmap <D-k> <M-k>
+    vmap <D-j> <M-j>
+    vmap <D-k> <M-k>
+endif
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
+endfunc
+autocmd BufWrite * :call DeleteTrailingWS()
+
+" File-type mapping {
+
+    " JSON
+    au BufRead,BufNewFile *.jshintrc set filetype=json
+    au BufRead,BufNewFile *.bowerrc set filetype=json
+    au BufRead,BufNewFile *.pantheonrc set filetype=json
+
+    au BufRead,BufNewFile *.txt set filetype=mkd
+
+    au BufRead,BufNewFile *.applescript set filetype=applescript
+
+    au BufRead,BufNewFile *.eslintrc set filetype=yaml
+
+" }
+
+au FileType mkd setlocal shiftwidth=8 tabstop=8 wrap spell tw=80 wm=0 linebreak nolist
+
+

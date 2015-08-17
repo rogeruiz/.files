@@ -1,0 +1,127 @@
+" Modeline and Notes {
+" vim: set sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=1 foldmethod=marker spell:
+"
+" The Vundle definitions are below.
+"
+" }
+
+" Environment {
+
+     " Required {
+
+        set nocompatible
+
+     " }
+
+     " Vundle support {
+
+        filetype on
+        filetype off
+        set rtp+=~/.vim/bundle/Vundle.vim
+        call vundle#rc()
+
+     " }
+
+     " Plugins {
+
+        Plugin 'VundleVim/Vundle.vim'
+
+        " Language Plugins {
+
+            Plugin 'StanAngeloff/php.vim'
+            Plugin 'tpope/vim-rails'
+            Plugin 'applescript.vim'
+            Plugin 'mustache/vim-mustache-handlebars'
+            Plugin 'ekalinin/Dockerfile.vim'
+
+        " }
+
+        " JavaScript {
+
+            "Plugin 'pangloss/vim-javascript'
+            Plugin 'jelera/vim-javascript-syntax'
+            Plugin 'othree/javascript-libraries-syntax.vim'
+            Plugin 'moll/vim-node'
+            Plugin 'elzr/vim-json'
+            Plugin 'Enhanced-Javascript-syntax'
+            Plugin 'marijnh/tern_for_vim'
+
+        " }
+
+        " HTML {
+
+            Plugin 'mattn/emmet-vim'
+            Plugin 'othree/html5.vim'
+
+        " }
+
+        " CSS {
+
+            Plugin 'hail2u/vim-css3-syntax'
+            Plugin 'cakebaker/scss-syntax.vim'
+            Plugin 'groenewege/vim-less'
+
+        " }
+
+        " Documentation {
+
+            Plugin 'rizzatti/dash.vim'
+            Plugin 'scrooloose/nerdcommenter'
+
+        " }
+
+        " Editor {
+
+            Plugin 'kien/rainbow_parentheses.vim'
+            Plugin 'scrooloose/nerdtree'
+            Plugin 'myusuf3/numbers.vim'
+            Plugin 'bling/vim-airline'
+            Plugin 'mhinz/vim-startify'
+            Plugin 'junegunn/vim-emoji'
+            Plugin 'godlygeek/tabular'
+            Plugin 'Yggdroot/indentLine'
+            Plugin 'ctrlp.vim'
+            Plugin 'tpope/vim-surround'
+
+        " }
+
+        " Git {
+
+            Plugin 'tpope/vim-fugitive'
+            Plugin 'mhinz/vim-signify'
+            Plugin 'airblade/vim-gitgutter'
+
+            " Gist support
+            Bundle 'mattn/gist-vim'
+            Bundle 'mattn/webapi-vim'
+
+        " }
+
+        " Tmux ❤  Vim {
+
+            Plugin 'benmills/vimux'
+            Bundle 'edkolev/tmuxline.vim'
+
+        " }
+
+        " Markdown {
+
+            Plugin 'plasticboy/vim-markdown'
+            "Plugin 'greyblake/vim-preview'
+
+        " }
+
+        " editorconfig support {
+
+            Plugin 'editorconfig/editorconfig-vim'
+
+        " }
+
+        " Syntax and Completions {
+
+            Plugin 'scrooloose/syntastic'
+            Plugin 'valloric/YouCompleteMe'
+
+        " }
+
+" }

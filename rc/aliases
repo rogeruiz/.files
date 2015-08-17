@@ -1,0 +1,21 @@
+# Directory operations
+alias ..='cd ..'
+alias ...='cd ../..'
+alias -- -='cd -'
+alias l='ls -amPF'
+alias ll='ls -al -GF'
+alias lll='tree -plCfD  | less'
+
+# Super user
+alias _='sudo'
+alias pls='sudo'
+alias please='sudo'
+
+# Host files
+alias ho='$EDITOR /etc/hosts'
+
+# Rake noglob for ZSH
+alias rake='noglob rake'
+
+# Restart VirtualBox
+alias vbfix='pls /Library/StartupItems/VirtualBox/VirtualBox restart'

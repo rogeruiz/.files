@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Convert a Video* file to a looped GIF file
+# * Video files that can be read through ffmpeg, I'm not sure what is or
+# isn't supported.
+
+MOV_FILE=$1
+GIF_FILE=$2
+
+ffmpeg -i $MOV_FILE \
+       -r 10 \
+       -f image2pipe \
+       -vcodec ppm - \
+       | \
+convert -verbose +dither \
+        -layers Optimize \
+        -resize 640x640\> - gif:- \
+       | \
+gifsicle --colors 128 \
+         --delay=5 \
+         --loop \
+         --optimize=3 \
+         --multifile -> $GIF_FILE
