@@ -2,9 +2,17 @@
 #
 export EDITOR="vim"
 
-## Path for RVM
-##
-#export PATH=$HOME/.rvm/bin:$PATH
+# Homebrew
+#
+export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+
+# Composer
+#
+export PATH=$HOME/.composer/vendor/bin:$PATH
+
+# Path for RVM
+#
+export PATH=$HOME/.rvm/bin:$PATH
 
 # Terminal
 #
@@ -15,10 +23,7 @@ export TERM="xterm-256color"
 # $(boot2docker up > /dev/null 2>&1) # Not needed in every shell, dude.
 $(boot2docker shellinit 2> /dev/null)
 
-# Composer
-#
-export PATH=$HOME/.composer/vendor/bin:$PATH
-
 # Disable Tmux auto-titling of windows
 #
 export DISABLE_AUTO_TITLE=true
+

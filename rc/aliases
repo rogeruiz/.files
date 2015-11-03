@@ -4,7 +4,10 @@ alias ...='cd ../..'
 alias -- -='cd -'
 alias l='ls -amPF'
 alias ll='ls -al -GF'
-alias lll='tree -plCfD  | less'
+treeDir() {
+    tree -Clhcr --dirsfirst $@ | less
+}
+alias lll=treeDir
 
 # Super user
 alias _='sudo'
