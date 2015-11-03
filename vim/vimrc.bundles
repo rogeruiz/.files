@@ -29,6 +29,8 @@
         " Language Plugins {
 
             Plugin 'StanAngeloff/php.vim'
+            Plugin 'evidens/vim-twig'
+            Plugin 'VuogNguyen/vim-blade'
             Plugin 'tpope/vim-rails'
             Plugin 'applescript.vim'
             Plugin 'mustache/vim-mustache-handlebars'
@@ -38,12 +40,12 @@
 
         " JavaScript {
 
-            "Plugin 'pangloss/vim-javascript'
+            Plugin 'pangloss/vim-javascript'
             Plugin 'jelera/vim-javascript-syntax'
+            Plugin 'nathanaelkane/vim-indent-guides'
             Plugin 'othree/javascript-libraries-syntax.vim'
             Plugin 'moll/vim-node'
             Plugin 'elzr/vim-json'
-            Plugin 'Enhanced-Javascript-syntax'
             Plugin 'marijnh/tern_for_vim'
 
         " }
@@ -52,6 +54,7 @@
 
             Plugin 'mattn/emmet-vim'
             Plugin 'othree/html5.vim'
+            Plugin 'tpope/vim-ragtag'
 
         " }
 
@@ -82,6 +85,7 @@
             Plugin 'Yggdroot/indentLine'
             Plugin 'ctrlp.vim'
             Plugin 'tpope/vim-surround'
+            Plugin 'Raimondi/delimitMate'
 
         " }
 

@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker
 "
 " Organizing my .vimrc files
 " I'm borrowing everything from [here](https://github.com/spf13/spf13-vim) and
@@ -17,6 +17,8 @@
     let mapleader = ","
     set magic
     set shell=/bin/sh
+    set modeline
+    set modelines=5
 
 " }
 
@@ -28,27 +30,13 @@
 
 " Theme {
 
-    " Allow to trigger background
-    function! ToggleBG()
-        let s:tbg = &background
-        " Inversion
-        if s:tbg == "dark"
-            set background=light
-            colorscheme base16-tomorrow
-        else
-            set background=dark
-            colorscheme base16-hopscotch
-        endif
-    endfunction
-    noremap <leader>bg :call ToggleBG()<CR>
+    syntax enable
 
-    "if bg_mode == 'light'
-        "set background=light
-        "colorscheme base16-tomorrow
-    "else
     set background=dark
     colorscheme base16-hopscotch
-    "endif
+
+    "set background=light
+    "colorscheme base16-tomorrow
 
     set t_Co=256
 
@@ -62,37 +50,42 @@
     " Custom checkers
     let g:syntastic_php_checkers = [ "php" ]
     let g:syntastic_javascript_checkers = [ "eslint" ]
+    "let g:syntastic_sass_checkers = [ "scss-lint" ]
     " Enable some 'road' signs
     let g:syntastic_enable_signs = 1
     let g:syntastic_error_symbol = "✗"
     let g:syntastic_warning_symbol = "⚠"
     " Other options
     let g:syntastic_aggregate_errors = 1
+
     let g:syntastic_html_tidy_exec = 'tidy'
+    "let g:syntastic_html_tidy_blocklevel_tags = ''
 
 " }
 
 " Syntax Folding {
 
     set foldmethod=syntax
-    set foldlevelstart=3
+    set foldlevelstart=5
 
-    let javascript_fold = 0
     let php_folding = 1
+    let javascript_folding = 1
     let ruby_fold = 1
     let sh_fold_enabled = 1
     let xml_syntax_folding  = 1
 
-    "if isdirectory( expand( "~/.vim/bundle/vim-javascript-syntax" ) )
-        "au FileType javascript call JavaScriptFold()
-    "endif
 
 " }
 
 " Airline Preferences {
 
-    let g:airline_powerline_fonts = 1
+    " Hopscotch
     let g:airline_theme = 'kolor'
+
+    " Tomorrow
+    "let g:airline_theme = 'tomorrow'
+
+    let g:airline_powerline_fonts = 1
     let g:airline#extensions#whitespace#mixed_indent_algo = 1
     let g:airline#extensions#whitespace#enabled = 0
     let g:airline#extensions#syntastic#enabled = 1
@@ -100,16 +93,25 @@
 
 " }
 
+" Control-P {
+
+    let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|bower_components|vendor)$',
+    \ 'file': '\v\.(exe|so|dll)$'
+    \ }
+
+" }
+
 " Tmuxline Preferences {
 
     let g:tmuxline_preset = {
-      \'a'    : ['#S:#I.#P',  '#{client_termname}'],
-      \'c'    : ['#(whoami)', '#(uptime | cut -d " " -f 1,2,3)'],
-      \'win'  : ['#I #W'],
-      \'cwin' : ['#I #W #F'],
-      \'x'    : ['#(/usr/local/bin/current_itunes_song)', '#(/usr/local/bin/battery -t)'],
-      \'y'    : ['%l:%M%p', '%A %F'],
-      \'z'    : '#h'}
+      \'a'    : [ '#S:#I.#P', '#(/usr/local/bin/outatime)' ],
+      \'b'    : [ '#(/usr/local/bin/current_itunes_song)' ],
+      \'win'  : [ '#I #W' ],
+      \'cwin' : [ '#I #W #F' ],
+      \'x'    : [ '#(/usr/local/bin/battery -tp -g cyan -w magenta) ' ],
+      \'z'    : ['%l:%M%p', '%a %m/%d'] }
+
 
     let g:tmuxline_separators = {
           \ 'left' : '',
@@ -171,6 +173,11 @@
     " For when you forget to sudo.. Really Write the file.
     cmap w!! w !sudo tee % >/dev/null
 
+    " Moving up and down faster than one row at a damn time.
+    "
+    nnoremap <C-e> 3<C-e>
+    nnoremap <C-y> 3<C-y>
+
 " }
 
 " Tabs {
@@ -183,13 +190,38 @@
 
 " }
 
+set noerrorbells
+set novisualbell
+set t_vb=
 
 " GUI Options {
 
     if has( 'gui_running' )
 
-        set guifont=M\+\ 1mn\ regular:h14
+        set guifont=M\+\ 2m\ light:h12
+
+        set background=dark
+        colorscheme base16-hopscotch
+        let g:airline_theme = 'kolor'
+
+        "set background=light
+        "colorscheme base16-tomorrow
+        "let g:airline_theme = 'tomorrow'
+
         let g:airline_powerline_fonts = 0
+        if ! exists( 'g:airline_symbols' )
+            let g:airline_symbols = {}
+            let g:airline_left_sep = '»'
+            let g:airline_right_sep = '«'
+            let g:airline_symbols.space = "\ua0\ua0"
+            let g:airline_symbols.crypt = '🔒'
+            let g:airline_symbols.linenr = '␊'
+            let g:airline_symbols.branch = '⎇'
+            let g:airline_symbols.paste = 'ρ'
+            let g:airline_symbols.whitespace = 'Ξ'
+        endif
+
+        autocmd! GUIEnter * set vb t_vb=
 
     endif
 
@@ -214,12 +246,7 @@ set lazyredraw
 set showmatch
 set mat=2
 
-set noerrorbells
-set novisualbell
-set t_vb=
 set tm=500
-
-syntax enable
 
 set ffs=unix,dos,mac
 set encoding=utf8
@@ -233,10 +260,10 @@ set noswapfile
     if isdirectory( expand( "~/.vim/bundle/vim-gitgutter" ) )
 
         silent! if emoji#available()
-          let g:gitgutter_sign_added = emoji#for( 'rocket' )
-          let g:gitgutter_sign_modified = emoji#for( 'snake' )
-          let g:gitgutter_sign_removed = emoji#for( 'scissors' )
-          let g:gitgutter_sign_modified_removed = emoji#for( 'collision' )
+          let g:gitgutter_sign_added = emoji#for( 'rocket' ) . ' '
+          let g:gitgutter_sign_modified = emoji#for( 'snake' ) . ' '
+          let g:gitgutter_sign_removed = emoji#for( 'scissors' ) . ' '
+          let g:gitgutter_sign_modified_removed = emoji#for( 'collision' ) . ' '
         endif
 
     endif
@@ -282,6 +309,8 @@ set completeopt=menuone
 
 set listchars=eol:¬,tab:›·,trail:·,extends:›,precedes:‹
 set list
+map <leader>ll :set list!<cr>
+
 
 set lbr
 
@@ -313,15 +342,21 @@ autocmd BufWrite * :call DeleteTrailingWS()
 " File-type mapping {
 
     " JSON
-    au BufRead,BufNewFile *.jshintrc set filetype=json
-    au BufRead,BufNewFile *.bowerrc set filetype=json
-    au BufRead,BufNewFile *.pantheonrc set filetype=json
+    au BufRead,BufNewFile *.jshintrc set ft=json
+    au BufRead,BufNewFile *.bowerrc set ft=json
+    au BufRead,BufNewFile *.pantheonrc set ft=json
 
-    au BufRead,BufNewFile *.txt set filetype=mkd
+    au BufRead,BufNewFile *.txt set ft=mkd
+    au BufRead,BufNewFile *.text set ft=mkd
 
-    au BufRead,BufNewFile *.applescript set filetype=applescript
+    au BufRead,BufNewFile *.applescript set ft=applescript
 
-    au BufRead,BufNewFile *.eslintrc set filetype=yaml
+    au BufRead,BufNewFile *.eslintrc set ft=yaml
+
+    au BufNewFile,BufRead *.php set ft=php.html.js.css
+    au BufNewFile,BufRead *.blade.php set ft=blade.html.php
+
+    au BufNewFile,BufRead *.twig set ft=html.twig
 
 " }
 
