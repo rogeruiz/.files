@@ -1,5 +1,5 @@
 # This tmux statusbar config was created by tmuxline.vim
-# on Sun, 16 Aug 2015
+# on Wed, 30 Sep 2015
 
 set -g status-bg "colour238"
 set -g message-command-fg "colour206"
@@ -23,7 +23,7 @@ setw -g window-status-activity-attr "none"
 setw -g window-status-activity-fg "colour56"
 setw -g window-status-separator ""
 setw -g window-status-bg "colour238"
-set -g status-left "#[fg=colour254,bg=colour56] #S:#I.#P » #(clocker status) #[fg=colour56,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour254,bg=colour238] #(whoami) » #{client_termname} #[fg=colour238,bg=colour238,nobold,nounderscore,noitalics]"
-set -g status-right "#[fg=colour238,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour254,bg=colour238] #(/usr/local/bin/current_itunes_song) « #(/usr/local/bin/battery -t) #[fg=colour234,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour206,bg=colour234] %l:%M%p « %A %F #[fg=colour56,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour254,bg=colour56] #h "
+set -g status-left "#[fg=colour254,bg=colour56] #S:#I.#P » #(/usr/local/bin/outatime) #[fg=colour56,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour206,bg=colour234] #(/usr/local/bin/current_itunes_song) #[fg=colour234,bg=colour238,nobold,nounderscore,noitalics]"
+set -g status-right "#[fg=colour238,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour254,bg=colour238] #(/usr/local/bin/battery -tp -g cyan -w magenta)  #[fg=colour56,bg=colour238,nobold,nounderscore,noitalics]#[fg=colour254,bg=colour56] %l:%M%p « %a %m/%d "
 setw -g window-status-format "#[fg=colour238,bg=colour238,nobold,nounderscore,noitalics]#[default] #I #W #[fg=colour238,bg=colour238,nobold,nounderscore,noitalics]"
 setw -g window-status-current-format "#[fg=colour238,bg=colour234,nobold,nounderscore,noitalics]#[fg=colour206,bg=colour234] #I #W #F #[fg=colour234,bg=colour238,nobold,nounderscore,noitalics]"
