@@ -16,10 +16,13 @@ sessions=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session" "zsh")
 function punch_clock {
 	if [[ -n $1 && ($(which clocker) != "clocker not found") ]]
 	then
-		if [[ $1 == 'list' ]]
+		if [[ $1 == 'ls' ]]
 		then
-			clocker "$1" -t "$2" | tail -n 5
-		else
+			clocker "$1" -v -t "$2" | tail -n 5
+		elif [[ $3 != '' ]]
+        then
+			clocker "$1" -t "$2" -m "$3"
+        else
 			clocker "$1" -t "$2"
 		fi
 	fi
@@ -37,9 +40,10 @@ select session in "${sessions[@]}"
 do
 	case $session in
 		"New Session")
-			read -p "Enter new session name: " new_session
+			read -p "What are you working on? ( ex: abbr-name-with-dashes ): " new_session
+            read -p "Why are you working on it? ( ex: \"Because of this thing or another.\" ): " session_message
 			CURRENT_TUX_SESSION="$new_session"
-			punch_clock "start" "$new_session"
+			punch_clock "start" "$new_session" "$session_message"
 			tmux new-session -s "$new_session"
 			break
 			;;
@@ -48,8 +52,9 @@ do
 			break
 			;;
 		*)
+            read -p "Why are you working on it? ( ex: \"Because of this thing or another.\" ): " session_message
 			CURRENT_TUX_SESSION="$session"
-			punch_clock "start" $session
+			punch_clock "start" $session "$session_message"
 			tmux attach-session -t $session
 			break
 			;;
@@ -61,7 +66,7 @@ done
 if [[ "$?" == 0 && -n $CURRENT_TUX_SESSION ]]; then
 	punch_clock "stop" $CURRENT_TUX_SESSION
 	echo
-	punch_clock "list" $CURRENT_TUX_SESSION
+	punch_clock "ls" $CURRENT_TUX_SESSION
 fi
 
 echo "+ ------------------- +"
