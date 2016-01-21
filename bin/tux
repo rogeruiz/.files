@@ -13,23 +13,29 @@ sessions=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session" "zsh")
 # A wrapper function around clocker, lovingly named punch_clock.
 # @param $1 clocker sub-command
 # @param $2 -t Type parameter for clocker
+# @param $3 -m Message parameter for clocker
+#
 function punch_clock {
 	if [[ -n $1 && ($(which clocker) != "clocker not found") ]]
 	then
 		if [[ $1 == 'ls' ]]
 		then
-			clocker "$1" -v -t "$2" | tail -n 5
+			clocker "$1" -v -t "$2" | tail -n 25
 		elif [[ $3 != '' ]]
-        then
+		 then
 			clocker "$1" -t "$2" -m "$3"
-        else
+		else
 			clocker "$1" -t "$2"
 		fi
+	#else
+		#echo
+		#echo "Please install clocker using `npm install --global clocker`"
+		#echo
 	fi
 }
 
 echo "+ ------------------ +"
-echo "  Available Sessions  "
+echo "	Available Sessions	"
 echo "+ ------------------ +"
 
 export CURRENT_TUX_SESSION=""
@@ -41,7 +47,7 @@ do
 	case $session in
 		"New Session")
 			read -p "What are you working on? ( ex: abbr-name-with-dashes ): " new_session
-            read -p "Why are you working on it? ( ex: \"Because of this thing or another.\" ): " session_message
+			read -p "What do you want to accomplish?: " session_message
 			CURRENT_TUX_SESSION="$new_session"
 			punch_clock "start" "$new_session" "$session_message"
 			tmux new-session -s "$new_session"
@@ -52,7 +58,7 @@ do
 			break
 			;;
 		*)
-            read -p "Why are you working on it? ( ex: \"Because of this thing or another.\" ): " session_message
+			read -p "What do you want to accomplish?: " session_message
 			CURRENT_TUX_SESSION="$session"
 			punch_clock "start" $session "$session_message"
 			tmux attach-session -t $session
@@ -63,14 +69,16 @@ done
 
 # Don't forget to punch out
 #
-if [[ "$?" == 0 && -n $CURRENT_TUX_SESSION ]]; then
-	punch_clock "stop" $CURRENT_TUX_SESSION
+if [[ "$?" == 0 && -n $CURRENT_TUX_SESSION ]];
+then
+	read -p "What did you accomplish?: " session_message
+	punch_clock "stop" $CURRENT_TUX_SESSION "$session_message"
 	echo
 	punch_clock "ls" $CURRENT_TUX_SESSION
 fi
 
 echo "+ ------------------- +"
-echo "  You look nice today  "
+echo "	You look nice today  "
 echo "+ ------------------- +"
 
 # Wait for it
