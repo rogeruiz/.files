@@ -46,8 +46,8 @@ select session in "${sessions[@]}"
 do
 	case $session in
 		"New Session")
-			read -p "What are you working on? ( ex: abbr-name-with-dashes ): " new_session
-			read -p "What do you want to accomplish?: " session_message
+			read -p "What are you working on? ( ex: abbr-name-with-dashes ) => " new_session
+			read -p "What do you want to accomplish? => " session_message
 			CURRENT_TUX_SESSION="$new_session"
 			punch_clock "start" "$new_session" "$session_message"
 			tmux new-session -s "$new_session"
@@ -58,7 +58,7 @@ do
 			break
 			;;
 		*)
-			read -p "What do you want to accomplish?: " session_message
+			read -p "What do you want to accomplish? => " session_message
 			CURRENT_TUX_SESSION="$session"
 			punch_clock "start" $session "$session_message"
 			tmux attach-session -t $session
@@ -71,17 +71,17 @@ done
 #
 if [[ "$?" == 0 && -n $CURRENT_TUX_SESSION ]];
 then
-	read -p "What did you accomplish?: " session_message
+	read -p "What did you accomplish? => " session_message
 	punch_clock "stop" $CURRENT_TUX_SESSION "$session_message"
 	echo
 	punch_clock "ls" $CURRENT_TUX_SESSION
 fi
 
-echo ">-< ------------------- >-<"
-echo "    You look nice today"
-echo ">-< ------------------- >-<"
+echo ">-< -------------------- >-<"
+echo "    You look nice today."
+echo ">-< -------------------- >-<"
 
 # Wait for it
 #
-sleep 3
+sleep 5
 exit 0
