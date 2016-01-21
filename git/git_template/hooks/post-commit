@@ -1,6 +1,0 @@
-#!/bin/sh
-### lolcommits hook (begin) ###
-export LANG="en_US.UTF-8"
-export PATH="/Users/rsr/.rvm/rubies/ruby-2.2.2/bin:/usr/local/bin:$PATH"
-lolcommits --capture --fork --stealth --delay=3
-###  lolcommits hook (end)  ###
