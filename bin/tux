@@ -34,9 +34,9 @@ function punch_clock {
 	fi
 }
 
-echo "+ ------------------ +"
-echo "	Available Sessions	"
-echo "+ ------------------ +"
+echo ">-< ------------------ >-<"
+echo "    Available Sessions"
+echo ">-< ------------------ >-<"
 
 export CURRENT_TUX_SESSION=""
 
@@ -77,9 +77,9 @@ then
 	punch_clock "ls" $CURRENT_TUX_SESSION
 fi
 
-echo "+ ------------------- +"
-echo "	You look nice today  "
-echo "+ ------------------- +"
+echo ">-< ------------------- >-<"
+echo "    You look nice today"
+echo ">-< ------------------- >-<"
 
 # Wait for it
 #
