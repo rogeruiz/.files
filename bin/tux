@@ -37,6 +37,7 @@ function punch_clock {
 echo ">-< ------------------ >-<"
 echo "    Available Sessions"
 echo ">-< ------------------ >-<"
+echo
 
 export CURRENT_TUX_SESSION=""
 
@@ -73,15 +74,20 @@ if [[ "$?" == 0 && -n $CURRENT_TUX_SESSION ]];
 then
 	read -p "What did you accomplish? => " session_message
 	punch_clock "stop" $CURRENT_TUX_SESSION "$session_message"
-	echo
+    echo
+	echo ">-< --------------------------- >-<"
+	echo "    Here is a log of your time."
+	echo ">-< --------------------------- >-<"
 	punch_clock "ls" $CURRENT_TUX_SESSION
 fi
 
+echo
 echo ">-< -------------------- >-<"
 echo "    You look nice today."
 echo ">-< -------------------- >-<"
 
 # Wait for it
 #
-sleep 5
+echo
+read -rsp "Press any key to close your terminal..." -n1 key
 exit 0
