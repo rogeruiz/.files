@@ -40,6 +40,7 @@
 	cached = diff --cached --
 	discard = checkout --
 	local = branch --list
+	unpatch = reset HEAD --patch
 [push]
 	default = simple
 [init]
