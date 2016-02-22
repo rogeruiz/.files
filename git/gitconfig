@@ -12,7 +12,7 @@
 [alias]
 	co = checkout
 	ci = commit
-	st = status
+	st = status -s
 	br = branch
 	fall = fetch --all
 	mr = merge
