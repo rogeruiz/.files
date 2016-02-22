@@ -50,11 +50,12 @@
     " Custom checkers
     let g:syntastic_php_checkers = [ "php" ]
     let g:syntastic_javascript_checkers = [ "eslint" ]
-    "let g:syntastic_sass_checkers = [ "scss-lint" ]
+    let g:syntastic_sass_checkers = [ "scss-lint" ]
+    let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
     " Enable some 'road' signs
     let g:syntastic_enable_signs = 1
-    let g:syntastic_error_symbol = "✗"
-    let g:syntastic_warning_symbol = "⚠"
+    let g:syntastic_error_symbol = '∑'
+    let g:syntastic_warning_symbol = '∆'
     " Other options
     let g:syntastic_aggregate_errors = 1
 
@@ -66,13 +67,14 @@
 " Syntax Folding {
 
     set foldmethod=syntax
-    set foldlevelstart=5
+    set foldlevelstart=3
 
     let php_folding = 1
     let javascript_folding = 1
     let ruby_fold = 1
     let sh_fold_enabled = 1
     let xml_syntax_folding  = 1
+    let html_fold_enabled = 1
 
 
 " }
@@ -198,7 +200,7 @@ set t_vb=
 
     if has( 'gui_running' )
 
-        set guifont=M\+\ 2m\ light:h12
+        set guifont=M\+\ 2m\ medium:h12
 
         set background=dark
         colorscheme base16-hopscotch
@@ -227,7 +229,17 @@ set t_vb=
 
 " }
 
-let g:indentLine_noConcealCursor=""
+" IndentLine {
+
+let g:indentLine_noConcealCursor = ""
+let g:indentLine_color_tty_light = 2
+let g:indentLine_color_dark = 1
+let g:indentLine_char = '|'
+let g:vim_json_syntax_conceal = ""
+
+" }
+
+
 set number
 set ruler
 set colorcolumn=50,72,80,100
@@ -259,12 +271,16 @@ set noswapfile
 
     if isdirectory( expand( "~/.vim/bundle/vim-gitgutter" ) )
 
-        silent! if emoji#available()
-          let g:gitgutter_sign_added = emoji#for( 'rocket' ) . ' '
-          let g:gitgutter_sign_modified = emoji#for( 'snake' ) . ' '
-          let g:gitgutter_sign_removed = emoji#for( 'scissors' ) . ' '
-          let g:gitgutter_sign_modified_removed = emoji#for( 'collision' ) . ' '
-        endif
+        let g:gitgutter_sign_added = '+'
+        let g:gitgutter_sign_modified = '~'
+        let g:gitgutter_sign_removed = '-'
+        let g:gitgutter_sign_modified_removed = '≠'
+        "silent! if emoji#available()
+          "let g:gitgutter_sign_added = emoji#for( 'rocket' ) . ' '
+          "let g:gitgutter_sign_modified = emoji#for( 'snake' ) . ' '
+          "let g:gitgutter_sign_removed = emoji#for( 'scissors' ) . ' '
+          "let g:gitgutter_sign_modified_removed = emoji#for( 'collision' ) . ' '
+        "endif
 
     endif
 
@@ -341,25 +357,27 @@ autocmd BufWrite * :call DeleteTrailingWS()
 
 " File-type mapping {
 
-    " JSON
     au BufRead,BufNewFile *.jshintrc set ft=json
     au BufRead,BufNewFile *.bowerrc set ft=json
     au BufRead,BufNewFile *.pantheonrc set ft=json
 
-    au BufRead,BufNewFile *.txt set ft=mkd
-    au BufRead,BufNewFile *.text set ft=mkd
+    au BufRead,BufNewFile *.txt set ft=markdown
+    au BufRead,BufNewFile *.text set ft=markdown
 
     au BufRead,BufNewFile *.applescript set ft=applescript
 
-    au BufRead,BufNewFile *.eslintrc set ft=yaml
+    au BufRead,BufNewFile *.eslintrc set ft=json
 
     au BufNewFile,BufRead *.php set ft=php.html.js.css
     au BufNewFile,BufRead *.blade.php set ft=blade.html.php
+    au BufNewFile,BufRead *.ejs set ft=liquid.html.js.css
 
     au BufNewFile,BufRead *.twig set ft=html.twig
 
 " }
 
-au FileType mkd setlocal shiftwidth=8 tabstop=8 wrap spell tw=80 wm=0 linebreak nolist
+au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak nolist
+
+au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak nolist
 
 
