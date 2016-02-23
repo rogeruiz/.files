@@ -24,6 +24,7 @@ alias rake='noglob rake'
 alias vbfix='pls /Library/StartupItems/VirtualBox/VirtualBox restart'
 
 # Clocker Function
+# @param $1 The name of the clocker timer
 clockerGet() {
     clocker list -v --gt=`date -v-8d "+%Y-%m-%d"` --lt=`date "+%Y-%m-%d"` -t $1 --title "$1" | less
 }
