@@ -25,10 +25,11 @@ prompt_pure_human_time() {
     local hours=$(( tmp / 60 / 60 % 24 ))
     local minutes=$(( tmp / 60 % 60 ))
     local seconds=$(( tmp % 60 ))
+    echo -n "  %F{245}"
     (( $days > 0 )) && echo -n "${days}d "
     (( $hours > 0 )) && echo -n "${hours}h "
     (( $minutes > 0 )) && echo -n "${minutes}m "
-    echo "${seconds}s  "
+    echo "${seconds}s %f"
 }
 
 # fastest possible way to check if repo is dirty
@@ -70,7 +71,7 @@ prompt_pure_precmd() {
     # git info
     vcs_info
 
-    local prompt_pure_preprompt='\n%F{yellow}`prompt_pure_cmd_exec_time`%f%F{magenta} %~%F{242}  $vcs_info_msg_0_ %F{yellow}`prompt_pure_git_dirty`%f $prompt_pure_username %f'
+    local prompt_pure_preprompt='\n%F{yellow}`prompt_pure_cmd_exec_time`%f%F{cyan}  %F{242}%~ $vcs_info_msg_0_ %F{yellow}`prompt_pure_git_dirty`%f $prompt_pure_username %f'
     print -P $prompt_pure_preprompt
 
     # check async if there is anything to pull
@@ -105,8 +106,8 @@ prompt_pure_setup() {
     add-zsh-hook preexec prompt_pure_preexec
 
     zstyle ':vcs_info:*' enable git
-    zstyle ':vcs_info:git*' actionformats ' %b'
-    zstyle ':vcs_info:git*' actionformats ' %b|%a'
+    zstyle ':vcs_info:git*' formats "%F{green}%F{242} %b"
+    zstyle ':vcs_info:git*' actionformats "%b %F{green} %f%a"
 
     # show username@host if logged in through SSH
     [[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%n@%m '
