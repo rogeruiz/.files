@@ -25,7 +25,7 @@ prompt_pure_human_time() {
     local hours=$(( tmp / 60 / 60 % 24 ))
     local minutes=$(( tmp / 60 % 60 ))
     local seconds=$(( tmp % 60 ))
-    echo -n "  %F{245}"
+    echo -n "  %F{242}"
     (( $days > 0 )) && echo -n "${days}d "
     (( $hours > 0 )) && echo -n "${hours}h "
     (( $minutes > 0 )) && echo -n "${minutes}m "
@@ -107,7 +107,7 @@ prompt_pure_setup() {
 
     zstyle ':vcs_info:*' enable git
     zstyle ':vcs_info:git*' formats "%F{green}%F{242} %b"
-    zstyle ':vcs_info:git*' actionformats "%b %F{green} %f%a"
+    zstyle ':vcs_info:git*' actionformats "%F{green}%F{242} %b %F{green} %F{242} %a"
 
     # show username@host if logged in through SSH
     [[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%n@%m '
@@ -116,7 +116,7 @@ prompt_pure_setup() {
 
     prompt_okay="%F{green} "
     prompt_not_okay="%F{red} "
-    PROMPT='%(?.${prompt_okay}.${prompt_not_okay})%f %F{magenta} %f '
+    PROMPT='%(?.${prompt_okay}.${prompt_not_okay})%f %F{242} %f '
 
 }
 
