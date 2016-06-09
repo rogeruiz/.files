@@ -7,6 +7,7 @@ echo
 cp -v ./bin/mov2gif /usr/local/bin/mov2gif
 cp -v ./bin/z /usr/local/bin/z
 cp -v ./bin/tux /usr/local/bin/tux
+cp -v ./bin/generate-passphrase /usr/local/bin/generate-passphrase
 echo
 cp -v ./lint/csslintrc $HOME/.csslintrc
 cp -v ./lint/jslintrc $HOME/.jslintrc
