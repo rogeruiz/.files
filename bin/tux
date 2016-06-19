@@ -1,10 +1,12 @@
 #!/bin/sh
 export PATH=$PATH:/usr/local/bin
 
+set -e
+
 # Check if we're already in a tmux session
-if [[ "$TMUX" != "" ]]
-then
-	exit 0
+if [[ "$TMUX" != "" ]]; then
+  echo "Already running within tmux so bailing."
+  exit 0
 fi
 
 PS3="Please choose your session: "
@@ -39,8 +41,6 @@ echo "    Available Sessions"
 echo ">-< ------------------ >-<"
 echo
 
-export CURRENT_TUX_SESSION=""
-
 # Let's start by punching in.
 #
 select session in "${sessions[@]}"
@@ -49,7 +49,7 @@ do
 		"New Session")
 			read -p "What are you working on? ( ex: abbr-name-with-dashes ) => " new_session
 			read -p "What do you want to accomplish? => " session_message
-			CURRENT_TUX_SESSION="$new_session"
+			current_tux_session="$new_session"
 			punch_clock "start" "$new_session" "$session_message"
 			tmux new-session -s "$new_session"
 			break
@@ -59,8 +59,12 @@ do
 			break
 			;;
 		*)
+      if [[ $session == "" ]]; then
+        echo "Please choose from the available sessions!"
+        continue
+      fi
 			read -p "What do you want to accomplish? => " session_message
-			CURRENT_TUX_SESSION="$session"
+			current_tux_session="$session"
 			punch_clock "start" $session "$session_message"
 			tmux attach-session -t $session
 			break
@@ -70,15 +74,15 @@ done
 
 # Don't forget to punch out
 #
-if [[ "$?" == 0 && -n $CURRENT_TUX_SESSION ]];
+if [[ "$?" == 0 && -n $current_tux_session ]];
 then
 	read -p "What did you accomplish? => " session_message
-	punch_clock "stop" $CURRENT_TUX_SESSION "$session_message"
+	punch_clock "stop" $current_tux_session "$session_message"
     echo
 	echo ">-< --------------------------- >-<"
 	echo "    Here is a log of your time."
 	echo ">-< --------------------------- >-<"
-	punch_clock "ls" $CURRENT_TUX_SESSION
+	punch_clock "ls" $current_tux_session
 fi
 
 echo
