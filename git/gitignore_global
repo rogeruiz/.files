@@ -28,3 +28,5 @@ Icon*
 *.psd
 *.ai
 *.indd/vendor/
+# Ignore fun directories
+tmp/
