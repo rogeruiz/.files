@@ -35,6 +35,11 @@
             Plugin 'applescript.vim'
             Plugin 'mustache/vim-mustache-handlebars'
             Plugin 'ekalinin/Dockerfile.vim'
+            Plugin 'markcornick/vim-terraform'
+            Plugin 'rust-lang/rust.vim'
+            Plugin 'toml-lang/toml'
+            Plugin 'cespare/vim-toml'
+            Plugin 'maralla/vim-toml-enhance'
 
         " }
 
@@ -47,6 +52,12 @@
             Plugin 'moll/vim-node'
             Plugin 'elzr/vim-json'
             Plugin 'marijnh/tern_for_vim'
+
+        " }
+
+        " YAML {
+
+            Plugin 'stephpy/vim-yaml'
 
         " }
 
@@ -78,14 +89,16 @@
             Plugin 'kien/rainbow_parentheses.vim'
             Plugin 'scrooloose/nerdtree'
             Plugin 'myusuf3/numbers.vim'
-            Plugin 'bling/vim-airline'
+            Plugin 'vim-airline/vim-airline'
+            Plugin 'vim-airline/vim-airline-themes'
             Plugin 'mhinz/vim-startify'
             Plugin 'junegunn/vim-emoji'
             Plugin 'godlygeek/tabular'
             Plugin 'Yggdroot/indentLine'
-            Plugin 'ctrlp.vim'
+            Plugin 'ctrlpvim/ctrlp.vim'
             Plugin 'tpope/vim-surround'
             Plugin 'Raimondi/delimitMate'
+            Plugin 'ryanoasis/vim-devicons'
 
         " }
 
@@ -111,6 +124,8 @@
         " Markdown {
 
             Plugin 'plasticboy/vim-markdown'
+            Plugin 'kannokanno/previm'
+            Plugin 'tyru/open-browser.vim'
             "Plugin 'greyblake/vim-preview'
 
         " }

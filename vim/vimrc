@@ -16,9 +16,10 @@
 
     let mapleader = ","
     set magic
-    set shell=/bin/sh
+    set shell=/usr/local/bin/zsh
     set modeline
     set modelines=5
+    set updatetime=250
 
 " }
 
@@ -36,7 +37,7 @@
     colorscheme base16-hopscotch
 
     "set background=light
-    "colorscheme base16-tomorrow
+    "colorscheme Tomorrow
 
     set t_Co=256
 
@@ -54,8 +55,8 @@
     let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
     " Enable some 'road' signs
     let g:syntastic_enable_signs = 1
-    let g:syntastic_error_symbol = '∑'
-    let g:syntastic_warning_symbol = '∆'
+    let g:syntastic_error_symbol = "\uF470"
+    let g:syntastic_warning_symbol = "\uF0E7"
     " Other options
     let g:syntastic_aggregate_errors = 1
 
@@ -82,23 +83,35 @@
 " Airline Preferences {
 
     " Hopscotch
-    let g:airline_theme = 'kolor'
+    let g:airline_theme = 'dracula'
 
     " Tomorrow
-    "let g:airline_theme = 'tomorrow'
+    "let g:airline_theme = 'solarized'
 
-    let g:airline_powerline_fonts = 1
+    let g:airline_powerline_fonts = 0
     let g:airline#extensions#whitespace#mixed_indent_algo = 1
     let g:airline#extensions#whitespace#enabled = 0
     let g:airline#extensions#syntastic#enabled = 1
     let g:airline#extensions#tmuxline#enabled = 1
+
+    if ! exists( 'g:airline_symbols' )
+        let g:airline_symbols = {}
+        let g:airline_left_sep = "\uF44A"
+        let g:airline_right_sep = "\uF438"
+        let g:airline_symbols.space = "\uA0"
+        let g:airline_symbols.crypt = "\uF023"
+        let g:airline_symbols.linenr = "\uF1DD"
+        let g:airline_symbols.branch = "\uE725"
+        let g:airline_symbols.paste = "\uF0D0"
+        let g:airline_symbols.whitespace = "\uF44E"
+    endif
 
 " }
 
 " Control-P {
 
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|bower_components|vendor)$',
+    \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|exports|bower_components|opencontrols|vendor|target|public|_site)$',
     \ 'file': '\v\.(exe|so|dll)$'
     \ }
 
@@ -111,22 +124,22 @@
       \'b'    : [ '#(/usr/local/bin/current_itunes_song)' ],
       \'win'  : [ '#I #W' ],
       \'cwin' : [ '#I #W #F' ],
-      \'x'    : [ '#(/usr/local/bin/battery -tp -g cyan -w magenta) ' ],
+      \'x'    : [ '#(/usr/local/bin/battery -tp) ' ],
       \'z'    : ['%l:%M%p', '%a %m/%d'] }
 
-
     let g:tmuxline_separators = {
-          \ 'left' : '',
-          \ 'left_alt': '»',
-          \ 'right' : '',
-          \ 'right_alt' : '«',
-          \ 'space' : ' '}
+          \ 'left' : "\uF44A",
+          \ "left_alt": "\uF0DA",
+          \ "right" : "\uF438",
+          \ "right_alt" : "\uF0D9",
+          \ "space" : "\uA0" }
 
 " }
 
 " Markdown {
 
     let g:vim_markdown_folding_disabled = 1
+    let g:vim_markdown_conceal = 0
 
 " }
 
@@ -186,8 +199,8 @@
 
     set expandtab
     set smarttab
-    set shiftwidth=4
-    set tabstop=4
+    set shiftwidth=2
+    set tabstop=2
     set tw=9000
 
 " }
@@ -200,28 +213,15 @@ set t_vb=
 
     if has( 'gui_running' )
 
-        set guifont=M\+\ 2m\ medium:h12
+        set guifont=M\+\ 2m\ NerdFont\ Patched:h12
 
         set background=dark
         colorscheme base16-hopscotch
-        let g:airline_theme = 'kolor'
+        let g:airline_theme = 'dracula'
 
         "set background=light
-        "colorscheme base16-tomorrow
-        "let g:airline_theme = 'tomorrow'
-
-        let g:airline_powerline_fonts = 0
-        if ! exists( 'g:airline_symbols' )
-            let g:airline_symbols = {}
-            let g:airline_left_sep = '»'
-            let g:airline_right_sep = '«'
-            let g:airline_symbols.space = "\ua0\ua0"
-            let g:airline_symbols.crypt = '🔒'
-            let g:airline_symbols.linenr = '␊'
-            let g:airline_symbols.branch = '⎇'
-            let g:airline_symbols.paste = 'ρ'
-            let g:airline_symbols.whitespace = 'Ξ'
-        endif
+        "colorscheme Tomorrow
+        "let g:airline_theme = 'solarized'
 
         autocmd! GUIEnter * set vb t_vb=
 
@@ -271,16 +271,10 @@ set noswapfile
 
     if isdirectory( expand( "~/.vim/bundle/vim-gitgutter" ) )
 
-        let g:gitgutter_sign_added = '+'
-        let g:gitgutter_sign_modified = '~'
-        let g:gitgutter_sign_removed = '-'
-        let g:gitgutter_sign_modified_removed = '≠'
-        "silent! if emoji#available()
-          "let g:gitgutter_sign_added = emoji#for( 'rocket' ) . ' '
-          "let g:gitgutter_sign_modified = emoji#for( 'snake' ) . ' '
-          "let g:gitgutter_sign_removed = emoji#for( 'scissors' ) . ' '
-          "let g:gitgutter_sign_modified_removed = emoji#for( 'collision' ) . ' '
-        "endif
+        let g:gitgutter_sign_added = "\uF458"
+        let g:gitgutter_sign_modified = "\uF45A"
+        let g:gitgutter_sign_removed = "\uF459"
+        let g:gitgutter_sign_modified_removed = "\uF45B"
 
     endif
 
@@ -313,6 +307,7 @@ set noswapfile
     let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
     let g:ycm_key_invoke_completion = '<C-Space>'
+    let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.9.0/src'
 
 " }
 
@@ -374,10 +369,14 @@ autocmd BufWrite * :call DeleteTrailingWS()
 
     au BufNewFile,BufRead *.twig set ft=html.twig
 
+    au BufNewFile,BufRead *.toml set ft=toml
+
 " }
 
 au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak nolist
 
 au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak nolist
+
+au FileType yaml setlocal shiftwidth=2 tabstop=2 wrap spell expandtab tw=80 wm=0 linebreak nolist
 
 
