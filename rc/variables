@@ -35,6 +35,7 @@ export DISABLE_AUTO_TITLE=true
 # CloudGov Helpers
 #
 export CG_PIPELINE="$HOME/Developer/cloud.gov/cg-pipeline-tasks"
+export CG_SCRIPT="$HOME/Developer/cloud.gov/cg-scripts"
 
 # Gulp autocompletion
 #
