@@ -33,11 +33,11 @@
 
     syntax enable
 
-    set background=dark
-    colorscheme base16-hopscotch
+    "set background=dark
+    "colorscheme base16-hopscotch
 
-    "set background=light
-    "colorscheme Tomorrow
+    set background=light
+    colorscheme solarized
 
     set t_Co=256
 
@@ -83,10 +83,10 @@
 " Airline Preferences {
 
     " Hopscotch
-    let g:airline_theme = 'dracula'
+    "let g:airline_theme = 'dracula'
 
     " Tomorrow
-    "let g:airline_theme = 'solarized'
+    let g:airline_theme = 'solarized'
 
     let g:airline_powerline_fonts = 0
     let g:airline#extensions#whitespace#mixed_indent_algo = 1
@@ -153,7 +153,9 @@
 
 " NERDCommenter {
 
-    let g:NERDCustomDelimiters = { 'scss': { 'left': '// ' } }
+    let g:NERDCustomDelimiters = { 'scss': { 'left': '// ', 'leftAlt': '/*', 'rightAlt': '*/' }, 'javascript': { 'left': '// ', 'leftAlt': '/**', 'rightAlt': '*/' } }
+    let g:NERDCommentEmptyLines = 1
+    let g:NERDTrimTrailingWhitespace = 1
 
 " }
 
@@ -215,13 +217,13 @@ set t_vb=
 
         set guifont=M\+\ 2m\ NerdFont\ Patched:h12
 
-        set background=dark
-        colorscheme base16-hopscotch
-        let g:airline_theme = 'dracula'
+        "set background=dark
+        "colorscheme base16-hopscotch
+        "let g:airline_theme = 'dracula'
 
-        "set background=light
-        "colorscheme Tomorrow
-        "let g:airline_theme = 'solarized'
+        set background=light
+        colorscheme solarized
+        let g:airline_theme = 'solarized'
 
         autocmd! GUIEnter * set vb t_vb=
 

@@ -91,6 +91,7 @@
             Plugin 'myusuf3/numbers.vim'
             Plugin 'vim-airline/vim-airline'
             Plugin 'vim-airline/vim-airline-themes'
+            Plugin 'altercation/vim-colors-solarized'
             Plugin 'mhinz/vim-startify'
             Plugin 'junegunn/vim-emoji'
             Plugin 'godlygeek/tabular'
@@ -105,7 +106,6 @@
         " Git {
 
             Plugin 'tpope/vim-fugitive'
-            Plugin 'mhinz/vim-signify'
             Plugin 'airblade/vim-gitgutter'
 
             " Gist support
