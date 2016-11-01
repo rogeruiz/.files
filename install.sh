@@ -2,44 +2,71 @@
 
 clear
 echo
-echo "¯\_(ツ)_/¯ Installing the following scripts ¯\_(ツ)_/¯"
+echo "¯\_(ツ)_/¯ Installing the binaries straight up ¯\_(ツ)_/¯"
 echo
-cp -v ./bin/mov2gif /usr/local/bin/mov2gif
-cp -v ./bin/z /usr/local/bin/z
-cp -v ./bin/tux /usr/local/bin/tux
-cp -v ./bin/generate-passphrase /usr/local/bin/generate-passphrase
+# shellcheck disable=SC2045
+for file in $(ls ./bin/*)
+do
+  file_name=$(echo "$file" | cut -d '/' -f 3)
+  cp -vn "$file" "/usr/local/bin/$file_name"
+done
 echo
-cp -v ./lint/csslintrc $HOME/.csslintrc
-cp -v ./lint/jslintrc $HOME/.jslintrc
-cp -v ./lint/eslintrc $HOME/.eslintrc
-echo
-cp -v ./git/gitconfig $HOME/.gitconfig
-cp -v ./git/gitignore_global $HOME/.gitignore_global
-cp -vr ./git/git_template $HOME/.git_template
-echo
-cp -v ./oh-my-zsh/custom/pure.zsh-theme $HOME/.oh-my-zsh/custom/pure.zsh-theme
-cp -v ./rc/zshrc $HOME/.zshrc
-cp -v ./rc/aliases $HOME/Developer/.aliases
-cp -v ./rc/variables $HOME/Developer/.variables
-echo
-cp -v ./ssh/config $HOME/.ssh/config
-echo
-cp -v ./tmux/tmux.conf $HOME/.tmux.conf
-cp -v ./tmux/tmuxline.snapshot $HOME/.tmuxline.snapshot
-echo
-cp -vr ./vim/colors $HOME/.vim/colors
-cp -v ./vim/vimrc $HOME/.vimrc
-echo
-echo "¯\_(ツ)_/¯ Make sure to install all the necessary things you need to install ¯\_(ツ)_/¯"
 
 sleep 1
+echo "¯\_(ツ)_/¯ Diffing Lint files ¯\_(ツ)_/¯"
+echo
+vimdiff ./lint/eslintrc "$HOME/.eslintrc"
+echo
+
+sleep 1
+echo "¯\_(ツ)_/¯ Diffing git files ¯\_(ツ)_/¯"
+echo
+vimdiff  ./git/gitconfig "$HOME/.gitconfig"
+vimdiff  ./git/gitignore_global "$HOME/.gitignore_global"
+echo
+
+sleep 1
+echo "¯\_(ツ)_/¯ Copying git_template files straight up ¯\_(ツ)_/¯"
+echo
+cp -vr -n ./git/git_template "$HOME/.git_template"
+echo
+
+sleep 1
+echo "¯\_(ツ)_/¯ Copying custom terminal theme ¯\_(ツ)_/¯"
+echo
+cp -vn ./oh-my-zsh/custom/real.zsh-theme "$HOME/.oh-my-zsh/custom/real.zsh-theme"
+echo
+
+sleep 1
+echo "¯\_(ツ)_/¯ Diffing Shell profiles ¯\_(ツ)_/¯"
+echo
+vimdiff ./rc/zshrc "$HOME/.zshrc"
+vimdiff ./rc/aliases "$HOME/Developer/.aliases"
+vimdiff ./rc/variables "$HOME/Developer/.variables"
+echo
+
+sleep 1
+echo "¯\_(ツ)_/¯ Diffing ssh configuration ¯\_(ツ)_/¯"
+echo
+vimdiff ./ssh/config "$HOME/.ssh/config"
+echo
+
+sleep 1
+echo "¯\_(ツ)_/¯ Diffing tmux configuration ¯\_(ツ)_/¯"
+echo
+vimdiff ./tmux/tmux.conf "$HOME/.tmux.conf"
+vimdiff ./tmux/tmuxline.snapshot "$HOME/.tmuxline.snapshot"
+vimdiff ./tmux/tmuxlayout.default "$HOME/.tmuxlayout.default"
+echo
+
+sleep 1
+echo "¯\_(ツ)_/¯ Diffing vim configuration ¯\_(ツ)_/¯"
+echo
+cp -vr -n ./vim/colors "$HOME/.vim/colors"
+vimdiff ./vim/vimrc "$HOME/.vimrc"
+vimdiff ./vim/vimrc.bundles "$HOME/.vimrc.bundles"
+echo
+
+echo "¯\_(ツ)_/¯ Thanks for playing ¯\_(ツ)_/¯"
+sleep 1
 exit 0
-
-# An example of recursively looping through files in this directory. Look into
-# how to best do this so that this install.sh is easier to maintain.
-#DIRS=`ls -1F ./**/*| grep -e "[^\.].\+/\?" --color=never`
-#for i in $DIRS
-#do
-  #echo "`echo ${i:0}` BUTTS"
-#done
-
