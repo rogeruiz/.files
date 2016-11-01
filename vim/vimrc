@@ -69,7 +69,7 @@
 " Syntax Folding {
 
     set foldmethod=syntax
-    set foldlevelstart=3
+    set foldlevelstart=2
 
     let php_folding = 1
     let javascript_folding = 1
@@ -139,8 +139,8 @@
 
 " Markdown {
 
-    let g:vim_markdown_folding_disabled = 1
-    let g:vim_markdown_conceal = 0
+    let g:vim_markdown_folding_disabled = 0
+    let g:vim_markdown_conceal = 1
 
 " }
 
@@ -149,6 +149,10 @@
     silent! nmap <C-k> :NERDTreeToggle<CR>
     silent! map <C-j> :NERDTreeFind<CR>
     let g:NERDTreeShowHidden = 1
+
+    if exists("g:loaded_webdevicons")
+      call webdevicons#refresh()
+    endif
 
 "}
 
@@ -226,11 +230,11 @@ set t_vb=
 
 " IndentLine {
 
-let g:indentLine_noConcealCursor = ""
-let g:indentLine_color_tty_light = 2
-let g:indentLine_color_dark = 1
-let g:indentLine_char = '|'
-let g:vim_json_syntax_conceal = ""
+    let g:indentLine_noConcealCursor = ""
+    let g:indentLine_color_tty_light = 2
+    let g:indentLine_color_dark = 1
+    let g:indentLine_char = '|'
+    let g:vim_json_syntax_conceal = ""
 
 " }
 
@@ -244,7 +248,7 @@ set whichwrap+=<,>,h,l
 
 set ignorecase
 set smartcase
-"set hlsearch
+set hlsearch
 set incsearch
 
 set lazyredraw
@@ -318,6 +322,9 @@ set list
 map <leader>ll :set list!<cr>
 
 
+"Tabularize ledger dat files
+map <leader>$$ :Tabularize / \( \\|-\)\?\$.\+
+
 set lbr
 
 set ai
@@ -365,9 +372,15 @@ autocmd BufWrite * :call DeleteTrailingWS()
 
     au BufNewFile,BufRead *.toml set ft=toml
 
+    au BufNewFile,BufRead *.js set ft=javascript.jsx
+
     au BufNewFile,BufRead nginx.config set ft=nginx
 
     au BufRead,BufNewFile spec set ft=yaml
+
+    au BufNewFile,BufRead *.ledger set ft=ledger
+
+    au BufNewFile,BufRead .env* set ft=sh
 
 " }
 

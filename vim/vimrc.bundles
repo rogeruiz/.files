@@ -41,6 +41,7 @@
             Plugin 'cespare/vim-toml'
             Plugin 'maralla/vim-toml-enhance'
             Plugin 'nginx.vim'
+            Plugin 'ledger/vim-ledger'
 
         " }
 
@@ -53,6 +54,7 @@
             Plugin 'moll/vim-node'
             Plugin 'elzr/vim-json'
             Plugin 'marijnh/tern_for_vim'
+            Plugin 'mxw/vim-jsx'
 
         " }
 
