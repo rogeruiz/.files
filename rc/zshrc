@@ -28,6 +28,7 @@ plugins=(apache2 osx svn rvm rails ruby cf vim zsh-autosuggestions zsh-syntax-hi
 . $ZSH/oh-my-zsh.sh
 
 unsetopt correct_all
+set -o vi
 
 # Include Z-Script
 . /usr/local/bin/z
@@ -41,7 +42,7 @@ function precmd () {
 # Include Custom Aliases
 . $HOME/Developer/.aliases
 
-set -o vi
 
 ulimit -n 10000
 
+export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20

@@ -10,6 +10,8 @@
 #       pane-0: 20/30
 #       pane-1: 20/70
 #       pane-2: 100/80
+#   - tmp
+#     pane -0:
 #
 
 renamew editor
@@ -21,3 +23,10 @@ neww -n workspace
 selectw -t 1
 splitw -h -l 80 -t 0
 splitw -v -p 30 -t 1
+
+neww -n tmp
+selectw -t 2
+splitw -v -p 80 -t 0
+splitw -h -l 110 -t 1
+
+selectw -t 0
