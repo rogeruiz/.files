@@ -20,6 +20,8 @@
     set modeline
     set modelines=5
     set updatetime=250
+    set cursorline
+    set hidden
 
 " }
 
@@ -33,10 +35,9 @@
 
     syntax enable
 
-    "set background=dark
-    "colorscheme base16-hopscotch
+    set background=dark
+    "set background=light
 
-    set background=light
     colorscheme solarized
 
     set t_Co=256
@@ -217,14 +218,6 @@ set t_vb=
 
         set guifont=M\+\ 2m\ NerdFont\ Patched:h12
 
-        "set background=dark
-        "colorscheme base16-hopscotch
-        "let g:airline_theme = 'dracula'
-
-        set background=light
-        colorscheme solarized
-        let g:airline_theme = 'solarized'
-
         autocmd! GUIEnter * set vb t_vb=
 
     endif
@@ -329,7 +322,7 @@ set lbr
 
 set ai
 set si
-set wrap
+set nowrap
 
 map <space> /
 
@@ -357,13 +350,12 @@ autocmd BufWrite * :call DeleteTrailingWS()
     au BufRead,BufNewFile *.jshintrc set ft=json
     au BufRead,BufNewFile *.bowerrc set ft=json
     au BufRead,BufNewFile *.pantheonrc set ft=json
+    au BufRead,BufNewFile *.eslintrc set ft=json
 
     au BufRead,BufNewFile *.txt set ft=markdown
     au BufRead,BufNewFile *.text set ft=markdown
 
     au BufRead,BufNewFile *.applescript set ft=applescript
-
-    au BufRead,BufNewFile *.eslintrc set ft=json
 
     au BufNewFile,BufRead *.php set ft=php.html.js.css
     au BufNewFile,BufRead *.blade.php set ft=blade.html.php
@@ -373,6 +365,10 @@ autocmd BufWrite * :call DeleteTrailingWS()
 
     au BufNewFile,BufRead *.toml set ft=toml
 
+    au BufNewFile,BufRead nginx.config set ft=nginx
+
+    au BufRead,BufNewFile spec set ft=yaml
+
 " }
 
 au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak nolist
@@ -380,5 +376,3 @@ au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 
 au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak nolist
 
 au FileType yaml setlocal shiftwidth=2 tabstop=2 wrap spell expandtab tw=80 wm=0 linebreak nolist
-
-

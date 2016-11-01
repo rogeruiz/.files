@@ -25,7 +25,11 @@ alias vbfix='pls /Library/StartupItems/VirtualBox/VirtualBox restart'
 
 # Clocker Function
 clockerGet() {
-  clocker list --gt=`date -v-8d "+%Y-%m-%d"` --lt=`date "+%Y-%m-%d"` -t $1 --title "$1" | less
+  if [[ $1 == 'last' ]]; then
+    clocker list -v | tail -n 5
+  else
+    clocker list -v --gt `date -v-8d "+%Y-%m-%d"` -t "$1" | more
+  fi
 }
 
 alias tick=clockerGet

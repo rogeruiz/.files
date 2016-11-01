@@ -40,6 +40,7 @@
             Plugin 'toml-lang/toml'
             Plugin 'cespare/vim-toml'
             Plugin 'maralla/vim-toml-enhance'
+            Plugin 'nginx.vim'
 
         " }
 
@@ -126,7 +127,6 @@
             Plugin 'plasticboy/vim-markdown'
             Plugin 'kannokanno/previm'
             Plugin 'tyru/open-browser.vim'
-            "Plugin 'greyblake/vim-preview'
 
         " }
 

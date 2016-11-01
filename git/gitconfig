@@ -42,6 +42,7 @@
 	discard = checkout --
 	local = branch --list
 	unpatch = reset HEAD --patch
+	p = add --patch
 [push]
 	default = simple
 [init]
