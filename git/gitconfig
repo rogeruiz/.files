@@ -1,53 +1,53 @@
 [user]
-	name = Roger Steve Ruiz
-	email =
+  name = Roger Steve Ruiz
+  email =
 [color]
-	ui = true
+  ui = true
 [core]
-	editor = vim
-	quotepath = false
-	excludesfile = /Users/rsr/.gitignore_global
+  editor = vim
+  quotepath = false
+  excludesfile = ~/.gitignore_global
 [github]
-	user = rogeruiz
+  user = rogeruiz
 [alias]
-	co = checkout
-	ci = commit -v
-	s = status -s
-	st = status
-	br = branch
-	fall = fetch --all
-	mr = merge
-	unstage = reset HEAD
-	pl = pull
-	ps = push
-	ls = stash list
-	save = stash save
-	pop = stash pop
-	history = log --reverse --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
-	catchup = log FETCH_HEAD...HEAD --reverse --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
-	verbose = log --graph --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
-	gist = log --pretty=format:' %C(green)%d%Creset%n%C(magenta)❯%Creset %C(red)<%h>%Creset %C(yellow)<%aE>%Creset %C(cyan)<%ar>%Creset%n%C(magenta)❯%Creset %s%n' --graph
-	continue = !git add . && git rebase --continue
-	out = merge --abort
-	url = config --local --get-regexp remote\\.\\.\\*\\.url
-	last = log -1 --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
-	all = !git add . && git commit -v
-	some = !git add $@ && git commit -v
-	amend = commit --amend -v
-	spl = !git svn fetch && git svn rebase
-	sps = !git svn dcommit
-	df = diff
-	patch = add --patch
-	cached = diff --cached --
-	discard = checkout --
-	local = branch --list
-	unpatch = reset HEAD --patch
-	p = add --patch
+  co = checkout
+  ci = commit -v
+  s = status -s
+  st = status
+  br = branch
+  fall = fetch --all
+  mr = merge
+  unstage = reset HEAD
+  pl = pull
+  ps = push
+  ls = stash list
+  save = stash save
+  pop = stash pop
+  history = log --reverse --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
+  catchup = log FETCH_HEAD...HEAD --reverse --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
+  verbose = log --graph --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
+  gist = log --pretty=format:' %C(green)%d%Creset%n%C(magenta)❯%Creset %C(red)<%h>%Creset %C(yellow)<%aE>%Creset %C(cyan)<%ar>%Creset%n%C(magenta)❯%Creset %s%n' --graph
+  continue = !git add . && git rebase --continue
+  out = merge --abort
+  url = config --local --get-regexp remote\\.\\.\\*\\.url
+  last = log -1 --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
+  all = !git add . && git commit -v
+  some = !git add $@ && git commit -v
+  amend = commit --amend -v
+  spl = !git svn fetch && git svn rebase
+  sps = !git svn dcommit
+  df = diff
+  patch = add --patch
+  cached = diff --cached --
+  discard = checkout --
+  local = branch --list
+  unpatch = reset HEAD --patch
+  p = add --patch
 [push]
-	default = simple
+  default = simple
 [init]
-	templatedir = ~/.git_template
+  templatedir = ~/.git_template
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
