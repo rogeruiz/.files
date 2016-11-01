@@ -6,7 +6,7 @@ out=$?
 
 if [ $out -eq 0 ]
 then
-    echo "$time"
+    echo " $time"
 else
-    echo "on borrowed time"
+    echo " "
 fi
