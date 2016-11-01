@@ -51,3 +51,8 @@
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
   required = true
+[gitseekret]
+  version = 1
+  rulespath = ~/.git-support/rules
+  rulesenabled = aws.secret_access_key,aws.access_key_id,aws.account_id,new-relic.license_key
+  exceptionsfile = ""
