@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -eu
+
+TODAY=$( date "+%Y/%m/%d" )
+
+echo "Today's date is: $TODAY"
+
+echo -n "$TODAY " | pbcopy
