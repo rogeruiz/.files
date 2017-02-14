@@ -1,0 +1,28 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+  echo "I can't look up PIDs for things that you don't tell me about."
+  echo "Pass in a name and I'll ps the -ax out of -u."
+  echo "Error: Missing search pattern for PIDs."
+  exit 1
+fi
+
+echo "Looking for all the PIDs that match \"$1\" regardless of case."
+echo
+
+ps -ax -u "$(whoami)" | \
+grep -i $1 | \
+grep -v grep | \
+grep -v gotpid
+
+# If -k is passed in, just run it again and kill everything
+if [[ ! -z $2 && $2 == '-k' ]]; then
+  ps -ax -u "$(whoami)" | \
+  grep -i $1 | \
+  grep -v grep | \
+  grep -v gotpid | \
+  cut -d ' ' -f4 | \
+  grep -o -E '\d+' | \
+  xargs kill -9
+fi
+
