@@ -1,8 +1,5 @@
 #!/bin/bash
 
-
-
-
 if ! [ -z $1 ]
 then
   tag_search="-t ${1}"
@@ -12,6 +9,7 @@ fi
 
 timesheets=$(
   clocker ls $tag_search | \
+  tail -n 80 | \
   grep -o -E '\([0-9:]+\)' | \
   sed -E 's/\(|\)/ /g' | \
   sed -E 's/:/ /g' | \
