@@ -65,7 +65,7 @@ echo
 sleep 1
 echo "¯\_(ツ)_/¯ Copying custom terminal theme ¯\_(ツ)_/¯"
 echo
-cp -vn ./oh-my-zsh/custom/real.zsh-theme "$HOME/.oh-my-zsh/custom/real.zsh-theme"
+checkForFile ./oh-my-zsh/custom/real.zsh-theme "$HOME/.oh-my-zsh/custom/real.zsh-theme"
 echo
 
 sleep 1
