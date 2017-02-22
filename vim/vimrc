@@ -176,6 +176,18 @@
     " Shortcut for enabling spelling
     map <leader>ss :setlocal spell!<cr>
 
+    if !exists("g:today_command")
+      let g:today_command = "today"
+    endif
+
+    function! GetTodayAndCopy()
+      silent execute "!" . g:today_command
+      silent !
+      redraw!
+    endfunction
+
+    map <leader>dd :call GetTodayAndCopy()<cr>
+
     " Allow for macosx and tmux and vim clipboard sharing.
     " Following this blog post: http://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
     set clipboard=unnamed
@@ -284,7 +296,7 @@ set noswapfile
 
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
-        nnoremap <silent> <leader>gc :Gcommit<CR>
+        nnoremap <silent> <leader>gc :Gcommit -v<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
@@ -321,8 +333,9 @@ set list
 map <leader>ll :set list!<cr>
 
 
-"Tabularize ledger dat files
-map <leader>$$ :Tabularize / \( \\|-\)\?\$.\+
+" Ledger Configurations & Hacks {
+    map <leader>$$ :Tabularize / \( \\|-\)\?\$.\+
+" }
 
 set lbr
 
@@ -383,8 +396,13 @@ autocmd BufWrite * :call DeleteTrailingWS()
 
 " }
 
-au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak nolist
+" File-type configuration {
+    au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak nolist
 
-au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak nolist
+    au FileType yaml setlocal shiftwidth=2 tabstop=2 wrap spell expandtab tw=80 wm=0 linebreak nolist
 
-au FileType yaml setlocal shiftwidth=2 tabstop=2 wrap spell expandtab tw=80 wm=0 linebreak nolist
+    au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak nolist
+
+    au FileType go setlocal shiftwidth=4 tabstop=4
+
+" }
