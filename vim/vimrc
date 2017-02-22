@@ -36,9 +36,8 @@
     syntax enable
 
     set background=dark
-    "set background=light
 
-    colorscheme solarized
+    colorscheme base16-hopscotch
 
     set t_Co=256
 
@@ -69,7 +68,7 @@
 " Syntax Folding {
 
     set foldmethod=syntax
-    set foldlevelstart=2
+    set foldlevelstart=1
 
     let php_folding = 1
     let javascript_folding = 1
@@ -78,16 +77,12 @@
     let xml_syntax_folding  = 1
     let html_fold_enabled = 1
 
-
 " }
 
 " Airline Preferences {
 
     " Hopscotch
-    "let g:airline_theme = 'dracula'
-
-    " Tomorrow
-    let g:airline_theme = 'solarized'
+    let g:airline_theme = 'kolor'
 
     let g:airline_powerline_fonts = 0
     let g:airline#extensions#whitespace#mixed_indent_algo = 1
@@ -219,7 +214,7 @@ set t_vb=
 
     if has( 'gui_running' )
 
-        set guifont=M\+\ 2m\ NerdFont\ Patched:h12
+        set guifont=M\+\ 2m\ NerdFont\ Patched:h10
 
         autocmd! GUIEnter * set vb t_vb=
 
@@ -229,11 +224,9 @@ set t_vb=
 
 " IndentLine {
 
-    let g:indentLine_noConcealCursor = ""
     let g:indentLine_color_tty_light = 2
     let g:indentLine_color_dark = 1
     let g:indentLine_char = '|'
-    let g:vim_json_syntax_conceal = ""
 
 " }
 

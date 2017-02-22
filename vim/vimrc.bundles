@@ -42,6 +42,7 @@
             Plugin 'maralla/vim-toml-enhance'
             Plugin 'nginx.vim'
             Plugin 'ledger/vim-ledger'
+            Plugin 'fatih/vim-go'
 
         " }
 
@@ -60,6 +61,7 @@
 
         " YAML {
 
+            Plugin 'roalddevries/yaml.vim'
             Plugin 'stephpy/vim-yaml'
 
         " }
