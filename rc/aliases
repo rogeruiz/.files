@@ -30,6 +30,8 @@ clockerGet() {
   else
     clocker list -v --gt `date -v-8d "+%Y-%m-%d"` -t "$1" | more
   fi
+  echo
+  clocker data -v --gt `date -v-8d "+%Y-%m-%d"` -t "$1" --title "Activity in the last week matching $1" | jq '.[].title, reduce .[].hours[].hours as $time (0; . + $time)'
 }
 
 alias tick=clockerGet
@@ -49,6 +51,17 @@ cpLulz() {
 
 alias moar-lulz=cpLulz
 
+getCfQuota() {
+  cf quota $(cf org $1 | grep quota: | awk '{print $2}')
+}
+
+alias cf-get-quota=getCfQuota
+
+searchCf() {
+  cf help -a | grep $@
+}
+
+alias wtcf=searchCf
 # Remove Cisco Connect VPN profiles
 alias delete_cisco_connect_profiles='pls rm -rvf /opt/cisco/anyconnect/profile/gsa_cp-gfe.xml'
 source /usr/local/opt/autoenv/activate.sh

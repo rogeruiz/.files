@@ -23,11 +23,6 @@ export PATH=$PATH:$GOPATH/bin
 #
 export TERM="xterm-256color"
 
-# Boot2Docker start and $VARIABLES export but be quiet about it.
-#
-# $(boot2docker up > /dev/null 2>&1) # Not needed in every shell, dude.
-$(boot2docker shellinit 2> /dev/null)
-
 # Disable Tmux auto-titling of windows
 #
 export DISABLE_AUTO_TITLE=true
