@@ -19,6 +19,10 @@ export PATH=$HOME/.rvm/bin:$PATH
 export GOPATH=$HOME/Developer/golang
 export PATH=$PATH:$GOPATH/bin
 
+# Path for `cargo install`
+#
+export PATH=$PATH:~/.cargo/bin
+
 # Terminal
 #
 export TERM="xterm-256color"
