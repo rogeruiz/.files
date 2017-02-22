@@ -42,6 +42,17 @@ prompt_pure_git_dirty() {
     (($? == 1)) && echo ''
 }
 
+prompt_pure_git_diary() {
+
+    command git rev-parse --is-inside-work-tree &>/dev/null || return
+    command git log -1 &>/dev/null || return
+
+    for day in $(seq 14 -1 0); do
+        git log --before="${day} days" --after="$[${day}+1] days" --format=oneline |
+        wc -l
+    done | spark
+}
+
 # displays the exec time of the last command if set threshold was exceeded
 prompt_pure_cmd_exec_time() {
     local stop=$(date +%s)
