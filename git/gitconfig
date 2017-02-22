@@ -37,6 +37,7 @@
   spl = !git svn fetch && git svn rebase
   sps = !git svn dcommit
   df = diff
+  dr = !"dr() { clear; git diff --patch-with-stat $1 -- $2; }; dr"
   patch = add --patch
   cached = diff --cached --
   discard = checkout --
@@ -56,3 +57,5 @@
   rulespath = ~/.git-support/rules
   rulesenabled = aws.secret_access_key,aws.access_key_id,aws.account_id,new-relic.license_key
   exceptionsfile = ""
+[commit]
+	gpgsign = true
