@@ -30,6 +30,6 @@ kept up-to-date in the repository automatically.
 ### Diff editors that are used
 
 Currently, the only supported diff editors are `vimdiff` and `opendiff` the
-later which is installed when installing Xcode.
+latter which is installed when installing Xcode.
 
 Made with 🕖: by Roger Steve Ruiz
