@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker
+" vim: set sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker:
 "
 " Organizing my .vimrc files
 " I'm borrowing everything from [here](https://github.com/spf13/spf13-vim) and
@@ -13,16 +13,90 @@
 " }
 
 " Basics {
-
     let mapleader = ","
     set magic
     set shell=/usr/local/bin/zsh
     set modeline
     set modelines=5
-    set updatetime=250
+    set updatetime=100
     set cursorline
     set hidden
+    set noerrorbells
+    set novisualbell
+    set t_vb=
+    set number
+    set ruler
+    set colorcolumn=50,72,80,100
+    set backspace=eol,start,indent
+    set whichwrap+=<,>,h,l
+    set ignorecase
+    set smartcase
+    set hlsearch
+    set incsearch
+    set lazyredraw
+    set showmatch
+    set mat=2
+    set tm=500
+    set ffs=unix,dos,mac
+    set encoding=utf8
+    set nobackup
+    set nowb
+    set noswapfile
+    set listchars=eol:¬,tab:›·,trail:·,extends:›,precedes:‹
+    set list
+    set completeopt=menuone
+    set lbr
+    set ai
+    set si
+    set nowrap
+    set laststatus=2
+" }
 
+" Worflow {
+    map 0 ^
+    " Shortcut for disabling highlighting
+    nnoremap <silent> <C-l> :nohl<CR><C-l>
+    " Shortcut for enabling and disabling paste mode
+    map <leader>pp :setlocal paste!<cr>
+    " Shortcut for enabling spelling
+    map <leader>ss :setlocal spell!<cr>
+    " Allow for macosx and tmux and vim clipboard sharing.
+    " Following this blog post: http://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
+    set clipboard=unnamed
+    " Split 'correctly' for left-to-right readers. {
+        set splitbelow
+        set splitright
+    " }
+    set history=700
+    " For when you forget to sudo.. Really Write the file. {
+        cmap w!! w !sudo tee % >/dev/null
+    " }
+    map <leader>ll :set list!<cr>
+    map <space> /
+    if has("mac") || has("macunix")
+        nmap <D-j> <M-j>
+        nmap <D-k> <M-k>
+        vmap <D-j> <M-j>
+        vmap <D-k> <M-k>
+    endif
+    " Moving up and down faster than one row at a damn time. {
+        nnoremap <C-e> 3<C-e>
+        nnoremap <C-y> 3<C-y>
+    " }
+    " Delete trailing whitespace {
+        func! DeleteTrailingWS()
+            exe "normal mz"
+            %s/\s\+$//ge
+            exe "normal `z"
+        endfunc
+        autocmd BufWrite * :call DeleteTrailingWS()
+    " }
+    " GUI Options {
+        if has( 'gui_running' )
+            set guifont=M\+\ 2m\ NerdFont\ Patched:h11
+            autocmd! GUIEnter * set vb t_vb=
+        endif
+    " }
 " }
 
 " Load Bundle config {
@@ -32,19 +106,14 @@
 " }
 
 " Theme {
-
     syntax enable
-
     set background=dark
-
     colorscheme base16-hopscotch
-
     set t_Co=256
-
+    let g:airline_theme = 'kolor'
 " }
 
 " Syntastic {
-
     " Check on open and not on `wq`
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
@@ -59,37 +128,27 @@
     let g:syntastic_warning_symbol = "\uF0E7"
     " Other options
     let g:syntastic_aggregate_errors = 1
-
     let g:syntastic_html_tidy_exec = 'tidy'
     "let g:syntastic_html_tidy_blocklevel_tags = ''
-
 " }
 
 " Syntax Folding {
-
     set foldmethod=syntax
-    set foldlevelstart=1
-
+    set foldlevelstart=2
     let php_folding = 1
     let javascript_folding = 1
     let ruby_fold = 1
     let sh_fold_enabled = 1
     let xml_syntax_folding  = 1
     let html_fold_enabled = 1
-
 " }
 
 " Airline Preferences {
-
-    " Hopscotch
-    let g:airline_theme = 'kolor'
-
     let g:airline_powerline_fonts = 0
     let g:airline#extensions#whitespace#mixed_indent_algo = 1
-    let g:airline#extensions#whitespace#enabled = 0
+    let g:airline#extensions#whitespace#enabled = 1
     let g:airline#extensions#syntastic#enabled = 1
     let g:airline#extensions#tmuxline#enabled = 1
-
     if ! exists( 'g:airline_symbols' )
         let g:airline_symbols = {}
         let g:airline_left_sep = "\uF44A"
@@ -97,24 +156,20 @@
         let g:airline_symbols.space = "\uA0"
         let g:airline_symbols.crypt = "\uF023"
         let g:airline_symbols.linenr = "\uF1DD"
-        let g:airline_symbols.branch = "\uE725"
-        let g:airline_symbols.paste = "\uF0D0"
-        let g:airline_symbols.whitespace = "\uF44E"
+        let g:airline_symbols.branch = "\uE702"
+        let g:airline_symbols.paste = "\uF0D0 "
+        let g:airline_symbols.whitespace = "\uF1FC "
     endif
-
 " }
 
 " Control-P {
-
     let g:ctrlp_custom_ignore = {
     \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|exports|bower_components|opencontrols|vendor|target|public|_site)$',
     \ 'file': '\v\.(exe|so|dll)$'
     \ }
-
 " }
 
 " Tmuxline Preferences {
-
     let g:tmuxline_preset = {
       \'a'    : [ '#S:#I.#P', '#(/usr/local/bin/outatime)' ],
       \'b'    : [ '#(/usr/local/bin/current_itunes_song)' ],
@@ -122,178 +177,61 @@
       \'cwin' : [ '#I #W #F' ],
       \'x'    : [ '#(/usr/local/bin/battery -tp) ' ],
       \'z'    : ['%l:%M%p', '%a %m/%d'] }
-
     let g:tmuxline_separators = {
           \ 'left' : "\uF44A",
           \ "left_alt": "\uF0DA",
           \ "right" : "\uF438",
           \ "right_alt" : "\uF0D9",
           \ "space" : "\uA0" }
-
 " }
 
 " Markdown {
-
     let g:vim_markdown_folding_disabled = 0
-
 " }
 
 " NERDTree {
-
     silent! nmap <C-k> :NERDTreeToggle<CR>
     silent! map <C-j> :NERDTreeFind<CR>
     let g:NERDTreeShowHidden = 1
-
     if exists("g:loaded_webdevicons")
       call webdevicons#refresh()
     endif
-
 "}
 
 " NERDCommenter {
-
     let g:NERDCustomDelimiters = { 'scss': { 'left': '// ', 'leftAlt': '/*', 'rightAlt': '*/' }, 'javascript': { 'left': '// ', 'leftAlt': '/**', 'rightAlt': '*/' } }
     let g:NERDCommentEmptyLines = 1
     let g:NERDTrimTrailingWhitespace = 1
-
 " }
 
 " editorconfig {
-
     let g:EditorConfig_exec_path = '/usr/local/bin/editorconfig'
     let g:EditorConfig_exclude_patterns = [ 'fugitive://.*', 'scp://.*' ]
-
-" }
-
-" Workflow {
-
-    " Shortcut for disabling highlighting
-    nnoremap <silent> <C-l> :nohl<CR><C-l>
-
-    " Shortcut for enabling and disabling paste mode
-    map <leader>pp :setlocal paste!<cr>
-
-    " Shortcut for enabling spelling
-    map <leader>ss :setlocal spell!<cr>
-
-    if !exists("g:today_command")
-      let g:today_command = "today"
-    endif
-
-    function! GetTodayAndCopy()
-      silent execute "!" . g:today_command
-      silent !
-      redraw!
-    endfunction
-
-    map <leader>dd :call GetTodayAndCopy()<cr>
-
-    " Allow for macosx and tmux and vim clipboard sharing.
-    " Following this blog post: http://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
-    set clipboard=unnamed
-
-    " Split 'correctly' for left-to-right readers.
-    set splitbelow
-    set splitright
-
-    set history=700
-
-    " For when you forget to sudo.. Really Write the file.
-    cmap w!! w !sudo tee % >/dev/null
-
-    " Moving up and down faster than one row at a damn time.
-    "
-    nnoremap <C-e> 3<C-e>
-    nnoremap <C-y> 3<C-y>
-
-" }
-
-" Tabs {
-
-    set expandtab
-    set smarttab
-    set shiftwidth=2
-    set tabstop=2
-    set tw=9000
-
-" }
-
-set noerrorbells
-set novisualbell
-set t_vb=
-
-" GUI Options {
-
-    if has( 'gui_running' )
-
-        set guifont=M\+\ 2m\ NerdFont\ Patched:h10
-
-        autocmd! GUIEnter * set vb t_vb=
-
-    endif
-
 " }
 
 " IndentLine {
-
     let g:indentLine_color_tty_light = 2
     let g:indentLine_color_dark = 1
     let g:indentLine_char = '|'
-
 " }
 
 " Conceal Cursor {
-
     let g:vim_markdown_conceal = 0
     let g:vim_json_syntax_conceal = 0
-    let g:indentLine_noConcealCursor = ""
-
+    let g:indentLine_noConcealCursor = 1
 " }
 
-set number
-set ruler
-set colorcolumn=50,72,80,100
-
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-set ignorecase
-set smartcase
-set hlsearch
-set incsearch
-
-set lazyredraw
-
-
-set showmatch
-set mat=2
-
-set tm=500
-
-set ffs=unix,dos,mac
-set encoding=utf8
-
-set nobackup
-set nowb
-set noswapfile
-
 " GitGutter {
-
     if isdirectory( expand( "~/.vim/bundle/vim-gitgutter" ) )
-
         let g:gitgutter_sign_added = "\uF458"
         let g:gitgutter_sign_modified = "\uF45A"
         let g:gitgutter_sign_removed = "\uF459"
         let g:gitgutter_sign_modified_removed = "\uF45B"
-
     endif
-
 " }
 
 " Fugitive {
-
     if isdirectory( expand( "~/.vim/bundle/vim-fugitive/" ) )
-
         nnoremap <silent> <leader>gs :Gstatus<CR>
         nnoremap <silent> <leader>gd :Gdiff<CR>
         nnoremap <silent> <leader>gc :Gcommit -v<CR>
@@ -303,106 +241,55 @@ set noswapfile
         nnoremap <silent> <leader>gr :Gread<CR>
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>ge :Gedit<CR>
-
         " Mnemonic _i_nteractive
         nnoremap <silent> <leader>gi :Git add -p %<CR>
         nnoremap <silent> <leader>gg :SignifyToggle<CR>
-
     endif
-
 " }
 
 " YouCompleteMe {
-
     let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
     let g:ycm_key_invoke_completion = '<C-Space>'
     let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.9.0/src'
-
 " }
-
-set completeopt=menuone
-
-"nmap <C-Tab> a<C-t><Esc>
-"nmap <C-S-Tab> a<C-d><Esc>
-"imap <C-Tab> <C-t>
-"imap <C-S-Tab> <C-d>
-
-set listchars=eol:¬,tab:›·,trail:·,extends:›,precedes:‹
-set list
-map <leader>ll :set list!<cr>
-
 
 " Ledger Configurations & Hacks {
-    map <leader>$$ :Tabularize / \( \\|-\)\?\$.\+
+    map <leader>$$ :Tabularize / \( \\|-\)\?\$.\+<cr>
+    if !exists("g:today_command")
+      let g:today_command = "today -c"
+    endif
+    function! GetTodayAndCopy()
+      silent execute "!" . g:today_command
+      silent !
+      redraw!
+    endfunction
+    silent! map <leader>dd :call GetTodayAndCopy()<cr>
 " }
 
-set lbr
-
-set ai
-set si
-set nowrap
-
-map <space> /
-
-set laststatus=2
-
-map 0 ^
-
-if has("mac") || has("macunix")
-    nmap <D-j> <M-j>
-    nmap <D-k> <M-k>
-    vmap <D-j> <M-j>
-    vmap <D-k> <M-k>
-endif
-
-" Delete trailing white space on save, useful for Python and CoffeeScript ;)
-func! DeleteTrailingWS()
-    exe "normal mz"
-    %s/\s\+$//ge
-    exe "normal `z"
-endfunc
-autocmd BufWrite * :call DeleteTrailingWS()
-
 " File-type mapping {
-
     au BufRead,BufNewFile *.jshintrc set ft=json
     au BufRead,BufNewFile *.bowerrc set ft=json
     au BufRead,BufNewFile *.pantheonrc set ft=json
     au BufRead,BufNewFile *.eslintrc set ft=json
-
     au BufRead,BufNewFile *.txt set ft=markdown
     au BufRead,BufNewFile *.text set ft=markdown
-
     au BufRead,BufNewFile *.applescript set ft=applescript
-
     au BufNewFile,BufRead *.php set ft=php.html.js.css
     au BufNewFile,BufRead *.blade.php set ft=blade.html.php
     au BufNewFile,BufRead *.ejs set ft=liquid.html.js.css
-
     au BufNewFile,BufRead *.twig set ft=html.twig
-
     au BufNewFile,BufRead *.toml set ft=toml
-
     au BufNewFile,BufRead *.js set ft=javascript.jsx
-
     au BufNewFile,BufRead nginx.config set ft=nginx
-
     au BufRead,BufNewFile spec set ft=yaml
-
     au BufNewFile,BufRead *.ledger set ft=ledger
-
     au BufNewFile,BufRead .env* set ft=sh
-
 " }
 
 " File-type configuration {
     au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak nolist
-
     au FileType yaml setlocal shiftwidth=2 tabstop=2 wrap spell expandtab tw=80 wm=0 linebreak nolist
-
     au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak nolist
-
     au FileType go setlocal shiftwidth=4 tabstop=4
-
 " }
