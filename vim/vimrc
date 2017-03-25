@@ -171,12 +171,12 @@
 
 " Tmuxline Preferences {
     let g:tmuxline_preset = {
-      \'a'    : [ '#S:#I.#P', '#(/usr/local/bin/outatime)' ],
+      \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P', '#(/usr/local/bin/outatime)' ],
       \'b'    : [ '#(/usr/local/bin/current_itunes_song)' ],
-      \'win'  : [ '#I #W' ],
-      \'cwin' : [ '#I #W #F' ],
+      \'win'  : [ '#I #W #(echo "\uf248  ")' ],
+      \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; fi)' ],
       \'x'    : [ '#(/usr/local/bin/battery -tp) ' ],
-      \'z'    : ['%l:%M%p', '%a %m/%d'] }
+      \'z'    : ['#(echo "\uf017 ") %l:%M%p', '#(echo "\uf073 ") %a %m/%d'] }
     let g:tmuxline_separators = {
           \ 'left' : "\uF44A",
           \ "left_alt": "\uF0DA",

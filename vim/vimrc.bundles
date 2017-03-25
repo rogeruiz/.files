@@ -51,8 +51,11 @@
         Plugin 'ctrlpvim/ctrlp.vim'
         Plugin 'tpope/vim-surround'
         Plugin 'Raimondi/delimitMate'
+        Plugin 'majutsushi/tagbar'
     " }
     " Language {
+        Plugin 'luan/vim-bosh'
+        Plugin 'luan/vim-concourse'
         Plugin 'StanAngeloff/php.vim'
         Plugin 'evidens/vim-twig'
         Plugin 'VuogNguyen/vim-blade'

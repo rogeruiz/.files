@@ -54,7 +54,6 @@ prompt_pure_git_diary() {
     command git rev-parse --is-inside-work-tree &>/dev/null || return
     command git log -1 &>/dev/null || return
 
-  #git log  --format=format:%ad --date=short | uniq -c | head -n 14 | awk '{print $1}' | spark
     for day in $(seq 14 -1 0); do
         git log --before="${day} days" --after="$[${day}+1] days" --format=oneline |
         wc -l

@@ -42,6 +42,11 @@ function precmd () {
 # Include Custom Aliases
 . $HOME/Developer/.aliases
 
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+
+source /usr/local/bin/virtualenvwrapper.sh
+
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
 ulimit -n 10000
 
