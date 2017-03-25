@@ -42,11 +42,19 @@ prompt_pure_git_dirty() {
     (($? == 1)) && echo ''
 }
 
-prompt_pure_git_diary() {
+prompt_pure_job_count() {
+  local job_count=$(jobs | wc -l | xargs)
+  if (( $job_count > 0 ))
+  then
+    echo -ne "\uf0c7  "
+  fi
+}
 
+prompt_pure_git_diary() {
     command git rev-parse --is-inside-work-tree &>/dev/null || return
     command git log -1 &>/dev/null || return
 
+  #git log  --format=format:%ad --date=short | uniq -c | head -n 14 | awk '{print $1}' | spark
     for day in $(seq 14 -1 0); do
         git log --before="${day} days" --after="$[${day}+1] days" --format=oneline |
         wc -l
@@ -82,7 +90,7 @@ prompt_pure_precmd() {
     # git info
     vcs_info
 
-    local prompt_pure_preprompt='\n%F{yellow}`prompt_pure_cmd_exec_time`%f%F{cyan}  %F{242}%~ $vcs_info_msg_0_ %F{yellow}`prompt_pure_git_dirty`%f $prompt_pure_username %f'
+    local prompt_pure_preprompt='\n%F{yellow}`prompt_pure_cmd_exec_time`%f%F{cyan}  %F{magenta}`prompt_pure_job_count`%F{242}%~ $vcs_info_msg_0_ %F{242}`prompt_pure_git_diary`%f %F{yellow}`prompt_pure_git_dirty`%f $prompt_pure_username %f'
     print -P $prompt_pure_preprompt
 
     # check async if there is anything to pull
