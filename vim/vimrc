@@ -285,6 +285,8 @@
     au BufRead,BufNewFile spec set ft=yaml
     au BufNewFile,BufRead *.ledger set ft=ledger
     au BufNewFile,BufRead .env* set ft=sh
+    au BufNewFile,BufRead *.yaml set ft=bosh.yaml
+    au BufNewFile,BufRead *.yml set ft=bosh.yaml
 " }
 
 " File-type configuration {

@@ -23,7 +23,7 @@ DISABLE_AUTO_UPDATE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git apache2 osx svn rvm rails ruby cf vim zsh-syntax-highlighting zsh-autosuggestions)
+plugins=(git apache2 osx svn rvm rails ruby cf vim zsh-autosuggestions zsh-syntax-highlighting)
 
 . $ZSH/oh-my-zsh.sh
 
@@ -42,15 +42,10 @@ function precmd () {
 # Include Custom Aliases
 . $HOME/Developer/.aliases
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-
-source /usr/local/bin/virtualenvwrapper.sh
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 ulimit -n 10000
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 

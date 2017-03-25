@@ -5,7 +5,7 @@ alias -- -='cd -'
 alias l='ls -amPF'
 alias ll='ls -al -GF'
 treeDir() {
-    tree -Clhcr --dirsfirst $@ | less
+    tree -lhcr --dirsfirst $@ | more
 }
 alias lll=treeDir
 
@@ -62,6 +62,37 @@ searchCf() {
 }
 
 alias wtcf=searchCf
+
+latestJumpOff() {
+  local jumpbox_info=$(
+    fly -t fr builds | \
+    grep jumpbox | \
+    awk '{ print $2, $5 }'
+  )
+  local now_in_seconds=$(date -j +%s)
+  local IFS=$'\n'
+  for j in $jumpbox_info
+  do
+    name=$(echo $j | cut -d ' ' -f 1)
+    time=$(echo $j | cut -d ' ' -f 2)
+    time_in_seconds=$(date -j -u -f "%Y-%m-%d@%H:%M:%S" +%s $time 2>/dev/null)
+    delta=$(( ( $now_in_seconds - $time_in_seconds ) / ( 60 * 60 ) ))
+    echo "Jumpbox called ${name} started about ${delta} minutes ago"
+  done
+  #
+}
+
+alias wjumpbox=latestJumpOff
+
 # Remove Cisco Connect VPN profiles
 alias delete_cisco_connect_profiles='pls rm -rvf /opt/cisco/anyconnect/profile/gsa_cp-gfe.xml'
-source /usr/local/opt/autoenv/activate.sh
+
+
+# Concourse Fly
+#
+alias fr-jump-stage='fly -t fr trigger-job -j jumpbox/container-bosh-staging -w; fly -t fr intercept -j jumpbox/container-bosh-staging -s jumpbox'
+alias fr-jump-prod='fly -t fr trigger-job -j jumpbox/container-bosh-production -w; fly -t fr intercept -j jumpbox/container-bosh-production -s jumpbox'
+alias fr-jump-tooling='fly -t fr trigger-job -j jumpbox/container-bosh-tooling -w; fly -t fr intercept -j jumpbox/container-bosh-tooling -s jumpbox'
+alias fr-jump-dev='fly -t fr trigger-job -j jumpbox/container-bosh-development -w; fly -t fr intercept -j jumpbox/container-bosh-development -s jumpbox'
+
+export shh=~/Developer/cloud.gov/secrets
