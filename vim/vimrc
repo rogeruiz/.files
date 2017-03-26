@@ -54,6 +54,7 @@
 
 " Worflow {
     map 0 ^
+    map <f8> :TagbarToggle<CR>
     " Shortcut for disabling highlighting
     nnoremap <silent> <C-l> :nohl<CR><C-l>
     " Shortcut for enabling and disabling paste mode
@@ -156,7 +157,7 @@
         let g:airline_symbols.space = "\uA0"
         let g:airline_symbols.crypt = "\uF023"
         let g:airline_symbols.linenr = "\uF1DD"
-        let g:airline_symbols.branch = "\uE702"
+        let g:airline_symbols.branch = "\uE702 "
         let g:airline_symbols.paste = "\uF0D0 "
         let g:airline_symbols.whitespace = "\uF1FC "
     endif
@@ -245,6 +246,10 @@
         nnoremap <silent> <leader>gi :Git add -p %<CR>
         nnoremap <silent> <leader>gg :SignifyToggle<CR>
     endif
+" }
+
+" Tagbar {
+    let g:concourse_flytags_bin = "flytags"
 " }
 
 " YouCompleteMe {
