@@ -1,7 +1,9 @@
-#!/bin/sh
+#!/bin/bash
 
 
-time=`clocker status | grep -oE "\s[0-9:]+"`
+export DATABASE_URL=/Users/rsr/.tick/db/main.db
+
+time=`tick status | grep -oE "\s[0-9:]+"`
 out=$?
 
 if [ $out -eq 0 ]

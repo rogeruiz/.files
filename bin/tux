@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 export PATH=$PATH:/usr/local/bin
 
 # Check if we're already in a tmux session
@@ -9,28 +9,27 @@ fi
 
 PS3="Please choose your session: "
 sessions=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session" "zsh")
+incoming_message='What do you want to accomplish?: '
+outgoing_message='What did you accomplish?: '
+export DATABASE_URL=/Users/rsr/.tick/db/main.db
 
 # A wrapper function around clocker, lovingly named punch_clock.
-# @param $1 clocker sub-command
-# @param $2 -t Type parameter for clocker
-# @param $3 -m Message parameter for clocker
+# @param $1 tick sub-command
+# @param $2 -n Name parameter for tick
+# @param $3 -m Entry parameter for tick
 #
 function punch_clock {
-	if [[ -n $1 && ($(which clocker) != "clocker not found") ]]
+	if [[ -n $1 && ($(which tick) != "tick not found") ]]
 	then
-		if [[ $1 == 'ls' ]]
+		if [[ $1 == 'list' ]]
 		then
-			clocker "$1" -v -t "$2" | tail -n 25
+			tick -v $1 | grep "$2" | tail -n 25
 		elif [[ $3 != '' ]]
 		 then
-			clocker "$1" -t "$2" -m "$3"
+			tick "$1" -n "$2" -m "$3"
 		else
-			clocker "$1" -t "$2"
+			tick "$1" -n "$2"
 		fi
-	#else
-		#echo
-		#echo "Please install clocker using `npm install --global clocker`"
-		#echo
 	fi
 }
 
@@ -45,10 +44,10 @@ select session in "${sessions[@]}"
 do
 	case $session in
 		"New Session")
-			read -p "What are you working on? ( ex: abbr-name-with-dashes ) => " new_session
-			read -p "What do you want to accomplish? => " session_message
+			read -p "What are you working on? ( ex: abbr-name-with-dashes ): " new_session
+			read -p "$incoming_message" session_message
 			current_tux_session="$new_session"
-			punch_clock "start" "$new_session" "$session_message"
+			punch_clock "start" "$new_session" "$incoming_message $session_message"
 			tmux new-session -s "$new_session"
 			break
 			;;
@@ -61,9 +60,9 @@ do
         echo "Please choose from the available sessions!"
         continue
       fi
-			read -p "What do you want to accomplish? => " session_message
+			read -p "$incoming_message" session_message
 			current_tux_session="$session"
-			punch_clock "start" $session "$session_message"
+			punch_clock "start" $session "$incoming_message $session_message"
 			tmux attach-session -t $session
 			break
 			;;
@@ -74,13 +73,13 @@ done
 #
 if [[ "$?" == 0 && -n $current_tux_session ]];
 then
-	read -p "What did you accomplish? => " session_message
-	punch_clock "stop" $current_tux_session "$session_message"
+	read -p "$outgoing_message" session_message
+	punch_clock "stop" $current_tux_session "$outgoing_message $session_message"
     echo
 	echo ">-< --------------------------- >-<"
 	echo "    Here is a log of your time."
 	echo ">-< --------------------------- >-<"
-	punch_clock "ls" $current_tux_session
+	punch_clock "list" $current_tux_session
 fi
 
 echo

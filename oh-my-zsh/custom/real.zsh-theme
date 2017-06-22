@@ -132,8 +132,8 @@ prompt_pure_setup() {
 
     # prompt turns red if the previous command didn't exit with 0
 
-    prompt_okay="%F{green} "
-    prompt_not_okay="%F{red} "
+    prompt_okay="%F{green}  "
+    prompt_not_okay="%F{red}  "
     PROMPT='%(?.${prompt_okay}.${prompt_not_okay})%f %F{242} %f '
 
 }
