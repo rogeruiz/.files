@@ -13,7 +13,7 @@ incoming_message='What do you want to accomplish?: '
 outgoing_message='What did you accomplish?: '
 export DATABASE_URL=/Users/rsr/.tick/db/main.db
 
-# A wrapper function around clocker, lovingly named punch_clock.
+# A wrapper function around tick, lovingly named punch_clock.
 # @param $1 tick sub-command
 # @param $2 -n Name parameter for tick
 # @param $3 -m Entry parameter for tick
