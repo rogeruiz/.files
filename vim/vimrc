@@ -54,7 +54,7 @@
 
 " Worflow {
     map 0 ^
-    map <f8> :TagbarToggle<CR>
+    map <f8> :TagbarToggle<cr>
     " Shortcut for disabling highlighting
     nnoremap <silent> <C-l> :nohl<CR><C-l>
     " Shortcut for enabling and disabling paste mode
@@ -111,7 +111,7 @@
     set background=dark
     colorscheme base16-hopscotch
     set t_Co=256
-    let g:airline_theme = 'kolor'
+    let g:airline_theme = 'minimalist'
 " }
 
 " Syntastic {
@@ -125,8 +125,8 @@
     let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
     " Enable some 'road' signs
     let g:syntastic_enable_signs = 1
-    let g:syntastic_error_symbol = "\uF470"
-    let g:syntastic_warning_symbol = "\uF0E7"
+    let g:syntastic_error_symbol = "\uF470 "
+    let g:syntastic_warning_symbol = "\uF0E7 "
     " Other options
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_html_tidy_exec = 'tidy'
@@ -144,6 +144,22 @@
     let html_fold_enabled = 1
 " }
 
+" TagBar configurations {
+    let g:tagbar_type_rust = {
+        \ 'ctagstype' : 'rust',
+        \ 'kinds' : [
+            \'T:types,type definitions',
+            \'f:functions,function definitions',
+            \'g:enum,enumeration names',
+            \'s:structure names',
+            \'m:modules,module names',
+            \'c:consts,static constants',
+            \'t:traits,traits',
+            \'i:impls,trait implementations',
+        \]
+    \}
+" }
+
 " Airline Preferences {
     let g:airline_powerline_fonts = 0
     let g:airline#extensions#whitespace#mixed_indent_algo = 1
@@ -152,14 +168,15 @@
     let g:airline#extensions#tmuxline#enabled = 1
     if ! exists( 'g:airline_symbols' )
         let g:airline_symbols = {}
-        let g:airline_left_sep = "\uF44A"
-        let g:airline_right_sep = "\uF438"
-        let g:airline_symbols.space = "\uA0"
-        let g:airline_symbols.crypt = "\uF023"
-        let g:airline_symbols.linenr = "\uF1DD"
+        let g:airline_left_sep = "\uF44A "
+        let g:airline_right_sep = "\uF438 "
+        let g:airline_symbols.space = "\uA0 "
+        let g:airline_symbols.crypt = "\uF023 "
+        let g:airline_symbols.linenr = "\uF1DD "
         let g:airline_symbols.branch = "\uE702 "
         let g:airline_symbols.paste = "\uF0D0 "
         let g:airline_symbols.whitespace = "\uF1FC "
+        let g:airline_symbols.notexists = " \uF440"
     endif
 " }
 
@@ -248,15 +265,11 @@
     endif
 " }
 
-" Tagbar {
-    let g:concourse_flytags_bin = "flytags"
-" }
-
 " YouCompleteMe {
     let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
-    let g:ycm_key_invoke_completion = '<C-Space>'
-    let g:ycm_rust_src_path = '/usr/local/rust/rustc-1.9.0/src'
+    let g:ycm_rust_src_path = '/usr/local/rust/rust-1.18.0/src'
+
 " }
 
 " Ledger Configurations & Hacks {

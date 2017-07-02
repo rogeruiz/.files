@@ -23,19 +23,6 @@ alias rake='noglob rake'
 # Restart VirtualBox
 alias vbfix='pls /Library/StartupItems/VirtualBox/VirtualBox restart'
 
-# Clocker Function
-clockerGet() {
-  if [[ $1 == 'last' ]]; then
-    clocker list -v | tail -n 5
-  else
-    clocker list -v --gt `date -v-8d "+%Y-%m-%d"` -t "$1" | more
-  fi
-  echo
-  clocker data -v --gt `date -v-8d "+%Y-%m-%d"` -t "$1" --title "Activity in the last week matching $1" | jq '.[].title, reduce .[].hours[].hours as $time (0; . + $time)'
-}
-
-alias tick=clockerGet
-
 # Copy ~/.lolcommits/config.yml to ~/.lolcommits/<repo_name>/config.yml
 
 cpLulz() {
@@ -86,7 +73,6 @@ alias wjumpbox=latestJumpOff
 
 # Remove Cisco Connect VPN profiles
 alias delete_cisco_connect_profiles='pls rm -rvf /opt/cisco/anyconnect/profile/gsa_cp-gfe.xml'
-
 
 # Concourse Fly
 #
