@@ -111,7 +111,7 @@
     set background=dark
     colorscheme base16-hopscotch
     set t_Co=256
-    let g:airline_theme = 'kolor'
+    let g:airline_theme = 'minimalist'
 " }
 
 " Syntastic {
