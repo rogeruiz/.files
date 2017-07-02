@@ -74,7 +74,6 @@ alias wjumpbox=latestJumpOff
 # Remove Cisco Connect VPN profiles
 alias delete_cisco_connect_profiles='pls rm -rvf /opt/cisco/anyconnect/profile/gsa_cp-gfe.xml'
 
-
 # Concourse Fly
 #
 alias fr-jump-stage='fly -t fr trigger-job -j jumpbox/container-bosh-staging -w; fly -t fr intercept -j jumpbox/container-bosh-staging -s jumpbox'
