@@ -26,6 +26,9 @@
     set t_vb=
     set number
     set ruler
+    set shiftwidth=2
+    set tabstop=2
+    set expandtab
     set colorcolumn=50,72,80,100
     set backspace=eol,start,indent
     set whichwrap+=<,>,h,l
@@ -54,7 +57,7 @@
 
 " Worflow {
     map 0 ^
-    map <f8> :TagbarToggle<cr>
+    map <f8> :TagbarToggle<CR>
     " Shortcut for disabling highlighting
     nnoremap <silent> <C-l> :nohl<CR><C-l>
     " Shortcut for enabling and disabling paste mode
@@ -145,6 +148,22 @@
 " }
 
 " TagBar configurations {
+    let g:concourse_flytags_bin = "flytags"
+    " Add support for markdown files in tagbar.
+    let g:tagbar_type_markdown = {
+        \ 'ctagstype': 'markdown',
+        \ 'ctagsbin' : '/Users/rogerruiz/.vim/bundle/markdown2ctags/markdown2ctags.py',
+        \ 'ctagsargs' : '-f - --sort=yes',
+        \ 'kinds' : [
+            \ 's:sections',
+            \ 'i:images'
+        \ ],
+        \ 'sro' : '|',
+        \ 'kind2scope' : {
+            \ 's' : 'section',
+        \ },
+        \ 'sort': 0,
+    \ }
     let g:tagbar_type_rust = {
         \ 'ctagstype' : 'rust',
         \ 'kinds' : [
@@ -268,8 +287,8 @@
 " YouCompleteMe {
     let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
     let g:ycm_collect_identifiers_from_comments_and_strings = 1
+    let g:ycm_key_invoke_completion = '<C-Space>'
     let g:ycm_rust_src_path = '/usr/local/rust/rust-1.18.0/src'
-
 " }
 
 " Ledger Configurations & Hacks {
@@ -303,13 +322,11 @@
     au BufRead,BufNewFile spec set ft=yaml
     au BufNewFile,BufRead *.ledger set ft=ledger
     au BufNewFile,BufRead .env* set ft=sh
-    au BufNewFile,BufRead *.yaml set ft=bosh.yaml
-    au BufNewFile,BufRead *.yml set ft=bosh.yaml
 " }
 
 " File-type configuration {
-    au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak nolist
-    au FileType yaml setlocal shiftwidth=2 tabstop=2 wrap spell expandtab tw=80 wm=0 linebreak nolist
-    au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak nolist
+    au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list
+    au FileType yaml setlocal shiftwidth=2 tabstop=2 nowrap spell expandtab tw=80 wm=0 linebreak list
+    au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak list
     au FileType go setlocal shiftwidth=4 tabstop=4
 " }

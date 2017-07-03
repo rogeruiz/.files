@@ -66,7 +66,6 @@ latestJumpOff() {
     delta=$(( ( $now_in_seconds - $time_in_seconds ) / ( 60 * 60 ) ))
     echo "Jumpbox called ${name} started about ${delta} minutes ago"
   done
-  #
 }
 
 alias wjumpbox=latestJumpOff
