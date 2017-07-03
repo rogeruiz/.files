@@ -87,5 +87,6 @@
         Plugin 'groenewege/vim-less'
         Plugin 'plasticboy/vim-markdown'
         Plugin 'dan-t/rusty-tags'
+        Plugin 'jszakmeister/markdown2ctags'
     " }
 " }
