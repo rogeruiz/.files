@@ -54,7 +54,7 @@
 
 " Worflow {
     map 0 ^
-    map <f8> :TagbarToggle<cr>
+    map <f8> :TagbarToggle<CR>
     " Shortcut for disabling highlighting
     nnoremap <silent> <C-l> :nohl<CR><C-l>
     " Shortcut for enabling and disabling paste mode
