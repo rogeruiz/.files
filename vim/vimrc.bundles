@@ -52,6 +52,7 @@
         Plugin 'tpope/vim-surround'
         Plugin 'Raimondi/delimitMate'
         Plugin 'majutsushi/tagbar'
+        Plugin 'xolox/vim-easytags'
     " }
     " Language {
         Plugin 'luan/vim-bosh'
