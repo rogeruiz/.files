@@ -114,7 +114,7 @@
     set background=dark
     colorscheme base16-hopscotch
     set t_Co=256
-    let g:airline_theme = 'minimalist'
+    let g:airline_theme = 'ravenpower'
 " }
 
 " Syntastic {
@@ -128,8 +128,8 @@
     let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
     " Enable some 'road' signs
     let g:syntastic_enable_signs = 1
-    let g:syntastic_error_symbol = "\uF470 "
-    let g:syntastic_warning_symbol = "\uF0E7 "
+    let g:syntastic_error_symbol = "\uF470"
+    let g:syntastic_warning_symbol = "\uF0E7"
     " Other options
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_html_tidy_exec = 'tidy'
