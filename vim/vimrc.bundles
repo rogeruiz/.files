@@ -53,6 +53,7 @@
         Plugin 'Raimondi/delimitMate'
         Plugin 'majutsushi/tagbar'
         Plugin 'xolox/vim-easytags'
+        Plugin 'xolox/vim-misc'
     " }
     " Language {
         Plugin 'luan/vim-bosh'
@@ -64,6 +65,7 @@
         Plugin 'applescript.vim'
         Plugin 'mustache/vim-mustache-handlebars'
         Plugin 'ekalinin/Dockerfile.vim'
+        Plugin 'andrewstuart/vim-kubernetes'
         Plugin 'markcornick/vim-terraform'
         Plugin 'rust-lang/rust.vim'
         Plugin 'toml-lang/toml'
