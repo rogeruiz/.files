@@ -7,6 +7,8 @@
   editor = vim
   quotepath = false
   excludesfile = ~/.gitignore_global
+	page = more
+	pager = less -F -X
 [github]
   user = rogeruiz
 [alias]
@@ -56,7 +58,7 @@
 [gitseekret]
   version = 1
   rulespath = ~/.git-support/rules
-  rulesenabled = aws.secret_access_key,aws.access_key_id,aws.account_id,new-relic.license_key
+	rulesenabled = aws.secret_access_key,aws.access_key_id,aws.account_id,mandrill.username,mandrill.password,mandrill.api_key,newrelic.license_key,slack.api_token
   exceptionsfile = ""
 [commit]
 	gpgsign = true
