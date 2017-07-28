@@ -42,11 +42,6 @@ function precmd () {
 # Include Custom Aliases
 . $HOME/Developer/.aliases
 
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-
-source /usr/local/bin/virtualenvwrapper.sh
-
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
 
 ulimit -n 10000
 
@@ -56,7 +51,6 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 export NVM_DIR="/Users/rsr/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-source /usr/local/opt/autoenv/activate.sh
 
 # Link pinentry and gpg-agent together to never have to type my Keybase
 # passphrase again!
