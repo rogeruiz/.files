@@ -39,7 +39,7 @@
         " }
         Plugin 'scrooloose/syntastic'
         Plugin 'editorconfig/editorconfig-vim'
-        Plugin 'valloric/YouCompleteMe'
+        Plugin 'ajh17/VimCompletesMe'
         Plugin 'mattn/emmet-vim'
         Plugin 'sotte/presenting.vim'
         Plugin 'scrooloose/nerdcommenter'
