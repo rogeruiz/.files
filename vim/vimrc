@@ -114,7 +114,7 @@
     set background=dark
     colorscheme base16-hopscotch
     set t_Co=256
-    let g:airline_theme = 'minimalist'
+    let g:airline_theme = 'ravenpower'
 " }
 
 " Syntastic {
@@ -128,8 +128,8 @@
     let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
     " Enable some 'road' signs
     let g:syntastic_enable_signs = 1
-    let g:syntastic_error_symbol = "\uF470 "
-    let g:syntastic_warning_symbol = "\uF0E7 "
+    let g:syntastic_error_symbol = "\uF470"
+    let g:syntastic_warning_symbol = "\uF0E7"
     " Other options
     let g:syntastic_aggregate_errors = 1
     let g:syntastic_html_tidy_exec = 'tidy'
@@ -177,6 +177,60 @@
             \'i:impls,trait implementations',
         \]
     \}
+    let g:tagbar_type_go = {
+        \ 'ctagstype' : 'go',
+        \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+        \ ],
+        \ 'sro' : '.',
+        \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+        \ },
+        \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+        \ },
+        \ 'ctagsbin'  : 'gotags',
+        \ 'ctagsargs' : '-sort -silent'
+    \ }
+    " EasyTags configurations {
+        let g:easytags_cmd = '/usr/local/bin/ctags'
+    " }
+
+" }
+
+" Golang Preferences {
+
+    "use K as 5k, not GoDoc
+    let g:go_doc_keywordprg_enabled = 0
+
+    " format with goimports instead of gofmt
+    let g:go_fmt_command = "goimports"
+    nnoremap <leader>glf :GoFmt<CR>
+    inoremap <leader>glf <ESC>:GoFmt<CR>
+    vnoremap <leader>glf <ESC>:GoFmt<CR>
+    nnoremap <leader>glv :GoVet<CR>
+    inoremap <leader>glv <ESC>:GoVet<CR>
+    vnoremap <leader>glv <ESC>:GoVet<CR>
+    nnoremap <leader>gll :GoLint<CR>
+    inoremap <leader>gll <ESC>:GoLint<CR>
+    vnoremap <leader>gll <ESC>:GoLint<CR>
+
+    func! RunGoFmt()
+        exe "GoFmt"
+    endfunc
+    autocmd BufWrite *.go :call RunGoFmt()
 " }
 
 " Airline Preferences {
@@ -284,13 +338,6 @@
     endif
 " }
 
-" YouCompleteMe {
-    let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-    let g:ycm_collect_identifiers_from_comments_and_strings = 1
-    let g:ycm_key_invoke_completion = '<C-Space>'
-    let g:ycm_rust_src_path = '/usr/local/rust/rust-1.18.0/src'
-" }
-
 " Ledger Configurations & Hacks {
     map <leader>$$ :Tabularize / \( \\|-\)\?\$.\+<cr>
     if !exists("g:today_command")
@@ -328,5 +375,4 @@
     au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list
     au FileType yaml setlocal shiftwidth=2 tabstop=2 nowrap spell expandtab tw=80 wm=0 linebreak list
     au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak list
-    au FileType go setlocal shiftwidth=4 tabstop=4
 " }
