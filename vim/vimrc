@@ -338,13 +338,6 @@
     endif
 " }
 
-" YouCompleteMe {
-    let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-    let g:ycm_collect_identifiers_from_comments_and_strings = 1
-    let g:ycm_key_invoke_completion = '<C-Space>'
-    let g:ycm_rust_src_path = '/usr/local/rust/rust-1.18.0/src'
-" }
-
 " Ledger Configurations & Hacks {
     map <leader>$$ :Tabularize / \( \\|-\)\?\$.\+<cr>
     if !exists("g:today_command")
