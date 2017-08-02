@@ -57,7 +57,7 @@
 
 " Worflow {
     map 0 ^
-    map <f8> :TagbarToggle<CR>
+    map <f8> :TagbarToggle<cr>
     " Shortcut for disabling highlighting
     nnoremap <silent> <C-l> :nohl<CR><C-l>
     " Shortcut for enabling and disabling paste mode
@@ -97,7 +97,7 @@
     " }
     " GUI Options {
         if has( 'gui_running' )
-            set guifont=M\+\ 2m\ NerdFont\ Patched:h11
+            set guifont=M\+\ 2m\ NerdFont\ Patched:h16
             autocmd! GUIEnter * set vb t_vb=
         endif
     " }
@@ -114,7 +114,7 @@
     set background=dark
     colorscheme base16-hopscotch
     set t_Co=256
-    let g:airline_theme = 'ravenpower'
+    let g:airline_theme = 'serene'
 " }
 
 " Syntastic {
@@ -126,6 +126,9 @@
     let g:syntastic_javascript_checkers = [ "eslint" ]
     let g:syntastic_sass_checkers = [ "scss-lint" ]
     let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
+    let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter']
+    let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
     " Enable some 'road' signs
     let g:syntastic_enable_signs = 1
     let g:syntastic_error_symbol = "\uF470"
@@ -227,10 +230,8 @@
     inoremap <leader>gll <ESC>:GoLint<CR>
     vnoremap <leader>gll <ESC>:GoLint<CR>
 
-    func! RunGoFmt()
-        exe "GoFmt"
-    endfunc
-    autocmd BufWrite *.go :call RunGoFmt()
+    let g:go_list_type = "quickfix"
+
 " }
 
 " Airline Preferences {
@@ -242,7 +243,7 @@
     if ! exists( 'g:airline_symbols' )
         let g:airline_symbols = {}
         let g:airline_left_sep = "\uF44A "
-        let g:airline_right_sep = "\uF438 "
+        let g:airline_right_sep = " \uF438"
         let g:airline_symbols.space = "\uA0 "
         let g:airline_symbols.crypt = "\uF023 "
         let g:airline_symbols.linenr = "\uF1DD "
@@ -255,8 +256,8 @@
 
 " Control-P {
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|exports|bower_components|opencontrols|vendor|target|public|_site)$',
-    \ 'file': '\v\.(exe|so|dll)$'
+    \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|exports|bower_components|opencontrols|vendor|target|public|_site|rollup-cache.*|broccoli_.*|creator-.*|core_.*|funnel-.*|simple_.*|stub_generator.*)$',
+    \ 'file': '\v\.(exe|so|dll|metadata_never_index)$'
     \ }
 " }
 
@@ -328,7 +329,7 @@
         nnoremap <silent> <leader>gc :Gcommit -v<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gp :Gpush<CR>
         nnoremap <silent> <leader>gr :Gread<CR>
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>ge :Gedit<CR>
