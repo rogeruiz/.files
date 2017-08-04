@@ -2,10 +2,13 @@
 alias ..='cd ..'
 alias ...='cd ../..'
 alias -- -='cd -'
-alias l='ls -amPF'
-alias ll='ls -al -GF'
+#alias l='ls -amPF'
+#alias ll='ls -al -GF'
+alias l='exa -xa'
+alias ll='exa -lah --git'
 treeDir() {
-    tree -lhcr --dirsfirst $@ | more
+    #tree -lhcr --dirsfirst $@ | more
+    exa -lahT --git | more
 }
 alias lll=treeDir
 
