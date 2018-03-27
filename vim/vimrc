@@ -118,24 +118,25 @@
 " }
 
 " Syntastic {
+    " Syntastic is disabled for now
     " Check on open and not on `wq`
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
+    "let g:syntastic_check_on_open = 1
+    "let g:syntastic_check_on_wq = 0
     " Custom checkers
-    let g:syntastic_php_checkers = [ "php" ]
-    let g:syntastic_javascript_checkers = [ "eslint" ]
-    let g:syntastic_sass_checkers = [ "scss-lint" ]
-    let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
-    let g:syntastic_go_checkers = ['golint', 'govet', 'gometalinter']
-    let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
-    let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+    "let g:syntastic_php_checkers = [ "php" ]
+    "let g:syntastic_javascript_checkers = [ "eslint" ]
+    "let g:syntastic_sass_checkers = [ "scss-lint" ]
+    "let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
     " Enable some 'road' signs
-    let g:syntastic_enable_signs = 1
-    let g:syntastic_error_symbol = "\uF470"
-    let g:syntastic_warning_symbol = "\uF0E7"
+    "let g:syntastic_enable_signs = 1
+    "let g:syntastic_error_symbol = "\uF470"
+    "let g:syntastic_warning_symbol = "\uF0E7"
+    let g:ale_sign_error = "\uF470"
+    let g:ale_sign_warning = "\uF0E7"
+    let g:airline#extensions#ale#enabled = 1
     " Other options
-    let g:syntastic_aggregate_errors = 1
-    let g:syntastic_html_tidy_exec = 'tidy'
+    "let g:syntastic_aggregate_errors = 1
+    "let g:syntastic_html_tidy_exec = 'tidy'
     "let g:syntastic_html_tidy_blocklevel_tags = ''
 " }
 
@@ -152,6 +153,30 @@
 
 " TagBar configurations {
     let g:concourse_flytags_bin = "flytags"
+    let g:tagbar_type_concourse = {
+        \ 'ctagstype' : 'concourse',
+        \ 'kinds'     : [
+            \ 'p:primitives',
+            \ 't:resource_types',
+            \ 'g:groups',
+            \ 'r:resources',
+            \ 'i:inputs',
+            \ 'k:tasks',
+            \ 'o:outputs',
+            \ 'j:jobs',
+        \ ],
+        \ 'sro' : '.',
+        \ 'kind2scope' : {
+            \ 'p' : 'ptype',
+            \ 'j' : 'stype'
+        \ },
+        \ 'scope2kind' : {
+            \ 'ptype' : 'p',
+            \ 'stype' : 'j'
+        \ },
+        \ 'ctagsbin'  : expand("/Users/rogerruiz/Developer/golang/bin/flytags"),
+        \ 'ctagsargs' : '-sort -silent'
+    \ }
     " Add support for markdown files in tagbar.
     let g:tagbar_type_markdown = {
         \ 'ctagstype': 'markdown',
@@ -226,11 +251,24 @@
     nnoremap <leader>glv :GoVet<CR>
     inoremap <leader>glv <ESC>:GoVet<CR>
     vnoremap <leader>glv <ESC>:GoVet<CR>
+    nnoremap <leader>gli :GoInfo<CR>
+    inoremap <leader>gli <ESC>:GoInfo<CR>
+    vnoremap <leader>gli <ESC>:GoInfo<CR>
+    nnoremap <leader>glb :GoBuild<CR>
+    inoremap <leader>glb <ESC>:GoBuild<CR>
+    vnoremap <leader>glb <ESC>:GoBuild<CR>
+    nnoremap <leader>glr :GoRun<CR>
+    inoremap <leader>glr <ESC>:GoRun<CR>
+    vnoremap <leader>glr <ESC>:GoRun<CR>
     nnoremap <leader>gll :GoLint<CR>
     inoremap <leader>gll <ESC>:GoLint<CR>
     vnoremap <leader>gll <ESC>:GoLint<CR>
 
     let g:go_list_type = "quickfix"
+    func! RunGoFmt()
+        exe "GoFmt"
+    endfunc
+    autocmd BufWrite *.go :call RunGoFmt()
 
 " }
 
@@ -243,7 +281,7 @@
     if ! exists( 'g:airline_symbols' )
         let g:airline_symbols = {}
         let g:airline_left_sep = "\uF44A "
-        let g:airline_right_sep = " \uF438"
+        let g:airline_right_sep = "\uF438 "
         let g:airline_symbols.space = "\uA0 "
         let g:airline_symbols.crypt = "\uF023 "
         let g:airline_symbols.linenr = "\uF1DD "
@@ -329,7 +367,7 @@
         nnoremap <silent> <leader>gc :Gcommit -v<CR>
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
-        nnoremap <silent> <leader>gp :Gpush<CR>
+        nnoremap <silent> <leader>gp :Git push<CR>
         nnoremap <silent> <leader>gr :Gread<CR>
         nnoremap <silent> <leader>gw :Gwrite<CR>
         nnoremap <silent> <leader>ge :Gedit<CR>

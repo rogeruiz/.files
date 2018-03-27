@@ -37,7 +37,8 @@
             Plugin 'kannokanno/previm'
             Plugin 'tyru/open-browser.vim'
         " }
-        Plugin 'scrooloose/syntastic'
+        "Plugin 'scrooloose/syntastic'
+        Plugin 'w0rp/ale'
         Plugin 'editorconfig/editorconfig-vim'
         Plugin 'ajh17/VimCompletesMe'
         Plugin 'mattn/emmet-vim'
