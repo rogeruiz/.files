@@ -55,6 +55,12 @@
     set laststatus=2
 " }
 
+" Load Bundle config {
+    if filereadable( expand( "~/.vimrc.bundles" ) )
+        source ~/.vimrc.bundles
+    endif
+" }
+
 " Worflow {
     map 0 ^
     map <f8> :TagbarToggle<cr>
@@ -101,12 +107,12 @@
             autocmd! GUIEnter * set vb t_vb=
         endif
     " }
-" }
-
-" Load Bundle config {
-    if filereadable( expand( "~/.vimrc.bundles" ) )
-        source ~/.vimrc.bundles
-    endif
+    augroup vimrc_todo
+        au!
+        au Syntax * syn match CustomTodos /\v<(FIXME|NOTE|TODO|OPTIMIZE|XXX):/
+              \ containedin=.*Comment,vimCommentTitle
+    augroup END
+    hi def link CustomTodos Todo
 " }
 
 " Theme {
@@ -138,6 +144,13 @@
     "let g:syntastic_aggregate_errors = 1
     "let g:syntastic_html_tidy_exec = 'tidy'
     "let g:syntastic_html_tidy_blocklevel_tags = ''
+" }
+
+" SnipMate {
+    imap <C-J> <Plug>snipMateBack
+    smap <C-J> <Plug>snipMateBack
+    imap <C-K> <Plug>snipMateNextOrTrigger
+    smap <C-K> <Plug>snipMateNextOrTrigger
 " }
 
 " Syntax Folding {
@@ -263,6 +276,9 @@
     nnoremap <leader>gll :GoLint<CR>
     inoremap <leader>gll <ESC>:GoLint<CR>
     vnoremap <leader>gll <ESC>:GoLint<CR>
+    nnoremap <leader>gli :GoInfo<CR>
+    inoremap <leader>gli <ESC>:GoInfo<CR>
+    vnoremap <leader>gli <ESC>:GoInfo<CR>
 
     let g:go_list_type = "quickfix"
     func! RunGoFmt()
@@ -317,6 +333,11 @@
 
 " Markdown {
     let g:vim_markdown_folding_disabled = 0
+
+    nnoremap <leader>mdp :PrevimOpen<CR>
+    inoremap <leader>mdp <ESC>:PrevimOpen<CR>
+    vnoremap <leader>mdp <ESC>:PrevimOpen<CR>
+
 " }
 
 " NERDTree {
