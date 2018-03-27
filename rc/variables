@@ -16,7 +16,7 @@ export PATH=$HOME/.rvm/bin:$PATH
 
 # Path for `go get`
 #
-export GOPATH=$HOME/Developer/golang
+export GOPATH=$HOME/Developer/golang:$HOME/Developer
 export PATH=$PATH:$GOPATH/bin
 
 # Path for `cargo install`
