@@ -8,7 +8,7 @@ alias l='exa -xa'
 alias ll='exa -lah --git'
 treeDir() {
     #tree -lhcr --dirsfirst $@ | more
-    exa -lahT --git | more
+    exa -lhT --git "${@}" | more
 }
 alias lll=treeDir
 
@@ -53,113 +53,5 @@ searchCf() {
 
 alias wtcf=searchCf
 
-latestJumpOff() {
-  local jumpbox_info=$(
-    fly -t fr builds | \
-    grep jumpbox | \
-    awk '{ print $2, $5 }'
-  )
-  local now_in_seconds=$(date -j +%s)
-  local IFS=$'\n'
-  for j in $jumpbox_info
-  do
-    name=$(echo $j | cut -d ' ' -f 1)
-    time=$(echo $j | cut -d ' ' -f 2)
-    time_in_seconds=$(date -j -u -f "%Y-%m-%d@%H:%M:%S" +%s $time 2>/dev/null)
-    delta=$(( ( $now_in_seconds - $time_in_seconds ) / ( 60 * 60 ) ))
-    echo "Jumpbox called ${name} started about ${delta} minutes ago"
-  done
-}
-
-alias wjumpbox=latestJumpOff
-
 # Remove Cisco Connect VPN profiles
 alias delete_cisco_connect_profiles='pls rm -rvf /opt/cisco/anyconnect/profile/gsa_cp-gfe.xml'
-
-# Concourse Fly
-#
-getConcourseJumpbox() {
-  local environment=$1
-  local match="^(staging|development|tooling|production)$"
-  if [[ -z $ci_env ]]
-  then
-    echo "Environmental variable \$ci_env isn't set, so defaulting to `fr`"
-    ci_env=fr
-  fi
-  if ! [[ $environment =~ $match ]]
-  then
-    echo "Please pass in a supported environment ( e.g. development, tooling, staging, production )"
-    return
-  fi
-  echo "Creating a Jumpbox in ${environment}"
-  trigger=$(fly -t ${ci_env} trigger-job -w -j jumpbox/container-bosh-${environment})
-  build=$(echo ${trigger} | head -n 1 | awk '{print $3}' | sed 's/.*#\([0-9]\{1,\}\)/\1/')
-  echo "Jumpbox ${environment} #${build}"
-
-  sleep 1
-  fly -t ${ci_env} intercept -j jumpbox/container-bosh-${environment} -b ${build} -s jumpbox
-}
-
-alias fly-jumpbox=getConcourseJumpbox
-
-export shh=~/Developer/cloud.gov/secrets
-
-getConcourseCreds() {
-  local root_dir=$1
-  local config="${root_dir}pipeline.yml"
-  local creds="${root_dir}credentials.yml"
-
-  $shh/download-credentials.sh "${creds}" && \
-  fly -t fr sp -p "$(echo "${PWD##*/}" | sed 's/cg-//')" -c "${config}" -l "${creds}";
-  vim "${creds}" && \
-  fly -t fr sp -p "$(echo "${PWD##*/}" | sed 's/cg-//')" -c "${config}" -l "${creds}" && \
-  $shh/upload-credentials.sh "${creds}"
-}
-
-alias fly-creds=getConcourseCreds
-
-# UAA
-#
-authUaaEnvironment() {
-  local target_index=$1
-
-  if [ $target_index -eq 0 ]
-  then
-    secret=$(
-      aws --profile fr s3 cp s3://cloud-gov-varz-stage/cf-staging.main.yml - | \
-      openssl enc -aes-256-cbc -d -a -pass "pass:$(fly -t fr gp -p deploy-cf | spruce json | jq -r '.resources | map(select(.name == "common-staging")) | .[].source.secrets_passphrase')" | \
-      sed '/\( merge \)/d' | \
-      spruce json | \
-      jq -r .properties.uaa.admin.client_secret
-    )
-  elif [ $target_index -eq 1 ]
-  then
-    secret=$(
-      aws --profile fr s3 cp s3://cloud-gov-varz/cf.main.yml - | \
-      openssl enc -aes-256-cbc -d -a -pass "pass:$(fly -t fr gp -p deploy-cf-new | spruce json | jq -r '.resources | map(select(.name == "common-production")) | .[].source.secrets_passphrase')" | \
-      sed '/\( merge \)/d' | \
-      spruce json | \
-      jq -r .properties.uaa.admin.client_secret
-    )
-  elif [ $target_index -eq 4 ]
-  then
-    secret=$(
-      aws --profile fr s3 cp s3://cloud-gov-varz/tooling-bosh.yml - | \
-      openssl enc -aes-256-cbc -d -a -pass "pass:$(fly -t fr gp -p deploy-bosh | spruce json | jq -r '.resources | map(select(.name == "common-tooling")) | .[].source.secrets_passphrase')" | \
-      sed '/\( merge \)/d' | \
-      spruce json | \
-      jq -r .properties.uaa.admin.client_secret
-    )
-  fi
-
-  if [[ $target_index == 0 || $target_index == 1 || $target_index == 4 ]]
-  then
-    uaac target "${target_index}"
-    uaac token client get admin -s ${secret}
-  else
-    echo "You can't target a UAA I don't know about. Please run \`uaac targets\` and modify this shell function."
-  fi
-}
-
-alias uaac-get=authUaaEnvironment
-
