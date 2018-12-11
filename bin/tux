@@ -23,7 +23,7 @@ function punch_clock {
 	then
 		if [[ $1 == 'list' ]]
 		then
-			tick -v $1 | grep "$2" | tail -n 25
+			tick -v $1 | grep -E "\[\s${2}\s\]" | tail -n 25
 		elif [[ $3 != '' ]]
 		 then
 			tick "$1" -n "$2" -m "$3"
