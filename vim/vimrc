@@ -276,15 +276,14 @@
     nnoremap <leader>gll :GoLint<CR>
     inoremap <leader>gll <ESC>:GoLint<CR>
     vnoremap <leader>gll <ESC>:GoLint<CR>
-    nnoremap <leader>gli :GoInfo<CR>
-    inoremap <leader>gli <ESC>:GoInfo<CR>
-    vnoremap <leader>gli <ESC>:GoInfo<CR>
 
     let g:go_list_type = "quickfix"
     func! RunGoFmt()
         exe "GoFmt"
     endfunc
     autocmd BufWrite *.go :call RunGoFmt()
+
+    autocmd FileType go let b:vcm_tab_complete = "omni"
 
 " }
 
