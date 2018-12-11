@@ -113,5 +113,6 @@
         Plugin 'othree/html5.vim'
         Plugin 'tpope/vim-ragtag'
         Plugin 'udalov/kotlin-vim'
+        Plugin 'davidhalter/jedi-vim'
     " }
 " }
