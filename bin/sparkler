@@ -16,8 +16,9 @@ fi
 
 timesheets=$(
   tick list | \
-  grep -E $tag_search | \
-  grep -o -E '\( [0-9:]+\ )' | \
+  grep -E "${tag_search}" | \
+  tail -n $limit | \
+  grep -o -E '\( [0-9:]+ \)' | \
   sed -E 's/\(|\)/ /g' | \
   sed -E 's/:/ /g' | \
   awk '{print $1 * 60 * 60 + $2 * 60 + $3}'

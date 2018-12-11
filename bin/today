@@ -1,12 +1,13 @@
 #!/bin/bash
 
-set -eu
+set -e
 
 TODAY=$( date "+%Y/%m/%d" )
 
 echo "Today's date is: $TODAY"
 
-if [[ $# == 1 && $1 =~ '-c' ]]
+if [[ $1 == '-c' || $2 == '-c' ]]
 then
   echo -n "$TODAY" | pbcopy
+  echo "Date copied to clipboard."
 fi
