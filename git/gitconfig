@@ -45,8 +45,10 @@
   discard = checkout --
   local = branch --list
   unpatch = reset HEAD --patch
+  up = reset HEAD --patch
   p = add --patch
-	new = "!nu() { git checkout -b $1; }; nu"
+  new = "!nu() { git checkout -b $1; }; nu"
+  find = "!gfind() { git grep -e $1 $(git rev-list --all -- $2) -- $2; }; gfind"
 [push]
   default = simple
 [init]
