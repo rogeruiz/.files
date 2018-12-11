@@ -50,6 +50,13 @@ prompt_pure_job_count() {
   fi
 }
 
+prompt_pure_aws_vault_status() {
+  if [[ -n $AWS_VAULT ]]
+  then
+    echo -ne "\uf270  "
+  fi
+}
+
 prompt_pure_git_diary() {
     command git rev-parse --is-inside-work-tree &>/dev/null || return
     command git log -1 &>/dev/null || return
@@ -134,7 +141,7 @@ prompt_pure_setup() {
 
     prompt_okay="%F{green}  "
     prompt_not_okay="%F{red}  "
-    PROMPT='%(?.${prompt_okay}.${prompt_not_okay})%f %F{242} %f '
+    PROMPT='%F{yellow}`prompt_pure_aws_vault_status`%f%(?.${prompt_okay}.${prompt_not_okay})%f %F{242} %f '
 
 }
 
