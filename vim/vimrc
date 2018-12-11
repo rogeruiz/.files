@@ -117,33 +117,27 @@
 
 " Theme {
     syntax enable
-    set background=dark
-    colorscheme base16-hopscotch
     set t_Co=256
-    let g:airline_theme = 'serene'
+    " light {
+    if $ITERM_PROFILE == 'tomorrow'
+        set background=light
+        colorscheme tomorrow
+        let g:airline_theme = 'tomorrow'
+    endif
+    " }
+    " dark {
+    if $ITERM_PROFILE == 'hopscotch'
+        set background=dark
+        colorscheme base16-hopscotch
+        let g:airline_theme = 'serene'
+    endif
+    " }
 " }
 
-" Syntastic {
-    " Syntastic is disabled for now
-    " Check on open and not on `wq`
-    "let g:syntastic_check_on_open = 1
-    "let g:syntastic_check_on_wq = 0
-    " Custom checkers
-    "let g:syntastic_php_checkers = [ "php" ]
-    "let g:syntastic_javascript_checkers = [ "eslint" ]
-    "let g:syntastic_sass_checkers = [ "scss-lint" ]
-    "let g:syntastic_ruby_checkers = [ "mri", "rubocop" ]
-    " Enable some 'road' signs
-    "let g:syntastic_enable_signs = 1
-    "let g:syntastic_error_symbol = "\uF470"
-    "let g:syntastic_warning_symbol = "\uF0E7"
+" Ale {
     let g:ale_sign_error = "\uF470"
     let g:ale_sign_warning = "\uF0E7"
     let g:airline#extensions#ale#enabled = 1
-    " Other options
-    "let g:syntastic_aggregate_errors = 1
-    "let g:syntastic_html_tidy_exec = 'tidy'
-    "let g:syntastic_html_tidy_blocklevel_tags = ''
 " }
 
 " SnipMate {
@@ -247,6 +241,7 @@
     \ }
     " EasyTags configurations {
         let g:easytags_cmd = '/usr/local/bin/ctags'
+        let g:easytags_async = 1
     " }
 
 " }
@@ -319,7 +314,7 @@
       \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P', '#(/usr/local/bin/outatime)' ],
       \'b'    : [ '#(/usr/local/bin/current_itunes_song)' ],
       \'win'  : [ '#I #W #(echo "\uf248  ")' ],
-      \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; fi)' ],
+      \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; elif [[ "#F" == "*M" ]]; then echo "\uf435:"; fi)' ],
       \'x'    : [ '#(/usr/local/bin/battery -tp) ' ],
       \'z'    : ['#(echo "\uf017 ") %l:%M%p', '#(echo "\uf073 ") %a %m/%d'] }
     let g:tmuxline_separators = {
