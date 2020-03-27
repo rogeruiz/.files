@@ -7,8 +7,8 @@
   editor = vim
   quotepath = false
   excludesfile = ~/.gitignore_global
-	page = more
-	pager = less -F -X
+  page = more
+  pager = less -F -X
 [github]
   user = rogeruiz
 [alias]
@@ -27,7 +27,7 @@
   pop = stash pop
   history = log --reverse --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
   catchup = log FETCH_HEAD...HEAD --reverse --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
-  verbose = log --graph --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
+  verbose = log --graph --stat -p --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n        %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n    %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n       %C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n     %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
   gist = log --pretty=format:' %C(green)%d%Creset%n%C(magenta)❯%Creset %C(red)<%h>%Creset %C(yellow)<%aE>%Creset %C(cyan)<%ar>%Creset%n%C(magenta)❯%Creset %s%n' --graph
   continue = !git add . && git rebase --continue
   out = merge --abort
@@ -60,7 +60,7 @@
 [gitseekret]
   version = 1
   rulespath = ~/.git-support/rules
-	rulesenabled = aws.secret_access_key,aws.access_key_id,aws.account_id,mandrill.username,mandrill.password,mandrill.api_key,newrelic.license_key,slack.api_token
+  rulesenabled = aws.secret_access_key,aws.access_key_id,aws.account_id,mandrill.username,mandrill.password,mandrill.api_key,newrelic.license_key,slack.api_token
   exceptionsfile = ""
 [commit]
-	gpgsign = true
+  gpgsign = true

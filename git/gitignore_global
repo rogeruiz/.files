@@ -27,7 +27,7 @@ npm-debug.log
 
 # Ignore fun directories
 tmp/
-cg-deploy-*
+work/
 
 # Concourse files
 credentials.yml
