@@ -18,6 +18,7 @@ export PATH=$HOME/.rvm/bin:$PATH
 #
 export GOPATH=$HOME/Developer/golang:$HOME/Developer
 export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Path for `cargo install`
 #
@@ -40,3 +41,7 @@ export ci_env=''
 # Gulp autocompletion
 #
 eval "$(gulp --completion=zsh)"
+
+# Bat Theme
+#export BAT_THEME="TwoDark" # Dracula
+export BAT_THEME="Monokai Extended Light" # PaperColor
