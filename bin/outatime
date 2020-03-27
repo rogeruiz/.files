@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-export DATABASE_URL=/Users/rsr/.tick/db/main.db
+export DATABASE_URL=$HOME/.tick/db/main.db
 
 time=`tick status | grep -oE "\s[0-9:]+"`
 out=$?

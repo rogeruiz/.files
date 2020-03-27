@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 LENGTH=32
 MATCH='a-zA-Z0-9!@#\$%^&\*\(\)\+=_'
 if [ ! -z "$1" ]; then
