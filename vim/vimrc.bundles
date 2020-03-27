@@ -10,7 +10,7 @@
     filetype on
     filetype off
     set rtp+=~/.vim/bundle/Vundle.vim
-    call vundle#rc()
+    call vundle#begin()
     Plugin 'VundleVim/Vundle.vim'
 " }
 
@@ -21,9 +21,12 @@
         Plugin 'vim-airline/vim-airline-themes'
         Plugin 'altercation/vim-colors-solarized'
         Plugin 'ryanoasis/vim-devicons'
+        Plugin 'dracula/vim'
+        Plugin 'NLKNguyen/papercolor-theme'
     " }
     " Version Control {
         Plugin 'tpope/vim-fugitive'
+        Plugin 'tpope/vim-rhubarb'
         Plugin 'airblade/vim-gitgutter'
         Bundle 'mattn/gist-vim'
     " }
@@ -43,7 +46,6 @@
         Plugin 'scrooloose/nerdtree'
         Plugin 'myusuf3/numbers.vim'
         Plugin 'godlygeek/tabular'
-        Plugin 'Yggdroot/indentLine'
         Plugin 'ctrlpvim/ctrlp.vim'
         Plugin 'tpope/vim-surround'
         Plugin 'Raimondi/delimitMate'
@@ -56,19 +58,20 @@
         Plugin 'honza/vim-snippets'
     " }
     " Language {
-        " cloud.gov {
-            Plugin 'luan/vim-bosh'
-            Plugin 'luan/vim-concourse'
+        " cloud {
             Plugin 'ekalinin/Dockerfile.vim'
             Plugin 'andrewstuart/vim-kubernetes'
-            Plugin 'markcornick/vim-terraform'
+            Plugin 'hashivim/vim-terraform'
+            Plugin 'juliosueiras/vim-terraform-completion'
+
         " }
         " Rustlang {
             Plugin 'dan-t/rusty-tags'
             Plugin 'rust-lang/rust.vim'
         " }
         " Golang {
-            Plugin 'fatih/vim-go'
+            Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+            "Plugin 'Shougo/deoplete.nvim'
         " }
         " Configuration {
             Plugin 'elzr/vim-json'
@@ -87,8 +90,8 @@
             Plugin 'mxw/vim-jsx'
         " }
         " Templating {
-            Plugin 'evidens/vim-twig'
-            Plugin 'VuogNguyen/vim-blade'
+            " Plugin 'evidens/vim-twig'
+            " Plugin 'VuogNguyen/vim-blade'
             Plugin 'mustache/vim-mustache-handlebars'
         " }
         " Markdown {
@@ -116,3 +119,6 @@
         Plugin 'davidhalter/jedi-vim'
     " }
 " }
+
+call vundle#end()
+filetype plugin indent on

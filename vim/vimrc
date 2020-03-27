@@ -12,10 +12,16 @@
 "
 " }
 
+" Load Bundle config {
+    if filereadable( expand( "~/.vimrc.bundles" ) )
+        source ~/.vimrc.bundles
+    endif
+" }
+
 " Basics {
     let mapleader = ","
     set magic
-    set shell=/usr/local/bin/zsh
+    set shell=/usr/bin/zsh
     set modeline
     set modelines=5
     set updatetime=100
@@ -55,12 +61,6 @@
     set laststatus=2
 " }
 
-" Load Bundle config {
-    if filereadable( expand( "~/.vimrc.bundles" ) )
-        source ~/.vimrc.bundles
-    endif
-" }
-
 " Worflow {
     map 0 ^
     map <f8> :TagbarToggle<cr>
@@ -70,9 +70,7 @@
     map <leader>pp :setlocal paste!<cr>
     " Shortcut for enabling spelling
     map <leader>ss :setlocal spell!<cr>
-    " Allow for macosx and tmux and vim clipboard sharing.
-    " Following this blog post: http://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
-    set clipboard=unnamed
+    set clipboard=unnamedplus
     " Split 'correctly' for left-to-right readers. {
         set splitbelow
         set splitright
@@ -118,20 +116,13 @@
 " Theme {
     syntax enable
     set t_Co=256
-    " light {
-    if $ITERM_PROFILE == 'tomorrow'
-        set background=light
-        colorscheme tomorrow
-        let g:airline_theme = 'tomorrow'
-    endif
-    " }
-    " dark {
-    if $ITERM_PROFILE == 'hopscotch'
-        set background=dark
-        colorscheme base16-hopscotch
-        let g:airline_theme = 'serene'
-    endif
-    " }
+    "set background=light
+    "colorscheme PaperColor
+    "let g:airline_theme = 'papercolor'
+    "let g:airline_theme = 'peaksea'  "for PaperColor Dark
+    set background=dark
+    colorscheme dracula
+    let g:airline_theme = 'dracula'
 " }
 
 " Ale {
@@ -149,7 +140,7 @@
 
 " Syntax Folding {
     set foldmethod=syntax
-    set foldlevelstart=2
+    set foldlevelstart=4
     let php_folding = 1
     let javascript_folding = 1
     let ruby_fold = 1
@@ -181,13 +172,13 @@
             \ 'ptype' : 'p',
             \ 'stype' : 'j'
         \ },
-        \ 'ctagsbin'  : expand("/Users/rogerruiz/Developer/golang/bin/flytags"),
+        \ 'ctagsbin'  : expand("/usr/local/go/bin/flytags"),
         \ 'ctagsargs' : '-sort -silent'
     \ }
     " Add support for markdown files in tagbar.
     let g:tagbar_type_markdown = {
         \ 'ctagstype': 'markdown',
-        \ 'ctagsbin' : '/Users/rogerruiz/.vim/bundle/markdown2ctags/markdown2ctags.py',
+        \ 'ctagsbin' : '/home/rsr/.vim/bundle/markdown2ctags/markdown2ctags.py',
         \ 'ctagsargs' : '-f - --sort=yes',
         \ 'kinds' : [
             \ 's:sections',
@@ -240,7 +231,7 @@
         \ 'ctagsargs' : '-sort -silent'
     \ }
     " EasyTags configurations {
-        let g:easytags_cmd = '/usr/local/bin/ctags'
+        let g:easytags_cmd = '/usr/bin/ctags'
         let g:easytags_async = 1
     " }
 
@@ -259,6 +250,9 @@
     nnoremap <leader>glv :GoVet<CR>
     inoremap <leader>glv <ESC>:GoVet<CR>
     vnoremap <leader>glv <ESC>:GoVet<CR>
+    nnoremap <leader>gld :GoDef<CR>
+    inoremap <leader>gld <ESC>:GoDef<CR>
+    vnoremap <leader>gld <ESC>:GoDef<CR>
     nnoremap <leader>gli :GoInfo<CR>
     inoremap <leader>gli <ESC>:GoInfo<CR>
     vnoremap <leader>gli <ESC>:GoInfo<CR>
@@ -271,15 +265,23 @@
     nnoremap <leader>gll :GoLint<CR>
     inoremap <leader>gll <ESC>:GoLint<CR>
     vnoremap <leader>gll <ESC>:GoLint<CR>
-
-    let g:go_list_type = "quickfix"
-    func! RunGoFmt()
-        exe "GoFmt"
-    endfunc
-    autocmd BufWrite *.go :call RunGoFmt()
+    nnoremap <leader>glt :GoTest<CR>
+    inoremap <leader>glt <ESC>:GoTest<CR>
+    vnoremap <leader>glt <ESC>:GoTest<CR>
 
     autocmd FileType go let b:vcm_tab_complete = "omni"
 
+    let g:go_list_type = "quickfix"
+    let g:go_fmt_autosave = 1
+    let g:go_info_mode = 'gopls'
+    let g:go_auto_type_info = 1
+
+    let g:go_metalinter_command = "golangci-lint"
+
+" }
+
+" Deoplete {
+    let g:deoplete#enable_at_startup = 1
 " }
 
 " Airline Preferences {
@@ -312,10 +314,10 @@
 " Tmuxline Preferences {
     let g:tmuxline_preset = {
       \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P', '#(/usr/local/bin/outatime)' ],
-      \'b'    : [ '#(/usr/local/bin/current_itunes_song)' ],
-      \'win'  : [ '#I #W #(echo "\uf248  ")' ],
+      \'b'    : [ '' ],
+      \'win'  : [ '#I #W #(echo "\uf248")' ],
       \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; elif [[ "#F" == "*M" ]]; then echo "\uf435:"; fi)' ],
-      \'x'    : [ '#(/usr/local/bin/battery -tp) ' ],
+      \'x'    : [ '#(/usr/local/bin/get-both-batteries) ' ],
       \'z'    : ['#(echo "\uf017 ") %l:%M%p', '#(echo "\uf073 ") %a %m/%d'] }
     let g:tmuxline_separators = {
           \ 'left' : "\uF44A",
@@ -354,16 +356,9 @@
     let g:EditorConfig_exclude_patterns = [ 'fugitive://.*', 'scp://.*' ]
 " }
 
-" IndentLine {
-    let g:indentLine_color_tty_light = 2
-    let g:indentLine_color_dark = 1
-    let g:indentLine_char = '|'
-" }
-
 " Conceal Cursor {
     let g:vim_markdown_conceal = 0
     let g:vim_json_syntax_conceal = 0
-    let g:indentLine_noConcealCursor = 1
 " }
 
 " GitGutter {
@@ -419,14 +414,16 @@
     au BufNewFile,BufRead *.twig set ft=html.twig
     au BufNewFile,BufRead *.toml set ft=toml
     au BufNewFile,BufRead *.js set ft=javascript.jsx
-    au BufNewFile,BufRead nginx.config set ft=nginx
+    au BufNewFile,BufRead nginx.conf set ft=nginx
     au BufRead,BufNewFile spec set ft=yaml
     au BufNewFile,BufRead *.ledger set ft=ledger
     au BufNewFile,BufRead .env* set ft=sh
+    au BufNewFile,BufRead .gitignore set ft=config
 " }
 
 " File-type configuration {
-    au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list
+    au FileType markdown setlocal conceallevel=0 shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list
     au FileType yaml setlocal shiftwidth=2 tabstop=2 nowrap spell expandtab tw=80 wm=0 linebreak list
     au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak list
+    au FileType go setlocal shiftwidth=8 tabstop=8
 " }
