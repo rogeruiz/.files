@@ -50,11 +50,38 @@ prompt_pure_job_count() {
   fi
 }
 
-prompt_pure_aws_vault_status() {
-  if [[ -n $AWS_VAULT ]]
+prompt_pure_env_status() {
+  if [[ -n $ARM_CLIENT_SECRET ]]
   then
-    echo -ne "\uf270  "
+    echo -ne "\uf17a  " # Windows logo
   fi
+  if [[ -n $AWS_ACCESS_KEY_ID ]]
+  then
+    echo -ne "\uf270  " # AWS logo
+  fi
+  if [[ -n $REPLICATED_API_TOKEN ]]
+  then
+    echo -ne "\uf187  " # Bankers box icon
+  fi
+  if [[ -n $DOCKER_PASS ]]
+  then
+    echo -ne "\ue7bb  " # Docker logo
+  fi
+  if [[ -n $GITHUB_TOKEN ]]
+  then
+    echo -ne "\uf113  " # GitHub logo
+  fi
+  if [[ -n $QUAY_TOKEN ]]
+  then
+    echo -ne "\uf483  " # Squirrel icon
+  fi
+  if [[ -n $QUAY_PASSWORD ]]
+  then
+    echo -ne "\uf478  " # Huebot logo
+  fi
+}
+
+prompt_pure_docker_password_status() {
 }
 
 prompt_pure_git_diary() {
@@ -109,7 +136,7 @@ prompt_pure_precmd() {
         command git rev-parse --abbrev-ref @'{u}' &>/dev/null &&
         (( $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) &&
         # some crazy ansi magic to inject the symbol into the previous line
-        print -Pn "\e7\e[A\e[1G\e[`prompt_pure_string_length $prompt_pure_preprompt`C%F{cyan}%f\e8"
+        print -Pn "\e7\e[A\e[1G\e[`prompt_pure_string_length $prompt_pure_preprompt`C%F{cyan}         %f\e8"
     } &!
 
     # reset value since `preexec` isn't always triggered
@@ -141,7 +168,7 @@ prompt_pure_setup() {
 
     prompt_okay="%F{green}  "
     prompt_not_okay="%F{red}  "
-    PROMPT='%F{yellow}`prompt_pure_aws_vault_status`%f%(?.${prompt_okay}.${prompt_not_okay})%f %F{242} %f '
+    PROMPT='%F{yellow}`prompt_pure_env_status`%f%(?.${prompt_okay}.${prompt_not_okay})%f %F{242} %f '
 
 }
 
