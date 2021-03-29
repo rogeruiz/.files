@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+TODAY=$( date "+%Y/%m/%d" )
+
+echo "Today's date is: $TODAY"
+
+if [[ $1 == '-c' || $2 == '-c' ]]
+then
+  echo -n "$TODAY" | xsel -i --clipboard
+  echo "Date copied to clipboard."
+fi
