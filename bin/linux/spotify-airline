@@ -1,0 +1,27 @@
+#!/bin/bash
+
+spotify_status_line=""
+spotify_off=""
+spotify_paused=""
+spotify_playing=" "
+
+>/dev/null 2>&1 spotifycli --status
+
+if [[ "${?}" == 1 ]]
+then
+  echo "${spotify_off} "
+  exit
+fi
+
+spotify_playback_status=$(spotifycli --playbackstatus)
+spotify_song=$(spotifycli --status)
+
+if [[ "${spotify_playback_status}" == "▶" ]]
+then
+  spotify_status_line="${spotify_playing} ${spotify_song}"
+elif [[ "${spotify_playback_status}" == "▮▮" ]]
+then
+  spotify_status_line="${spotify_paused} ${spotify_song}"
+fi
+
+echo "${spotify_status_line}"
