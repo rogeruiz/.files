@@ -51,6 +51,10 @@ prompt_pure_job_count() {
 }
 
 prompt_pure_env_status() {
+  if [[ -n $BUNDLE_GEMS__CONTRIBSYS__COM ]]
+  then
+    echo -ne "\uf484  " # Earth logo
+  fi
   if [[ -n $ARM_CLIENT_SECRET ]]
   then
     echo -ne "\uf17a  " # Windows logo
@@ -65,7 +69,11 @@ prompt_pure_env_status() {
   fi
   if [[ -n $DOCKER_PASS ]]
   then
-    echo -ne "\ue7bb  " # Docker logo
+    echo -ne "\ue7bb  " # Red Hat logo
+  fi
+  if [[ -n $DOCKER_PASSWORD ]]
+  then
+    echo -ne "\ue7b0  " # Docker logo
   fi
   if [[ -n $GITHUB_TOKEN ]]
   then
@@ -123,7 +131,7 @@ prompt_pure_precmd() {
     # git info
     vcs_info
 
-    local prompt_pure_preprompt='\n%F{yellow}`prompt_pure_cmd_exec_time`%f%F{cyan}  %F{magenta}`prompt_pure_job_count`%F{242}%~ $vcs_info_msg_0_ %F{242}`prompt_pure_git_diary`%f %F{yellow}`prompt_pure_git_dirty`%f $prompt_pure_username %f'
+    local prompt_pure_preprompt='\n%F{yellow}`prompt_pure_cmd_exec_time`%f%F{cyan}  %F{magenta}`prompt_pure_job_count`%F{242}%(5~|%-1~/.../%3~|%4~) $vcs_info_msg_0_ %F{242}`prompt_pure_git_diary`%f %F{yellow}`prompt_pure_git_dirty`%f $prompt_pure_username %f'
     print -P $prompt_pure_preprompt
 
     # check async if there is anything to pull
@@ -136,7 +144,7 @@ prompt_pure_precmd() {
         command git rev-parse --abbrev-ref @'{u}' &>/dev/null &&
         (( $(command git rev-list --right-only --count HEAD...@'{u}' 2>/dev/null) > 0 )) &&
         # some crazy ansi magic to inject the symbol into the previous line
-        print -Pn "\e7\e[A\e[1G\e[`prompt_pure_string_length $prompt_pure_preprompt`C%F{cyan}         %f\e8"
+        print -Pn "\e7\e[A\e[1G\e[`prompt_pure_string_length $prompt_pure_preprompt`C%F{cyan}    %f\e8"
     } &!
 
     # reset value since `preexec` isn't always triggered
