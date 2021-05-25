@@ -58,9 +58,9 @@ for file in $(ls ./bin/*)
 do
   file_name=$(echo "$file" | cut -d '/' -f 3)
   cp -vn "$file" "/usr/local/bin/${file_name}"
-  if [[ -n $(file "${file}" | grep text) ]]
+  if [[ -n $( file "${file}" | grep text ) ]]
   then
-    file_path=$(which ${file_name})
+    file_path=$( which ${file_name} )
     checkForFile $file $file_path
   fi
 done
