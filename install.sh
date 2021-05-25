@@ -114,11 +114,24 @@ checkForFile ./tmux/tmuxlayout.default "$HOME/.tmuxlayout.default"
 echo
 
 sleep 1
-echo "¯\_(ツ)_/¯ Checking for vim configuration ¯\_(ツ)_/¯"
-echo
-cp -vr -n ./vim/colors "$HOME/.vim/colors"
-checkForFile ./vim/vimrc "$HOME/.vimrc"
-checkForFile ./vim/vimrc.bundles "$HOME/.vimrc.bundles"
+if [[ -x $NVIM_INSTALL ]]
+then
+  shrugText "Checking for NeoVim configuration files"
+  echo
+  cp -vr -n ./nvim/colors "$HOME/.config/nvim/colors"
+  cp -vr -n ./nvim/language-servers "$HOME/.config/nvim/language-servers"
+  cp -vr -n ./nvim/spell "$HOME/.config/nvim/spell"
+  checkForFile ./nvim/init.vim "${HOME}/.config/nvim/init.vim"
+  checkForFile ./nvim/bundles.vim "${HOME}/.config/nvim/bundles.vim"
+  checkForFile ./nvim/coc-settings.json "${HOME}/.config/nvim/coc-settings.json"
+elif [[ -x $VIMDIFF_INSTALL ]]
+  shrugText "Checking for Vim configuration files"
+  echo
+  cp -vr -n ./vim/colors "$HOME/.vim/colors"
+  cp -vr -n ./vim/spell "$HOME/.vim/spell"
+  checkForFile ./vim/vimrc "$HOME/.vimrc"
+  checkForFile ./vim/vimrc.bundles "$HOME/.vimrc.bundles"
+fi
 echo
 
 shrugText "Thanks for playing"
