@@ -2,20 +2,32 @@
 
 set -u
 
-DIFF_TOOL=$( which vimdiff )
+DIFF_TOOL=""
+NVIM_INSTALL=$( which nvim )
+VIMDIFF_INSTALL=$( which vimdiff )
+OPENDIFF_INSTALL=$( which opendiff )
 
-if [[ ! -x $DIFF_TOOL ]]
+if [[ ! -x $NVIM_INSTALL ]]
 then
-  echo >&2 "Error: $DIFF_TOOL .ot found, trying opendiff instead."
-  DIFF_TOOL=$( which opendiff )
+  DIFF_TOOL="${NVIM_INSTALL} -d"
+else
+  echo >&2 "Error: \`nvim\` Not found, trying \`vimdiff\` instead."
   sleep 0.25
-fi
-
-if [[ ! -x $DIFF_TOOL ]]
-then
-  echo >&2 "Error: No diff tool found. Please install either $DIFF_TOOL .r opendiff."
-  sleep 0.25
-  exit 1
+  if [[ -x $VIMDIFF_INSTALL ]]
+  then
+    DIFF_TOOL=$VIMDIFF_INSTALL
+  else
+    echo >&2 "Error: \`vimdiff\` Not found, trying \`opendiff\` instead."
+    sleep 0.25
+    if [[ -x $OPENDIFF_INSTALL ]]
+    then
+      DIFF_TOOL=$OPENDIFF_INSTALL
+    else
+      echo >&2 "Error: No diff tool found. Please install either nvim, vimdiff, or opendiff."
+      sleep 0.25
+      exit 1
+    fi
+  fi
 fi
 
 checkForFile () {
