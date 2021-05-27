@@ -2,6 +2,7 @@
 
 set -u
 
+TARGET_OS=$( uname -s | awk '{ print tolower($0) }' )
 SLEEP_DURATION=1
 
 DIFF_TOOL=""
@@ -60,11 +61,23 @@ echo
 for file in ./bin/*
 do
   [ -f "${file}" ] || continue
+  file_name=$(basename "${file}")
   cp -vn "$file" "/usr/local/bin/${file_name}"
-  if [[ -n $( file "${file}" | grep text ) ]]
+  if [[ -n $( file "${file}" | grep 'text' ) ]]
   then
     file_path=$( which ${file_name} )
-    checkForFile $file $file_path
+    checkForFile "${file}" "${file_path}"
+  fi
+done
+for os_file in ./bin/${TARGET_OS}/*
+do
+  [ -f "${os_file}" ] || continue
+  os_file_name=$(basename "${os_file}")
+  cp -vn "$os_file" "/usr/local/bin/${os_file_name}"
+  if [[ -n $( file "${os_file}" | grep 'text' ) ]]
+  then
+    os_file_path=$( which ${os_file_name} )
+    checkForFile "${os_file}" "${os_file_path}"
   fi
 done
 echo
