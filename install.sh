@@ -2,6 +2,8 @@
 
 set -u
 
+SLEEP_DURATION=1
+
 DIFF_TOOL=""
 NVIM_INSTALL=$( which nvim )
 VIMDIFF_INSTALL=$( which vimdiff )
@@ -12,19 +14,19 @@ then
   DIFF_TOOL="${NVIM_INSTALL} -d"
 else
   echo >&2 "Error: \`nvim\` Not found, trying \`vimdiff\` instead."
-  sleep 0.25
+  sleep "${SLEEP_DURATION}"
   if [[ -x $VIMDIFF_INSTALL ]]
   then
     DIFF_TOOL=$VIMDIFF_INSTALL
   else
     echo >&2 "Error: \`vimdiff\` Not found, trying \`opendiff\` instead."
-    sleep 0.25
+    sleep "${SLEEP_DURATION}"
     if [[ -x $OPENDIFF_INSTALL ]]
     then
       DIFF_TOOL=$OPENDIFF_INSTALL
     else
       echo >&2 "Error: No diff tool found. Please install either nvim, vimdiff, or opendiff."
-      sleep 0.25
+      sleep "${SLEEP_DURATION}"
       exit 1
     fi
   fi
@@ -36,9 +38,11 @@ checkForFile () {
   if [ -a $dest ]
   then
     echo "Diffing $src & $dest"
+    sleep "${SLEEP_DURATION}"
     $DIFF_TOOL $src $dest
   else
     echo "Copying $src to $dest"
+    sleep "${SLEEP_DURATION}"
     cp -v $src $dest
   fi
 }
@@ -66,32 +70,32 @@ do
 done
 echo
 
-sleep 1
+sleep "${SLEEP_DURATION}"
 shrugText "Checking Lint files"
 echo
 checkForFile ./lint/eslintrc "$HOME/.eslintrc"
 echo
 
-sleep 1
+sleep "${SLEEP_DURATION}"
 shrugText "Checking for git files"
 echo
 checkForFile ./git/gitconfig "$HOME/.gitconfig"
 checkForFile ./git/gitignore_global "$HOME/.gitignore_global"
 echo
 
-sleep 1
+sleep "${SLEEP_DURATION}"
 shrugText "Copy git_template files straight up"
 echo
 cp -vr -n ./git/git_template "$HOME/.git_template"
 echo
 
-sleep 1
+sleep "${SLEEP_DURATION}"
 shrugText "Checking custom terminal theme"
 echo
 checkForFile ./oh-my-zsh/custom/real.zsh-theme "$HOME/.oh-my-zsh/custom/themes/real.zsh-theme"
 echo
 
-sleep 1
+sleep "${SLEEP_DURATION}"
 shrugText "Checking for Shell profiles"
 echo
 checkForFile ./rc/zshrc "$HOME/.zshrc"
@@ -99,13 +103,13 @@ checkForFile ./rc/aliases "$HOME/Developer/.aliases"
 checkForFile ./rc/variables "$HOME/Developer/.variables"
 echo
 
-sleep 1
+sleep "${SLEEP_DURATION}"
 shrugText "Checking for SSH configuration files"
 echo
 checkForFile ./ssh/config "$HOME/.ssh/config"
 echo
 
-sleep 1
+sleep "${SLEEP_DURATION}"
 shrugText "Checking for Tmux configuration files"
 echo
 checkForFile ./tmux/tmux.conf "$HOME/.tmux.conf"
@@ -113,7 +117,7 @@ checkForFile ./tmux/tmuxline.snapshot "$HOME/.tmuxline.snapshot"
 checkForFile ./tmux/tmuxlayout.default "$HOME/.tmuxlayout.default"
 echo
 
-sleep 1
+sleep "${SLEEP_DURATION}"
 if [[ -x $NVIM_INSTALL ]]
 then
   shrugText "Checking for NeoVim configuration files"
@@ -135,5 +139,5 @@ fi
 echo
 
 shrugText "Thanks for playing"
-sleep 1
+sleep "${SLEEP_DURATION}"
 exit 0
