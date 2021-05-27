@@ -2,8 +2,6 @@ brew "git"
 brew "gh"
 
 brew "jq"
-brew "curl"
-brew "ack"
 brew "bat"
 brew "fd"
 brew "exa"
