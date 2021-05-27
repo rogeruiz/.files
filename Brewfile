@@ -14,10 +14,10 @@ brew "tree"
 
 brew "lynx"
 
-brew "reattach-to-user-namespace" args: ["with-wrap-pbcopy-pbpaste"]
+brew "reattach-to-user-namespace", args: ["with-wrap-pbcopy-pbpaste"]
 brew "tmux"
-brew "laujit" args: ["HEAD"]
-brew "neovim" args: ["HEAD"]
+brew "laujit", args: ["HEAD"]
+brew "neovim", args: ["HEAD"]
 brew "spark"
 brew "htop"
 brew "watch"
