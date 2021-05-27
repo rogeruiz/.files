@@ -57,10 +57,9 @@ clear
 echo
 shrugText "Installing the binaries straight up"
 echo
-# shellcheck disable=SC2045
-for file in $(ls ./bin/*)
+for file in ./bin/*
 do
-  file_name=$(echo "$file" | cut -d '/' -f 3)
+  [ -f "${file}" ] || continue
   cp -vn "$file" "/usr/local/bin/${file_name}"
   if [[ -n $( file "${file}" | grep text ) ]]
   then
