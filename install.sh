@@ -85,48 +85,48 @@ echo
 sleep "${SLEEP_DURATION}"
 shrugText "Checking Lint files"
 echo
-checkForFile ./lint/eslintrc "$HOME/.eslintrc"
+checkForFile ./lint/eslintrc "${HOME}/.eslintrc"
 echo
 
 sleep "${SLEEP_DURATION}"
 shrugText "Checking for git files"
 echo
-checkForFile ./git/gitconfig "$HOME/.gitconfig"
-checkForFile ./git/gitignore_global "$HOME/.gitignore_global"
+checkForFile ./git/gitconfig "${HOME}/.gitconfig"
+checkForFile ./git/gitignore_global "${HOME}/.gitignore_global"
 echo
 
 sleep "${SLEEP_DURATION}"
 shrugText "Copy git_template files straight up"
 echo
-cp -vr -n ./git/git_template "$HOME/.git_template"
+cp -vr -n ./git/git_template "${HOME}/.git_template"
 echo
 
 sleep "${SLEEP_DURATION}"
 shrugText "Checking custom terminal theme"
 echo
-checkForFile ./oh-my-zsh/custom/real.zsh-theme "$HOME/.oh-my-zsh/custom/themes/real.zsh-theme"
+checkForFile ./oh-my-zsh/custom/real.zsh-theme "${HOME}/.oh-my-zsh/custom/themes/real.zsh-theme"
 echo
 
 sleep "${SLEEP_DURATION}"
 shrugText "Checking for Shell profiles"
 echo
-checkForFile ./rc/zshrc "$HOME/.zshrc"
-checkForFile ./rc/aliases "$HOME/Developer/.aliases"
-checkForFile ./rc/variables "$HOME/Developer/.variables"
+checkForFile ./rc/zshrc "${HOME}/.zshrc"
+checkForFile ./rc/aliases "${HOME}/Developer/.aliases"
+checkForFile ./rc/variables "${HOME}/Developer/.variables"
 echo
 
 sleep "${SLEEP_DURATION}"
 shrugText "Checking for SSH configuration files"
 echo
-checkForFile ./ssh/config "$HOME/.ssh/config"
+checkForFile ./ssh/config "${HOME}/.ssh/config"
 echo
 
 sleep "${SLEEP_DURATION}"
 shrugText "Checking for Tmux configuration files"
 echo
-checkForFile ./tmux/tmux.conf "$HOME/.tmux.conf"
-checkForFile ./tmux/tmuxline.snapshot "$HOME/.tmuxline.snapshot"
-checkForFile ./tmux/tmuxlayout.default "$HOME/.tmuxlayout.default"
+checkForFile ./tmux/tmux.conf "${HOME}/.tmux.conf"
+checkForFile ./tmux/tmuxline.snapshot "${HOME}/.tmuxline.snapshot"
+checkForFile ./tmux/tmuxlayout.default "${HOME}/.tmuxlayout.default"
 echo
 
 sleep "${SLEEP_DURATION}"
@@ -134,19 +134,19 @@ if [[ -x $NVIM_INSTALL ]]
 then
   shrugText "Checking for NeoVim configuration files"
   echo
-  cp -vr -n ./nvim/colors "$HOME/.config/nvim/colors"
-  cp -vr -n ./nvim/language-servers "$HOME/.config/nvim/language-servers"
-  cp -vr -n ./nvim/spell "$HOME/.config/nvim/spell"
+  cp -vr -n ./nvim/colors "${HOME}/.config/nvim/colors"
+  cp -vr -n ./nvim/language-servers "${HOME}/.config/nvim/language-servers"
+  cp -vr -n ./nvim/spell "${HOME}/.config/nvim/spell"
   checkForFile ./nvim/init.vim "${HOME}/.config/nvim/init.vim"
   checkForFile ./nvim/bundles.vim "${HOME}/.config/nvim/bundles.vim"
   checkForFile ./nvim/coc-settings.json "${HOME}/.config/nvim/coc-settings.json"
 elif [[ -x $VIMDIFF_INSTALL ]]
   shrugText "Checking for Vim configuration files"
   echo
-  cp -vr -n ./vim/colors "$HOME/.vim/colors"
-  cp -vr -n ./vim/spell "$HOME/.vim/spell"
-  checkForFile ./vim/vimrc "$HOME/.vimrc"
-  checkForFile ./vim/vimrc.bundles "$HOME/.vimrc.bundles"
+  cp -vr -n ./vim/colors "${HOME}/.vim/colors"
+  cp -vr -n ./vim/spell "${HOME}/.vim/spell"
+  checkForFile ./vim/vimrc "${HOME}/.vimrc"
+  checkForFile ./vim/vimrc.bundles "${HOME}/.vimrc.bundles"
 fi
 echo
 
