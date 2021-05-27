@@ -1,0 +1,63 @@
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#1e1f29"
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = M+ 2m NerdFont Patched Italic 14
+    foreground_color = "#f8f8f2"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    palette = "#44475a:#ff5555:#50fa7b:#f1fa8c:#8be9fd:#bd93f9:#ff79c6:#94a3a5:#000000:#ff5555:#50fa7b:#f1fa8c:#8be9fd:#bd93f9:#ff79c6:#ffffff"
+    custom_command = TERM=xterm-256color zsh -l
+    use_system_font = False
+  [[dracula]]
+    background_color = "#1e1f29"
+    background_darkness = 0.9
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = M+ 2m NerdFont Patched Italic 14
+    foreground_color = "#f8f8f2"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    palette = "#44475a:#ff5555:#50fa7b:#f1fa8c:#8be9fd:#bd93f9:#ff79c6:#94a3a5:#000000:#ff5555:#50fa7b:#f1fa8c:#8be9fd:#bd93f9:#ff79c6:#ffffff"
+    custom_command = TERM=xterm-256color zsh -l
+    use_system_font = False
+  [[material-dark]]
+    background_color = "#2e2e2d"
+    cursor_color = "#25C3DC"
+    font = M+ 2m NerdFont Patched Italic 14
+    foreground_color = "#f2f2f2"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    palette = "#2c2c2c:#c62828:#558b2e:#f9a825:#1365c1:#6a1e9a:#00838f:#ffffff:#969694:#f15250:#86bd47:#f8e63a:#77b2f6:#b963c8:#25c3dc:#ffffff"
+    custom_command = TERM=xterm-256color zsh -l
+    use_system_font = False
+  [[material-light]]
+    background_color = "#eeeeee"
+    background_darkness = 0.85
+    background_type = transparent
+    cursor_color = "#25C3DC"
+    font = M+ 2m NerdFont Patched Italic 14
+    foreground_color = "#3c3c3b"
+    show_titlebar = False
+    scrollbar_position = hidden
+    scroll_on_keystroke = False
+    palette = "#f8f8f8:#d7005f:#718c00:#ff8f01:#005f87:#6a1e9a:#3e999f:#2c2c2c:#2c2c2c:#ef5251:#90c94d:#ffa000:#4271ae:#c774c1:#3e999f:#f5f5f5"
+    custom_command = TERM=xterm-256color zsh -l
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      type = Terminal
+      profile = default
+    [[[window0]]]
+      parent = ""
+      type = Window
+[plugins]
