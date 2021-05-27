@@ -35,7 +35,7 @@ fi
 checkForFile () {
   local src=$1
   local dest=$2
-  if [ -a $dest ]
+  if [[ -f $dest ]]
   then
     echo "Diffing $src & $dest"
     sleep "${SLEEP_DURATION}"
