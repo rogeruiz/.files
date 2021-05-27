@@ -7,7 +7,7 @@ NVIM_INSTALL=$( which nvim )
 VIMDIFF_INSTALL=$( which vimdiff )
 OPENDIFF_INSTALL=$( which opendiff )
 
-if [[ ! -x $NVIM_INSTALL ]]
+if [[ -x $NVIM_INSTALL ]]
 then
   DIFF_TOOL="${NVIM_INSTALL} -d"
 else
