@@ -101,6 +101,16 @@ echo
 checkForFile ./lint/eslintrc "${HOME}/.eslintrc"
 echo
 
+# Terminator is a Linux-only terminal emulator.
+if [[ "${TARGET_OS}" == "linux" ]]
+then
+  sleep "${SLEEP_DURATION}"
+  shrugText "Comprobando archivos para aplicación Terminator..."
+  echo
+  checkForFile ./terminator/config "${HOME}"/.config/terminator/config
+  echo
+fi
+
 sleep "${SLEEP_DURATION}"
 shrugText "Checking for git files"
 echo
