@@ -10,6 +10,9 @@ NVIM_INSTALL=$( which nvim )
 VIMDIFF_INSTALL=$( which vimdiff )
 OPENDIFF_INSTALL=$( which opendiff )
 
+# Sets the DIFF_TOOL variable to nvim, vimdiff, or opendiff before executing any
+# further into the script. This check favors the DIFF_TOOL in the order
+# previously mentioned.
 if [[ -x $NVIM_INSTALL ]]
 then
   DIFF_TOOL="${NVIM_INSTALL} -d"
@@ -33,6 +36,8 @@ else
   fi
 fi
 
+# checkForFile Function takes two arguments, the first is the source filename
+# and the second is the destination filename.
 checkForFile () {
   local src=$1
   local dest=$2
@@ -48,6 +53,7 @@ checkForFile () {
   fi
 }
 
+# shrugText Function takes a single argument as a string and concatenates shruggies.
 shrugText () {
   body=$1
   shrug="¯\_(ツ)_/¯"
@@ -58,6 +64,7 @@ clear
 echo
 shrugText "Installing the binaries straight up"
 echo
+# Check for files in ./bin and copy or diff them.
 for file in ./bin/*
 do
   [ -f "${file}" ] || continue
@@ -69,6 +76,7 @@ do
     checkForFile "${file}" "${file_path}"
   fi
 done
+# Check for OS-specific files in ./bin and copy or diff them.
 for os_file in ./bin/${TARGET_OS}/*
 do
   [ -f "${os_file}" ] || continue
@@ -130,6 +138,8 @@ checkForFile ./tmux/tmuxlayout.default "${HOME}/.tmuxlayout.default"
 echo
 
 sleep "${SLEEP_DURATION}"
+# Try to install configuration for NeoVim first, otherwise fall back to
+# configuring Vim if it's installed.
 if [[ -x $NVIM_INSTALL ]]
 then
   shrugText "Checking for NeoVim configuration files"
