@@ -91,7 +91,12 @@ done
 echo
 
 sleep "${SLEEP_DURATION}"
-shrugText "Checking Lint files"
+shrugText "Comprobando archivos para EditorConfig..."
+echo
+checkForFile ./editorconfig/editorconfig "${HOME}/.editorconfig"
+echo
+
+sleep "${SLEEP_DURATION}"
 echo
 checkForFile ./lint/eslintrc "${HOME}/.eslintrc"
 echo
