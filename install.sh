@@ -17,19 +17,19 @@ if [[ -x $NVIM_INSTALL ]]
 then
   DIFF_TOOL="${NVIM_INSTALL} -d"
 else
-  echo >&2 "Error: \`nvim\` Not found, trying \`vimdiff\` instead."
+  echo >&2 "Bichu: \`nvim\` no se encuentra, probando \`vimdiff\` como alternativa."
   sleep "${SLEEP_DURATION}"
   if [[ -x $VIMDIFF_INSTALL ]]
   then
     DIFF_TOOL=$VIMDIFF_INSTALL
   else
-    echo >&2 "Error: \`vimdiff\` Not found, trying \`opendiff\` instead."
+    echo >&2 "Bichu: \`vimdiff\` no se encuentra, probando \`opendiff\` como alternativa."
     sleep "${SLEEP_DURATION}"
     if [[ -x $OPENDIFF_INSTALL ]]
     then
       DIFF_TOOL=$OPENDIFF_INSTALL
     else
-      echo >&2 "Error: No diff tool found. Please install either nvim, vimdiff, or opendiff."
+      echo >&2 "Bichu: no se encontró ningún \${DIFF_TOOL}. Por favor instale nvim, vimdiff, or opendiff."
       sleep "${SLEEP_DURATION}"
       exit 1
     fi
@@ -43,11 +43,11 @@ checkForFile () {
   local dest=$2
   if [[ -f $dest ]]
   then
-    echo "Diffing $src & $dest"
+    echo "Comprobando $src y $dest"
     sleep "${SLEEP_DURATION}"
     $DIFF_TOOL $src $dest
   else
-    echo "Copying $src to $dest"
+    echo "Copiando $src a $dest"
     sleep "${SLEEP_DURATION}"
     cp -v $src $dest
   fi
@@ -62,7 +62,7 @@ shrugText () {
 
 clear
 echo
-shrugText "Installing the binaries straight up"
+shrugText "Instalando ejecutables como son..."
 echo
 # Check for files in ./bin and copy or diff them.
 for file in ./bin/*
@@ -72,10 +72,13 @@ do
   cp -vn "$file" "/usr/local/bin/${file_name}"
   if [[ -n $( file "${file}" | grep 'text' ) ]]
   then
+    shrugText "Comprobando ASCII-text ejecutables..."
     file_path=$( which ${file_name} )
     checkForFile "${file}" "${file_path}"
   fi
 done
+shrugText "Instalando ${TARGET_OS} ejecutables como son..."
+echo
 # Check for OS-specific files in ./bin and copy or diff them.
 for os_file in ./bin/${TARGET_OS}/*
 do
@@ -84,6 +87,7 @@ do
   cp -vn "$os_file" "/usr/local/bin/${os_file_name}"
   if [[ -n $( file "${os_file}" | grep 'text' ) ]]
   then
+    shrugText "Comprobando ASCII-text ejecutables de ${TARGET_OS}..."
     os_file_path=$( which ${os_file_name} )
     checkForFile "${os_file}" "${os_file_path}"
   fi
@@ -97,8 +101,10 @@ checkForFile ./editorconfig/editorconfig "${HOME}/.editorconfig"
 echo
 
 sleep "${SLEEP_DURATION}"
+shrugText "Comprobando archivos para Linting..."
 echo
 checkForFile ./lint/eslintrc "${HOME}/.eslintrc"
+checkForFile ./lint/tflint.hcl "${HOME}/.tflint.hcl"
 echo
 
 # Terminator is a Linux-only terminal emulator.
@@ -112,26 +118,26 @@ then
 fi
 
 sleep "${SLEEP_DURATION}"
-shrugText "Checking for git files"
+shrugText "Comprobando archivoes para Git..."
 echo
 checkForFile ./git/gitconfig "${HOME}/.gitconfig"
 checkForFile ./git/gitignore_global "${HOME}/.gitignore_global"
 echo
 
 sleep "${SLEEP_DURATION}"
-shrugText "Copy git_template files straight up"
+shrugText "Comprobando archives de git_template como son..."
 echo
 cp -vr -n ./git/git_template "${HOME}/.git_template"
 echo
 
 sleep "${SLEEP_DURATION}"
-shrugText "Checking custom terminal theme"
+shrugText "Comprobando tema de terminal personalizado..."
 echo
 checkForFile ./oh-my-zsh/custom/real.zsh-theme "${HOME}/.oh-my-zsh/custom/themes/real.zsh-theme"
 echo
 
 sleep "${SLEEP_DURATION}"
-shrugText "Checking for Shell profiles"
+shrugText "Comprobando archivos de recursos ZSH..."
 echo
 checkForFile ./rc/zshrc "${HOME}/.zshrc"
 checkForFile ./rc/aliases "${HOME}/Developer/.aliases"
@@ -139,13 +145,13 @@ checkForFile ./rc/variables "${HOME}/Developer/.variables"
 echo
 
 sleep "${SLEEP_DURATION}"
-shrugText "Checking for SSH configuration files"
+shrugText "Comprobando archivos de configuración SSH..."
 echo
 checkForFile ./ssh/config "${HOME}/.ssh/config"
 echo
 
 sleep "${SLEEP_DURATION}"
-shrugText "Checking for Tmux configuration files"
+shrugText "Comprobando archivos de configuración Tmux..."
 echo
 checkForFile ./tmux/tmux.conf "${HOME}/.tmux.conf"
 checkForFile ./tmux/tmuxline.snapshot "${HOME}/.tmuxline.snapshot"
@@ -157,7 +163,7 @@ sleep "${SLEEP_DURATION}"
 # configuring Vim if it's installed.
 if [[ -x $NVIM_INSTALL ]]
 then
-  shrugText "Checking for NeoVim configuration files"
+  shrugText "Comprobando archivos de configuración NeoVim..."
   echo
   cp -vr -n ./nvim/colors "${HOME}/.config/nvim/colors"
   cp -vr -n ./nvim/language-servers "${HOME}/.config/nvim/language-servers"
@@ -166,7 +172,9 @@ then
   checkForFile ./nvim/bundles.vim "${HOME}/.config/nvim/bundles.vim"
   checkForFile ./nvim/coc-settings.json "${HOME}/.config/nvim/coc-settings.json"
 elif [[ -x $VIMDIFF_INSTALL ]]
-  shrugText "Checking for Vim configuration files"
+  shrugText "Considere instalar NeoVim ya que estos archivos de configuración de Vim pueden estar desactualizados"
+  sleep "${SLEEP_DURATION}"
+  shrugText "Comprobando archivos de configuración Vim..."
   echo
   cp -vr -n ./vim/colors "${HOME}/.vim/colors"
   cp -vr -n ./vim/spell "${HOME}/.vim/spell"
@@ -175,6 +183,6 @@ elif [[ -x $VIMDIFF_INSTALL ]]
 fi
 echo
 
-shrugText "Thanks for playing"
+shrugText "¡Feliz configurando!"
 sleep "${SLEEP_DURATION}"
 exit 0
