@@ -1,30 +1,17 @@
 " Modeline and Notes {
 " vim: set sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=1 foldmethod=marker spell:
 "
-<<<<<<< HEAD
 " The Plug definitions are below.
-=======
-" The Vundle definitions are below.
->>>>>>> 4316c48 (Add in nvim files;)
 "
 " }
 
 " Required {
     set nocompatible
-<<<<<<< HEAD
     filetype on
     filetype off
     call plug#begin(stdpath('data').'/plugged')
 " }
 
-=======
-    syntax on
-    filetype plugin indent on
-    call plug#begin(stdpath('data') . '/plugged')
-" }
-
-
->>>>>>> 4316c48 (Add in nvim files;)
 " Plugins {
     " Theme {
         Plug 'mhinz/vim-startify'
@@ -32,32 +19,17 @@
         Plug 'vim-airline/vim-airline-themes'
         Plug 'altercation/vim-colors-solarized'
         Plug 'ryanoasis/vim-devicons'
-<<<<<<< HEAD
     " }
     " Version Control {
         Plug 'tpope/vim-fugitive'
-=======
-        Plug 'dracula/vim'
-        Plug 'NLKNguyen/papercolor-theme'
-        Plug 'megantiu/true.vim'
-    " }
-    " Version Control {
-        Plug 'tpope/vim-fugitive'
-        Plug 'tpope/vim-rhubarb'
-        Plug 'airblade/vim-gitgutter'
->>>>>>> 4316c48 (Add in nvim files;)
         Plug 'mattn/gist-vim'
     " }
     " Tmux integration {
         Plug 'benmills/vimux'
         Plug 'edkolev/tmuxline.vim'
     " }
-<<<<<<< HEAD
     " Workflow {
-        "Plug 'scrooloose/syntastic'
-        "Plug 'w0rp/ale'
         Plug 'editorconfig/editorconfig-vim'
-        "Plug 'ajh17/VimCompletesMe'
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'mattn/emmet-vim'
         Plug 'sotte/presenting.vim'
@@ -79,49 +51,25 @@
         Plug 'honza/vim-snippets'
     " }
     " Language {
-        " cloud.gov {
-            "Plug 'luan/vim-bosh'
-            "Plug 'luan/vim-concourse'
-            Plug 'ekalinin/Dockerfile.vim'
-            Plug 'andrewstuart/vim-kubernetes'
-            Plug 'markcornick/vim-terraform'
-        " }
         " Elixir {
             Plug 'elixir-lang/vim-elixir'
             Plug 'carlosgaldino/elixir-snippets'
             Plug 'mattreduce/vim-mix'
             Plug 'mmorearty/elixir-ctags'
             Plug 'frost/vim-eh-docs'
-=======
-    " Language {
-        " cloud {
-            Plug 'ekalinin/Dockerfile.vim'
-            Plug 'andrewstuart/vim-kubernetes'
-            Plug 'hashivim/vim-terraform'
-            Plug 'juliosueiras/vim-terraform-completion'
->>>>>>> 4316c48 (Add in nvim files;)
+            Plug 'mhinz/vim-mix-format'
         " }
         " Rustlang {
             Plug 'dan-t/rusty-tags'
             Plug 'rust-lang/rust.vim'
         " }
         " Golang {
-<<<<<<< HEAD
             Plug 'fatih/vim-go'
         " }
         " Configuration {
             Plug 'kevinoid/vim-jsonc'
             Plug 'roalddevries/yaml.vim'
             Plug 'stephpy/vim-yaml'
-=======
-            Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-        " }
-        " Configuration {
-            Plug 'elzr/vim-json'
-            Plug 'roalddevries/yaml.vim'
-            Plug 'stephpy/vim-yaml'
-            Plug 'pedrohdz/vim-yaml-folds'
->>>>>>> 4316c48 (Add in nvim files;)
             Plug 'toml-lang/toml'
             Plug 'cespare/vim-toml'
             Plug 'maralla/vim-toml-enhance'
@@ -135,11 +83,6 @@
             Plug 'mxw/vim-jsx'
         " }
         " Templating {
-<<<<<<< HEAD
-            "Plug 'evidens/vim-twig'
-            "Plug 'VuogNguyen/vim-blade'
-=======
->>>>>>> 4316c48 (Add in nvim files;)
             Plug 'mustache/vim-mustache-handlebars'
         " }
         " Markdown {
@@ -154,12 +97,10 @@
         " Cascading Style Sheets {
             Plug 'hail2u/vim-css3-syntax'
             Plug 'cakebaker/scss-syntax.vim'
-<<<<<<< HEAD
-            "Plug 'groenewege/vim-less'
-=======
-            Plug 'groenewege/vim-less'
->>>>>>> 4316c48 (Add in nvim files;)
         " }
+        Plug 'ekalinin/Dockerfile.vim'
+        Plug 'andrewstuart/vim-kubernetes'
+        Plug 'markcornick/vim-terraform'
         Plug 'StanAngeloff/php.vim'
         Plug 'tpope/vim-rails'
         Plug 'vim-scripts/applescript.vim'
@@ -169,7 +110,6 @@
         Plug 'tpope/vim-ragtag'
         Plug 'udalov/kotlin-vim'
         Plug 'davidhalter/jedi-vim'
-<<<<<<< HEAD
         Plug 'neovim/nvim-lspconfig'
     " }
 " }
@@ -177,37 +117,3 @@
 " Required {
     call plug#end()
 " }
-=======
-    " }
-    " Workflow {
-        Plug 'vim-syntastic/syntastic'
-        Plug 'w0rp/ale'
-        "Plug 'neoclide/coc.nvim', {'branch': 'release'}
-        Plug 'editorconfig/editorconfig-vim'
-        Plug 'ajh17/VimCompletesMe'
-        Plug 'mattn/emmet-vim'
-        Plug 'sotte/presenting.vim'
-        Plug 'scrooloose/nerdcommenter'
-        Plug 'kien/rainbow_parentheses.vim'
-        Plug 'scrooloose/nerdtree'
-        Plug 'myusuf3/numbers.vim'
-        Plug 'godlygeek/tabular'
-        Plug 'ctrlpvim/ctrlp.vim'
-        Plug 'tpope/vim-surround'
-        Plug 'Raimondi/delimitMate'
-        Plug 'majutsushi/tagbar'
-        Plug 'JohnStarich/vim-easytags'
-        Plug 'xolox/vim-misc'
-        Plug 'MarcWeber/vim-addon-mw-utils'
-        Plug 'tomtom/tlib_vim'
-        Plug 'garbas/vim-snipmate'
-        Plug 'honza/vim-snippets'
-        Plug 'Yggdroot/indentLine'
-
-    " }
-" }
-
-Plug 'Shougo/deoplete.nvim'
-
-call plug#end()
->>>>>>> 4316c48 (Add in nvim files;)

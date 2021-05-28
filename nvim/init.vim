@@ -1,7 +1,6 @@
 " Modeline and Notes {
 " vim: set sw=4 ts=4 sts=4 et tw=80 foldmarker={,} foldlevel=0 foldmethod=marker:
 "
-<<<<<<< HEAD
 " Organizing my .vimrc files
 " I'm borrowing everything from [here](https://github.com/spf13/spf13-vim) and
 " am super thankful that Steve Francia has that super helpful guide to his own
@@ -11,43 +10,17 @@
 " This is still very much a work-in-progress, but I'm finally at a point where
 " my original `.vimrc` was making me feel disorganized.
 "
-=======
-" }
-
-" Load Bundle config {
-    if filereadable( expand( "~/.config/nvim/bundles.vim" ) )
-        source ~/.config/nvim/bundles.vim
-    endif
->>>>>>> 4316c48 (Add in nvim files;)
 " }
 
 " Basics {
     let mapleader = ","
     set magic
-<<<<<<< HEAD
     set shell=/usr/local/bin/zsh
     set modeline
     set modelines=5
-    set cmdheight=2
+    set cmdheight=1
     set updatetime=100
     set cursorline
-=======
-    set shell=/usr/bin/zsh
-    set modeline
-    set modelines=5
-    set updatetime=100
-    set guicursor=
-    if &term =~ "xterm\\|rxvt"
-      " use an orange cursor in insert mode
-      let &t_SI = "\<Esc>]12;orange\x7"
-      " use a red cursor otherwise
-      let &t_EI = "\<Esc>]12;red\x7"
-      silent !echo -ne "\033]12;red\007"
-      " reset cursor when vim exits
-      autocmd VimLeave * silent !echo -ne "\033]112\007"
-      " use \003]12;gray\007 for gnome-terminal
-    endif
->>>>>>> 4316c48 (Add in nvim files;)
     set hidden
     set noerrorbells
     set novisualbell
@@ -75,11 +48,7 @@
     set noswapfile
     set listchars=eol:¬,tab:›·,trail:·,extends:›,precedes:‹
     set list
-<<<<<<< HEAD
     set completeopt=menuone
-=======
-    "set completeopt=menuone
->>>>>>> 4316c48 (Add in nvim files;)
     set lbr
     set ai
     set si
@@ -87,15 +56,12 @@
     set laststatus=2
 " }
 
-<<<<<<< HEAD
 " Load Bundle config {
     if filereadable(expand("~/.config/nvim/bundles.vim"))
         source ~/.config/nvim/bundles.vim
     endif
 " }
 
-=======
->>>>>>> 4316c48 (Add in nvim files;)
 " Worflow {
     map 0 ^
     map <f8> :TagbarToggle<cr>
@@ -105,13 +71,9 @@
     map <leader>pp :setlocal paste!<cr>
     " Shortcut for enabling spelling
     map <leader>ss :setlocal spell!<cr>
-<<<<<<< HEAD
     " Allow for macosx and tmux and vim clipboard sharing.
     " Following this blog post: http://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
     set clipboard=unnamed
-=======
-    set clipboard=unnamedplus
->>>>>>> 4316c48 (Add in nvim files;)
     " Split 'correctly' for left-to-right readers. {
         set splitbelow
         set splitright
@@ -157,7 +119,6 @@
 " Theme {
     syntax enable
     set t_Co=256
-<<<<<<< HEAD
     " light {
     if $ITERM_PROFILE == 'tomorrow'
         set background=light
@@ -175,9 +136,29 @@
 " }
 
 " CoC {
-    "let g:ale_sign_error = "\uF470"
-    "let g:ale_sign_warning = "\uF0E7"
-    "let g:airline#extensions#ale#enabled = 1
+    let g:coc_global_extensions = [
+        \  'coc-ccls',
+        \  'coc-docker',
+        \  'coc-elixir',
+        \  'coc-ember',
+        \  'coc-emmet',
+        \  'coc-git',
+        \  'coc-go',
+        \  'coc-highlight',
+        \  'coc-html',
+        \  'coc-htmldjango',
+        \  'coc-html-css-support',
+        \  'coc-htmlhint',
+        \  'coc-json',
+        \  'coc-lua',
+        \  'coc-pyright',
+        \  'coc-rust-analyzer',
+        \  'coc-sh',
+        \  'coc-sql',
+        \  'coc-swagger',
+        \  'coc-toml',
+        \  'coc-yaml'
+    \ ]
 
     " use <tab> for trigger completion and navigate to the next complete item
     function! s:check_back_space() abort
@@ -216,21 +197,6 @@
         execute '!' . &keywordprg . " " . expand('<cword>')
       endif
     endfunction
-=======
-    "set background=light
-    "colorscheme PaperColor
-    "let g:airline_theme = 'papercolor'
-    set background=dark
-    colorscheme dracula
-    let g:airline_theme = 'dracula'
-" }
-
-" Ale {
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-    let g:ale_sign_error = "\uF470"
-    let g:ale_sign_warning = "\uF0E7"
-    let g:airline#extensions#ale#enabled = 1
->>>>>>> 4316c48 (Add in nvim files;)
 " }
 
 " SnipMate {
@@ -243,11 +209,7 @@
 
 " Syntax Folding {
     set foldmethod=syntax
-<<<<<<< HEAD
-    set foldlevelstart=2
-=======
-    set foldlevelstart=4
->>>>>>> 4316c48 (Add in nvim files;)
+    set foldlevelstart=20
     let php_folding = 1
     let javascript_folding = 1
     let ruby_fold = 1
@@ -279,21 +241,13 @@
             \ 'ptype' : 'p',
             \ 'stype' : 'j'
         \ },
-<<<<<<< HEAD
         \ 'ctagsbin'  : expand("/Users/rogerruiz/Developer/golang/bin/flytags"),
-=======
-        \ 'ctagsbin'  : expand("/usr/local/go/bin/flytags"),
->>>>>>> 4316c48 (Add in nvim files;)
         \ 'ctagsargs' : '-sort -silent'
     \ }
     " Add support for markdown files in tagbar.
     let g:tagbar_type_markdown = {
         \ 'ctagstype': 'markdown',
-<<<<<<< HEAD
         \ 'ctagsbin' : '/usr/local/bin/markdown2ctags.py',
-=======
-        \ 'ctagsbin' : '/home/rsr/.local/share/nvim/plugged/markdown2ctags/markdown2ctags.py',
->>>>>>> 4316c48 (Add in nvim files;)
         \ 'ctagsargs' : '-f - --sort=yes',
         \ 'kinds' : [
             \ 's:sections',
@@ -346,11 +300,7 @@
         \ 'ctagsargs' : '-sort -silent'
     \ }
     " EasyTags configurations {
-<<<<<<< HEAD
         let g:easytags_cmd = '/usr/local/bin/ctags'
-=======
-        let g:easytags_cmd = '/usr/bin/ctags'
->>>>>>> 4316c48 (Add in nvim files;)
         let g:easytags_async = 1
     " }
 
@@ -369,12 +319,6 @@
     nnoremap <leader>glv :GoVet<CR>
     inoremap <leader>glv <ESC>:GoVet<CR>
     vnoremap <leader>glv <ESC>:GoVet<CR>
-<<<<<<< HEAD
-=======
-    nnoremap <leader>gld :GoDef<CR>
-    inoremap <leader>gld <ESC>:GoDef<CR>
-    vnoremap <leader>gld <ESC>:GoDef<CR>
->>>>>>> 4316c48 (Add in nvim files;)
     nnoremap <leader>gli :GoInfo<CR>
     inoremap <leader>gli <ESC>:GoInfo<CR>
     vnoremap <leader>gli <ESC>:GoInfo<CR>
@@ -387,7 +331,6 @@
     nnoremap <leader>gll :GoLint<CR>
     inoremap <leader>gll <ESC>:GoLint<CR>
     vnoremap <leader>gll <ESC>:GoLint<CR>
-<<<<<<< HEAD
     nnoremap <leader>gld :GoDef<CR>
     inoremap <leader>gld <ESC>:GoDef<CR>
     vnoremap <leader>gld <ESC>:GoDef<CR>
@@ -400,29 +343,12 @@
 
     autocmd FileType go let b:vcm_tab_complete = "omni"
 
-=======
-    nnoremap <leader>glt :GoTest<CR>
-    inoremap <leader>glt <ESC>:GoTest<CR>
-    vnoremap <leader>glt <ESC>:GoTest<CR>
-
-    autocmd FileType go let b:vcm_tab_complete = "omni"
-
-    let g:go_list_type = "quickfix"
-    let g:go_fmt_autosave = 1
-    let g:go_info_mode = 'gopls'
-    let g:go_auto_type_info = 1
-
-    let g:go_metalinter_command = "golangci-lint"
-
 " }
 
-" Deoplete {
-    let g:deoplete#enable_at_startup = 1
-" }
+" Elixir
 
-" IndentLine Preferences {
-    let g:indentLine_char_list = ['|', '¦', '┆', '┊']
->>>>>>> 4316c48 (Add in nvim files;)
+    let g:mix_format_on_save = 1
+
 " }
 
 " Airline Preferences {
@@ -431,18 +357,11 @@
     let g:airline#extensions#whitespace#enabled = 1
     let g:airline#extensions#syntastic#enabled = 1
     let g:airline#extensions#tmuxline#enabled = 1
-<<<<<<< HEAD
 
     if ! exists( 'g:airline_symbols' )
         let g:airline_symbols = {}
         let g:airline_left_sep = "\uF44A "
         let g:airline_right_sep = " \uF438 "
-=======
-    if ! exists( 'g:airline_symbols' )
-        let g:airline_symbols = {}
-        let g:airline_left_sep = "\uF44A "
-        let g:airline_right_sep = "\uF438 "
->>>>>>> 4316c48 (Add in nvim files;)
         let g:airline_symbols.space = "\uA0 "
         let g:airline_symbols.crypt = "\uF023 "
         let g:airline_symbols.linenr = "\uF1DD "
@@ -462,21 +381,12 @@
 
 " Tmuxline Preferences {
     let g:tmuxline_preset = {
-<<<<<<< HEAD
       \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P', '#(/usr/local/bin/outatime)' ],
       \'b'    : [ '#(/usr/local/bin/current_itunes_song)' ],
       \'win'  : [ '#I #W #(echo "\uf248  ")' ],
       \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; elif [[ "#F" == "*M" ]]; then echo "\uf435:"; fi)' ],
       \'x'    : [ '#(/usr/local/bin/battery -tp) ' ],
       \'z'    : ['#(echo "\uf017 ") %l:%M%p', '#(echo "\uf073 ") %a %m/%d'] }
-=======
-      \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P' ],
-      \'b'    : [ '#(/usr/local/bin/outatime) #(/usr/local/bin/spotify-airline)' ],
-      \'win'  : [ '#I #W #(echo "\uf248")' ],
-      \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; elif [[ "#F" == "*M" ]]; then echo "\uf435:"; fi)' ],
-      \'x'    : [ '#(/usr/local/bin/get-both-batteries) ' ],
-      \'z'    : ['#(echo "\uf017 ") %H:%M:%S', '#(echo "\uf073 ") %a %m/%d'] }
->>>>>>> 4316c48 (Add in nvim files;)
     let g:tmuxline_separators = {
           \ 'left' : "\uF44A",
           \ "left_alt": "\uF0DA",
@@ -485,19 +395,6 @@
           \ "space" : "\uA0" }
 " }
 
-<<<<<<< HEAD
-=======
-" Terraform {
-    let g:terraform_align=1
-    let g:terraform_fmt_on_save=1
-
-    let g:deoplete#omni_patterns = {}
-    let g:deoplete#omni_patterns.terraform = '[^ *\t"{=$]\w*'
-    let g:deoplete#enable_at_startup = 1
-    call deoplete#initialize()
-" }
-
->>>>>>> 4316c48 (Add in nvim files;)
 " Markdown {
     let g:vim_markdown_folding_disabled = 0
 
@@ -527,11 +424,10 @@
     let g:EditorConfig_exclude_patterns = [ 'fugitive://.*', 'scp://.*' ]
 " }
 
-<<<<<<< HEAD
 " IndentLine {
     let g:indentLine_color_tty_light = 2
     let g:indentLine_color_dark = 1
-    let g:indentLine_char = '|'
+    let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " }
 
 " Conceal Cursor {
@@ -540,18 +436,9 @@
     let g:indentLine_noConcealCursor = 1
 " }
 
-" GitGutter {
-    if isdirectory( expand( "~/.vim/bundle/vim-gitgutter" ) )
-        let g:gitgutter_sign_added = "\uF458"
-        let g:gitgutter_sign_modified = "\uF45A"
-        let g:gitgutter_sign_removed = "\uF459"
-        let g:gitgutter_sign_modified_removed = "\uF45B"
-    endif
-" }
-
 " Fugitive {
     if isdirectory( expand( "~/.vim/bundle/vim-fugitive/" ) )
-        nnoremap <silent> <leader>gs :Gstatus<CR>
+        nnoremap <silent> <leader>gs :Git<CR>
         nnoremap <silent> <leader>gd :Git diff<CR>
         nnoremap <silent> <leader>gc :Git commit -v<CR>
         nnoremap <silent> <leader>gb :Git blame<CR>
@@ -562,35 +449,7 @@
         nnoremap <silent> <leader>ge :Git edit<CR>
         " Mnemonic _i_nteractive
         nnoremap <silent> <leader>gi :Git add -p %<CR>
-        nnoremap <silent> <leader>gg :SignifyToggle<CR>
     endif
-=======
-" Conceal Cursor {
-    let g:vim_markdown_conceal = 0
-    let g:vim_json_syntax_conceal = 0
-" }
-
-" GitGutter {
-    let g:gitgutter_sign_added = "\uF458"
-    let g:gitgutter_sign_modified = "\uF45A"
-    let g:gitgutter_sign_removed = "\uF459"
-    let g:gitgutter_sign_modified_removed = "\uF45B"
-" }
-
-" Fugitive {
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :G diff<CR>
-    nnoremap <silent> <leader>gc :G commit -v<CR>
-    nnoremap <silent> <leader>gb :G blame<CR>
-    nnoremap <silent> <leader>gl :G log<CR>
-    nnoremap <silent> <leader>gp :G push<CR>
-    nnoremap <silent> <leader>gr :G read<CR>
-    nnoremap <silent> <leader>gw :G write<CR>
-    nnoremap <silent> <leader>ge :G edit<CR>
-    " Mnemonic _i_nteractive
-    nnoremap <silent> <leader>gi :Git add -p %<CR>
-    nnoremap <silent> <leader>gg :SignifyToggle<CR>
->>>>>>> 4316c48 (Add in nvim files;)
 " }
 
 " Ledger Configurations & Hacks {
@@ -620,29 +479,16 @@
     au BufNewFile,BufRead *.twig set ft=html.twig
     au BufNewFile,BufRead *.toml set ft=toml
     au BufNewFile,BufRead *.js set ft=javascript.jsx
-<<<<<<< HEAD
     au BufNewFile,BufRead nginx.config set ft=nginx
     au BufRead,BufNewFile spec set ft=yaml
     au BufNewFile,BufRead *.ledger set ft=ledger
     au BufNewFile,BufRead .env* set ft=sh
+    au BufNewFile,BufRead Brewfile set ft=ruby
 " }
 
 " File-type configuration {
-    au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list
+    au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list conceallevel=0
+    au FileType json setlocal conceallevel=0
     au FileType yaml setlocal shiftwidth=2 tabstop=2 nowrap spell expandtab tw=80 wm=0 linebreak list
     au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak list
-=======
-    au BufNewFile,BufRead nginx.conf set ft=nginx
-    au BufRead,BufNewFile spec set ft=yaml
-    au BufNewFile,BufRead *.ledger set ft=ledger
-    au BufNewFile,BufRead .env* set ft=sh
-    au BufNewFile,BufRead .gitignore set ft=config
-" }
-
-" File-type configuration {
-    au FileType markdown setlocal conceallevel=0 shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list
-    au FileType yaml setlocal shiftwidth=2 tabstop=2 nowrap spell expandtab tw=80 wm=0 linebreak list foldlevelstart=20
-    au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak list
-    au FileType go setlocal shiftwidth=8 tabstop=8
->>>>>>> 4316c48 (Add in nvim files;)
 " }
