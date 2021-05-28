@@ -3,4 +3,4 @@ Host gh
   Port 22
   User git
   PreferredAuthentications publickey
-  IdentityFile $HOME/.ssh/id_rsa
+  IdentityFile /Users/rsr/.ssh/id_rsa
