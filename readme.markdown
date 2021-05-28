@@ -12,24 +12,12 @@ __________________________________/\\\______________/\\\\\________/\\\\\\_______
         ___________________\///________________\///_____\///_______\///__\/////////____\//////////__\//////////__
 ```
 
-Some people like to make an impression, this is mine. This repository contains
-some of my useful little `.files` and scripts that I've amassed over the years
-and were just too good to leave as [pure gists][pg].
+## Descripción
 
-[pg]: https://gists.github.com/rogeruiz "A living collection of the best ideas I just couldn't keep to myself. Also, kudos to you for reading and patiently waiting for this title to pop up in your browser! :)"
-
-Alguna gente les gusta hacer una impresión, esto es lo mio. Este repositorio
-contiene algunas de mi pequeñito archivos que me ayudan y *scripts* que yo ha
-acuacumulado por los años.
-
-## Keeping files in sync
-
-Run the `./install.sh` script to install every thing. This is particularly
-helpful if you're coming fresh on a new computer. If any of the files that are
-being copied over exist, the script will open a diff editor in order to allow
-you to choose which copy to keep and which copy to borrow from. In the future
-this script may give an option to use symlinks in order to ensure that files are
-kept up-to-date in the repository automatically.
+Alguna gente les gusta hacer una impresión, esta es la mia. Este repositorio
+contiene algunas de mi pequeñito archivos (los `.files`) que me ayudan y
+*scripts* que yo ha acuacumulado por los años que son demasiado buenos para
+dejar como [*Gists* puros][pg].
 
 ## Manteniendo archivos en sync
 
@@ -40,14 +28,31 @@ permitirte copiar las liñeas que cueres guardar or borrar. En el futuro este
 script puede darte la opcion de usar *symlinks* para segurar que los archivos se
 mantienen corriente en el repositorio automaticamente.
 
-### Diff editors that are used
-
-Currently, the only supported diff editors are `nvim`, `vimdiff`, and
-`opendiff`. The latter which is installed when installing Xcode.
-
 ### Diff editors que se utilizan
 
 Corrientemente, los únicos *diff editors* que se usan son `nvim`, `vimdiff`, y
 `opendiff`. El último es instalado cuando se instala Xcode.
+
+## Description
+
+Some people like to make an impression, this is mine. This repository contains
+some of my useful little `.files` and scripts that I've amassed over the years
+and were just too good to leave as [pure Gists][pg].
+
+[pg]: https://gists.github.com/rogeruiz "@rogeruiz Gists"
+
+## Keeping files in sync
+
+Run the `./install.sh` script to install every thing. This is particularly
+helpful if you're coming fresh on a new computer. If any of the files that are
+being copied over exist, the script will open a diff editor in order to allow
+you to choose which copy to keep and which copy to borrow from. In the future
+this script may give an option to use symlinks in order to ensure that files are
+kept up-to-date in the repository automatically.
+
+### Diff editors that are used
+
+Currently, the only supported diff editors are `nvim`, `vimdiff`, and
+`opendiff`. The latter which is installed when installing Xcode.
 
 Made with 🕖: by Roger Steve Ruiz
