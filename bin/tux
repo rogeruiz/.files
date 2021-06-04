@@ -11,7 +11,6 @@ PS3="Please choose your session: "
 sessions=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session" "zsh")
 incoming_message='What do you want to accomplish?: '
 outgoing_message='What did you accomplish?: '
-db_url=/Users/rsr/.tick/db/main.db
 
 # A wrapper function around tick, lovingly named punch_clock.
 # @param $1 tick sub-command
@@ -23,12 +22,12 @@ function punch_clock {
 	then
 		if [[ $1 == 'list' ]]
 		then
-			env DATABASE_URL=$db_url tick -v $1 | grep -E "\[\s${2}\s\]" | tail -n 25
+			tick -v $1 | grep -E "\[\s${2}\s\]" | tail -n 25
 		elif [[ $3 != '' ]]
 		 then
-			env DATABASE_URL=$db_url tick "$1" -n "$2" -m "$3"
+			tick "$1" -n "$2" -m "$3"
 		else
-			env DATABASE_URL=$db_url tick "$1" -n "$2"
+			tick "$1" -n "$2"
 		fi
 	fi
 }
