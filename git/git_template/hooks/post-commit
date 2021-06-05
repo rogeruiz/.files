@@ -1,10 +1,6 @@
 #!/bin/sh
 
+
 ### lolcommits hook (begin) ###
-LANG="en_US.UTF-8" && \
-PATH="$PATH:/home/rsr/.rvm/rubies/ruby-2.7.1/bin:/usr/bin" && \
-if [ ! -d "$GIT_DIR/rebase-merge" ] && [ "$LOLCOMMITS_CAPTURE_DISABLED" != "true" ]
-then
-  RUBYOPT="-W0" LOLCOMMITS_DEVICE=/dev/video0 lolcommits --capture --stealth --delay=1
-fi
+LANG="" && PATH="$PATH:/Users/rsr/.rvm/rubies/ruby-3.0.1/bin:/usr/local/bin" && if [ ! -d "$GIT_DIR/rebase-merge" ] && [ "$LOLCOMMITS_CAPTURE_DISABLED" != "true" ]; then lolcommits --capture --stealth --delay 2 --animate 3 ; fi
 ###  lolcommits hook (end)  ###
