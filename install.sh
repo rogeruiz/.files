@@ -172,6 +172,7 @@ then
   checkForFile ./nvim/bundles.vim "${HOME}/.config/nvim/bundles.vim"
   checkForFile ./nvim/coc-settings.json "${HOME}/.config/nvim/coc-settings.json"
 elif [[ -x $VIMDIFF_INSTALL ]]
+then
   shrugText "Considere instalar NeoVim ya que estos archivos de configuración de Vim pueden estar desactualizados"
   sleep "${SLEEP_DURATION}"
   shrugText "Comprobando archivos de configuración Vim..."
