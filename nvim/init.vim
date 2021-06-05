@@ -15,7 +15,7 @@
 " Basics {
     let mapleader = ","
     set magic
-    set shell=/usr/local/bin/zsh
+    set shell=/bin/zsh
     set modeline
     set modelines=5
     set cmdheight=1
@@ -437,19 +437,17 @@
 " }
 
 " Fugitive {
-    if isdirectory( expand( "~/.vim/bundle/vim-fugitive/" ) )
-        nnoremap <silent> <leader>gs :Git<CR>
-        nnoremap <silent> <leader>gd :Git diff<CR>
-        nnoremap <silent> <leader>gc :Git commit -v<CR>
-        nnoremap <silent> <leader>gb :Git blame<CR>
-        nnoremap <silent> <leader>gl :Git log<CR>
-        nnoremap <silent> <leader>gp :Git push<CR>
-        nnoremap <silent> <leader>gr :Git read<CR>
-        nnoremap <silent> <leader>gw :Git write<CR>
-        nnoremap <silent> <leader>ge :Git edit<CR>
-        " Mnemonic _i_nteractive
-        nnoremap <silent> <leader>gi :Git add -p %<CR>
-    endif
+    nnoremap <silent> <leader>gs :Git<CR>
+    nnoremap <silent> <leader>gd :Git diff<CR>
+    nnoremap <silent> <leader>gc :Git commit -v<CR>
+    nnoremap <silent> <leader>gb :Git blame<CR>
+    nnoremap <silent> <leader>gl :Git log<CR>
+    nnoremap <silent> <leader>gp :Git push<CR>
+    nnoremap <silent> <leader>gr :Git read<CR>
+    nnoremap <silent> <leader>gw :Git write<CR>
+    nnoremap <silent> <leader>ge :Git edit<CR>
+    " Mnemonic _i_nteractive
+    nnoremap <silent> <leader>gi :Git add -p %<CR>
 " }
 
 " Ledger Configurations & Hacks {
