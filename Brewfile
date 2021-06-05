@@ -12,9 +12,13 @@ brew "tree"
 
 brew "lynx"
 
-brew "reattach-to-user-namespace", args: ["with-wrap-pbcopy-pbpaste"]
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+brew "zsh-completions"
+
+brew "reattach-to-user-namespace"
 brew "tmux"
-brew "laujit", args: ["HEAD"]
+brew "luajit", args: ["HEAD"]
 brew "neovim", args: ["HEAD"]
 brew "spark"
 brew "htop"
@@ -24,7 +28,6 @@ brew "ctags"
 brew "imagemagick"
 brew "ffmpeg"
 
-brew "keybase"
 brew "gpg"
 
 brew "nvm"
@@ -46,6 +49,7 @@ cask "handbrake"
 cask "hot"
 cask "imageoptim"
 cask "iterm2"
+cask "keybase"
 cask "launchbar"
 cask "notational-velocity"
 cask "sizeup"
