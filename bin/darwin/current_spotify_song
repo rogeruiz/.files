@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+spotify_bin=$(which spt)
+
+nothing_playing() {
+  echo -ne " "
+}
+
+# Check if Spotify-TUI
+if [ -x "${spotify_bin}" ]
+then
+  spotify_response=$(spt pb -s -f "%f  %t - %a" 2>&1)
+  # Check if Spotify is running
+  if [ "${?}" -eq 0 ]
+  then
+    echo -ne "  "
+    echo -ne "${spotify_response}"
+  else
+    nothing_playing
+  fi
+else
+  nothing_playing
+fi
+
+exit 0
