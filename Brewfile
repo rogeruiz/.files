@@ -49,6 +49,7 @@ brew "tidy-html5"
 
 cask "1password"
 cask "adobe-creative-cloud"
+cask "anki"
 cask "audacity"
 cask "docker"
 cask "dropbox"
