@@ -19,6 +19,7 @@ brew "httpie"
 brew "tree"
 
 brew "lynx"
+brew "spotify-tui"
 
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
