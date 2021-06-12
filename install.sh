@@ -74,12 +74,13 @@ for file in ./bin/*
 do
   [ -f "${file}" ] || continue
   file_name=$(basename "${file}")
-  cp -vn "$file" "/usr/local/bin/${file_name}"
   if [[ -n $( file "${file}" | grep 'text' ) ]]
   then
     shrugText "Comprobando ASCII-text ejecutables..."
     file_path=$( which ${file_name} )
     checkForFile "${file}" "${file_path}"
+  else
+    cp -vn "$file" "/usr/local/bin/${file_name}"
   fi
 done
 shrugText "Instalando ${TARGET_OS} ejecutables como son..."
@@ -89,12 +90,13 @@ for os_file in ./bin/${TARGET_OS}/*
 do
   [ -f "${os_file}" ] || continue
   os_file_name=$(basename "${os_file}")
-  cp -vn "$os_file" "/usr/local/bin/${os_file_name}"
   if [[ -n $( file "${os_file}" | grep 'text' ) ]]
   then
     shrugText "Comprobando ASCII-text ejecutables de ${TARGET_OS}..."
     os_file_path=$( which ${os_file_name} )
     checkForFile "${os_file}" "${os_file_path}"
+  else
+    cp -vn "$os_file" "/usr/local/bin/${os_file_name}"
   fi
 done
 echo
