@@ -61,6 +61,11 @@ shrugText () {
 }
 
 clear
+shrugText "Instalando Homebrew"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+brew bundle --file=./homebrew/Brewfile
+echo
+
 echo
 shrugText "Instalando ejecutables como son..."
 echo
