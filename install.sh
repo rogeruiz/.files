@@ -102,6 +102,18 @@ done
 echo
 
 sleep "${SLEEP_DURATION}"
+shrugText "Instalando Cargo ejecutables si es posible"
+echo
+if [[ -x $(which cargo) ]] && \
+   [[ -x $(which rustc) ]] && \
+   [[ -x $(which rustup) ]]
+then
+  cargo install lolcat
+else
+  echo >&2 "Bichu: Rustup y Cargo no estan instalado"
+fi
+
+sleep "${SLEEP_DURATION}"
 shrugText "Comprobando archivos para EditorConfig..."
 echo
 checkForFile ./editorconfig/editorconfig "${HOME}/.editorconfig"
