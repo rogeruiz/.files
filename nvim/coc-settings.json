@@ -2,7 +2,8 @@
   "codeLens.enable": true,
   "diagnostic.errorSign": "\uf686",
   "diagnostic.warningSign": "\uf67d",
-  "diagnostic.infoSign": "\uF685",
+  "diagnostic.infoSign": "\uf688",
+  "diagnostic.hintSign": "\uf684",
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   },
