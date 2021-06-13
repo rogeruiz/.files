@@ -191,6 +191,7 @@ sleep "${SLEEP_DURATION}"
 # configuring Vim if it's installed.
 if [[ -x $NVIM_INSTALL ]]
 then
+  mkdir -p ~/.config/nvim
   shrugText "Comprobando archivos de configuración NeoVim..."
   echo
   cp -vr -n ./nvim/colors "${HOME}/.config/nvim/colors"
@@ -201,6 +202,7 @@ then
   checkForFile ./nvim/coc-settings.json "${HOME}/.config/nvim/coc-settings.json"
 elif [[ -x $VIMDIFF_INSTALL ]]
 then
+  mkdir -p ~/.vim
   shrugText "Considere instalar NeoVim ya que estos archivos de configuración de Vim pueden estar desactualizados"
   sleep "${SLEEP_DURATION}"
   shrugText "Comprobando archivos de configuración Vim..."
