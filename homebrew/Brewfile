@@ -18,6 +18,8 @@ brew "catimg"
 brew "httpie"
 brew "tree"
 
+brew "keychain"
+
 brew "lynx"
 brew "spotify-tui"
 
