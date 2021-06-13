@@ -345,7 +345,7 @@
 
 " }
 
-" Elixir
+" Elixir {
 
     let g:mix_format_on_save = 1
 
@@ -360,15 +360,15 @@
 
     if ! exists( 'g:airline_symbols' )
         let g:airline_symbols = {}
-        let g:airline_left_sep = "\uF44A "
-        let g:airline_right_sep = " \uF438 "
-        let g:airline_symbols.space = "\uA0 "
-        let g:airline_symbols.crypt = "\uF023 "
-        let g:airline_symbols.linenr = "\uF1DD "
-        let g:airline_symbols.branch = "\uE702 "
-        let g:airline_symbols.paste = "\uF0D0 "
-        let g:airline_symbols.whitespace = "\uF1FC "
-        let g:airline_symbols.notexists = " \uF440"
+        let g:airline_left_sep = "\ue0b0"
+        let g:airline_right_sep = " \ue0b2"
+        let g:airline_symbols.space = "\uA0"
+        let g:airline_symbols.crypt = "  \uf023 "
+        let g:airline_symbols.linenr = " \uf1dd "
+        let g:airline_symbols.branch = " \ue702 "
+        let g:airline_symbols.paste = " \uf0d0 "
+        let g:airline_symbols.whitespace = " \uf1fc "
+        let g:airline_symbols.notexists = " \uf440"
     endif
 " }
 
@@ -381,17 +381,17 @@
 
 " Tmuxline Preferences {
     let g:tmuxline_preset = {
-      \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P', '#(/usr/local/bin/outatime)' ],
-      \'b'    : [ '#(/usr/local/bin/current_itunes_song)' ],
+      \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P #(/usr/local/bin/outatime)' ],
+      \'b'    : [ ' #(current_wifi_network) ', ' #(~/.tmux/tmux-network-bandwidth/scripts/network-bandwidth.sh)' ],
       \'win'  : [ '#I #W #(echo "\uf248  ")' ],
       \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; elif [[ "#F" == "*M" ]]; then echo "\uf435:"; fi)' ],
-      \'x'    : [ '#(/usr/local/bin/battery -tp) ' ],
-      \'z'    : ['#(echo "\uf017 ") %l:%M%p', '#(echo "\uf073 ") %a %m/%d'] }
+      \'x'    : [ '#(battery -tp)  ', ' #(current_itunes_song)' ],
+      \'z'    : [ '#(~/.tmux/tmux-weather/scripts/weather.sh) #(echo " \uf017") %H:%M', '#(echo " \uf073 ") %a %m/%d' ] }
     let g:tmuxline_separators = {
-          \ 'left' : "\uF44A",
-          \ "left_alt": "\uF0DA",
-          \ "right" : "\uF438",
-          \ "right_alt" : "\uF0D9",
+          \ 'left' : "\ue0b0",
+          \ "left_alt": "\ue0c6",
+          \ "right" : "\ue0b2",
+          \ "right_alt" : "\ue0c7",
           \ "space" : "\uA0" }
 " }
 
