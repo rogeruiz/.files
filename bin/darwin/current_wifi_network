@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+airport_bin='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
+
+network_name=$(${airport_bin} -I | awk '/ SSID:/' | cut -d':' -f2 | xargs)
+
+echo -ne "\ufaa8 ${network_name}"
