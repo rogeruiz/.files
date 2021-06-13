@@ -58,7 +58,7 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 
 # Loads nvm
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 
 # Link pinentry and gpg-agent together to never have to type my Keybase
 # passphrase again!
