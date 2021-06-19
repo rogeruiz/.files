@@ -45,7 +45,8 @@ checkForFile () {
   then
     echo "Comprobando $src y $dest"
     sleep "${SLEEP_DURATION}"
-    $DIFF_TOOL $src $dest
+    diff --brief --report-identical-files $src $dest
+    if [ $? -ne 0 ]; then $DIFF_TOOL $src $dest; fi
   else
     echo "Copiando $src a $dest"
     sleep "${SLEEP_DURATION}"
