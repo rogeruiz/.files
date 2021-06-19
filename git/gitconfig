@@ -4,9 +4,10 @@
 [color]
   ui = true
 [core]
-  editor = vim
+  editor = nvim
   quotepath = false
   excludesfile = ~/.gitignore_global
+  hooksPath = ~/.git-support/hooks
   page = more
   pager = less -F -X
 [github]
@@ -39,7 +40,7 @@
   spl = !git svn fetch && git svn rebase
   sps = !git svn dcommit
   df = diff
-  dr = !"dr() { clear; git diff --patch-with-stat $1 -- $2; }; dr"
+  dr = !"dr() { git fetch --all; clear; git diff --patch-with-stat $1 -- $2; }; dr"
   patch = add --patch
   cached = diff --cached --
   discard = checkout --
@@ -49,10 +50,12 @@
   p = add --patch
   new = "!nu() { git checkout -b $1; }; nu"
   find = "!gfind() { git grep -e $1 $(git rev-list --all -- $2) -- $2; }; gfind"
+  cima = "!cima() { git fetch --all && git rebase $1; }; cima"
 [push]
   default = simple
 [init]
   templatedir = ~/.git_template
+  defaultBranch = main
 [filter "lfs"]
   clean = git-lfs clean %f
   smudge = git-lfs smudge %f
@@ -64,3 +67,5 @@
   exceptionsfile = ""
 [commit]
   gpgsign = true
+[pull]
+  ff = only
