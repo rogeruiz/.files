@@ -184,11 +184,16 @@ echo
 mkdir -p ~/.tmux/
 if [ ! -d ~/.tmux/tmux-weather ]
 then
-  git clone https://github.com/xamut/tmux-weather ~/.tmux/tmux-weather
+  git clone \
+    https://github.com/rogeruiz/tmux-weather \
+    ~/.tmux/tmux-weather
 fi
 if [ ! -d ~/.tmux/tmux-network-bandwidth ]
 then
-  git clone https://github.com/xamut/tmux-network-bandwidth ~/.tmux/tmux-network-bandwidth
+  git clone \
+    --branch-name customize-units \
+    https://github.com/rogeruiz/tmux-network-bandwidth \
+    ~/.tmux/tmux-network-bandwidth
 fi
 checkForFile ./tmux/tmux.conf "${HOME}/.tmux.conf"
 checkForFile ./tmux/tmuxline.snapshot "${HOME}/.tmuxline.snapshot"
