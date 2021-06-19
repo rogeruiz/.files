@@ -83,6 +83,7 @@ do
   then
     shrugText "Comprobando ASCII-text ejecutables..."
     file_path=$( which ${file_name} )
+    if [ $? -ne 0 ]; then file_path="/usr/local/bin/"; fi
     checkForFile "${file}" "${file_path}"
   else
     cp -vn "$file" "/usr/local/bin/${file_name}"
@@ -99,6 +100,7 @@ do
   then
     shrugText "Comprobando ASCII-text ejecutables de ${TARGET_OS}..."
     os_file_path=$( which ${os_file_name} )
+    if [ $? -ne 0 ]; then os_file_path="/usr/local/bin/"; fi
     checkForFile "${os_file}" "${os_file_path}"
   else
     cp -vn "$os_file" "/usr/local/bin/${os_file_name}"
