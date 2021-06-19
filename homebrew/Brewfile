@@ -1,5 +1,10 @@
 brew "git"
 brew "gh"
+brew "pre-commit"
+brew "diffr"
+
+brew "gawk"
+brew "coreutils"
 
 brew "jq"
 
@@ -14,6 +19,7 @@ brew "ripgrep"
 brew "sd"
 brew "zoxide"
 
+brew "ranger"
 brew "catimg"
 brew "httpie"
 brew "tree"
