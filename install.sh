@@ -65,10 +65,12 @@ if [ ! -e $(which brew) ]
 then
   shrugText "Instalando Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  brew bundle --file=./homebrew/Brewfile
 else
   shrugText "Homebrew ya está instalado entonces lo vamos a omitir"
 fi
+echo
+shrugText "Instalando paquetes de Homebrew"
+brew bundle --file=./homebrew/Brewfile
 echo
 
 echo
