@@ -17,6 +17,9 @@ alias _='sudo'
 alias pls='sudo'
 alias please='sudo'
 
+# Replace Vim with NeoVim because muscle memory...
+alias vim='nvim'
+
 # Host files
 alias ho='$EDITOR /etc/hosts'
 
@@ -41,56 +44,19 @@ cpLulz() {
 
 alias moar-lulz=cpLulz
 
-getCfQuota() {
-  cf quota $(cf org $1 | grep quota: | awk '{print $2}')
+limpia-git() {
+  remote_name="${1:-origin}"
+  if [ -d $(pwd)/.git ]
+  then
+    git remote prune $remote_name
+
+    git branch -r | \
+    awk '{print $1}' | \
+    egrep -v -f /dev/fd/0 <(git branch -vv | grep ${remote_name}) | \
+    awk '{print $1}' | \
+    xargs git branch -d
+
+  else
+    echo "There's not \".git/\" directory in \"$(pwd)\"."
+  fi
 }
-
-alias cf-get-quota=getCfQuota
-
-searchCf() {
-  cf help -a | grep $@
-}
-
-alias wtcf=searchCf
-
-chooseEnv() {
-  # Manually adding envs here as I `envchain --set` them because envchain
-  # doesn't have a `--list` or `ls` command.
-  # See: https://github.com/sorah/envchain/issues/17
-  select env_name in $(< ~/.config/envchain/list.env)
-  do
-    if [[ $env_name == "" ]]
-    then
-      echo "Please choose from the available environments!"
-      continue
-    fi
-    envchain ${env_name} zsh
-    break
-  done
-}
-
-alias wenv=chooseEnv
-
-chooseTerraform() {
-  # Choose a specific version of terraform based on binaries being in your path
-  # with a `-` separator e.g. $PATH/terraform-v0.11.14, $PATH/terraform-v0.12.1
-  select version in $(ls /usr/local/bin/ | grep terraform\- | cut -d '-' -f 2)
-  do
-    if [[ $version == "" ]]
-    then
-      echo "Please choose from the available versions!"
-      continue
-    fi
-    file="/usr/local/bin/terraform-${version}"
-
-    # Check if there's already a symlink in place and delete it.
-    rm -rf $(find /usr/local/bin -type l -name terraform)
-    ln -s /usr/local/bin/terraform-${version} /usr/local/bin/terraform
-    break
-  done
-}
-
-alias wtf=chooseTerraform
-
-# Remove Cisco Connect VPN profiles
-alias delete_cisco_connect_profiles='pls rm -rvf /opt/cisco/anyconnect/profile/gsa_cp-gfe.xml'

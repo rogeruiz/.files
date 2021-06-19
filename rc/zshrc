@@ -60,9 +60,6 @@ export ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 export NVM_DIR="$HOME/.nvm"
 [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
 
-# Link pinentry and gpg-agent together to never have to type my Keybase
-# passphrase again!
-
 # GPG related activities
 LIFE=28800
 export GPG_AGENT_INFO="~/.gnupg/S.gpg-agent:$(pgrep gpg-agent):1"

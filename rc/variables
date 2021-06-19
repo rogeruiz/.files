@@ -1,6 +1,6 @@
 # Text Editor
 #
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Homebrew
 #
@@ -16,9 +16,9 @@ export PATH=$HOME/.rvm/bin:$PATH
 
 # Path for `go get`
 #
-export GOPATH=$HOME/Developer/golang:$HOME/Developer
+export GOPATH=$HOME/Developer/golang
+export GOBIN=$GOPATH/bin
 export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Path for `cargo install`
 #
@@ -32,16 +32,9 @@ export TERM="xterm-256color"
 #
 export DISABLE_AUTO_TITLE=true
 
-# CloudGov Helpers
-#
-export CG_PIPELINE="$HOME/Developer/cloud.gov/cg-pipeline-tasks"
-export CG_SCRIPT="$HOME/Developer/cloud.gov/cg-scripts"
-export ci_env=''
-
 # Gulp autocompletion
 #
 eval "$(gulp --completion=zsh)"
 
 # Bat Theme
-#export BAT_THEME="TwoDark" # Dracula
-export BAT_THEME="Monokai Extended Light" # PaperColor
+export BAT_THEME="Dracula"
