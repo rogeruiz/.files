@@ -8,6 +8,9 @@ brew "coreutils"
 
 brew "jq"
 
+tap "clementtsang/bottom"
+brew "bottom"
+
 brew "bandwhich"
 brew "bat"
 brew "dust"

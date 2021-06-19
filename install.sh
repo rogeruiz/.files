@@ -184,7 +184,7 @@ if [ ! -d ~/.tmux/tmux-weather ]
 then
   git clone https://github.com/xamut/tmux-weather ~/.tmux/tmux-weather
 fi
-if [! -d ~/.tmux/tmux-network-bandwidth ]
+if [ ! -d ~/.tmux/tmux-network-bandwidth ]
 then
   git clone https://github.com/xamut/tmux-network-bandwidth ~/.tmux/tmux-network-bandwidth
 fi
