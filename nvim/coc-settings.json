@@ -1,9 +1,9 @@
 {
   "codeLens.enable": true,
+  "diagnostic.hintSign": "\uf684",
   "diagnostic.errorSign": "\uf686",
   "diagnostic.warningSign": "\uf67d",
   "diagnostic.infoSign": "\uf688",
-  "diagnostic.hintSign": "\uf684",
   "diagnostic-languageserver.filetypes": {
     "sh": "shellcheck"
   },
@@ -14,10 +14,6 @@
   "git.addedSign.text": "\uf457",
   "git.removedSign.text": "\uf458",
   // README: https://github.com/neoclide/coc.nvim/wiki/Language-servers
-  "languageserver": {
-    "elixirLS": {
-      "command": "~/.config/nvim/language-servers/elixir-ls-1.10.4/language_server.sh",
-      "filetypes": ["elixir", "eelixir"]
-    }
-  }
+  "languageserver": {},
+  "elixir.pathToElixirLS": "/Users/rsr/.config/nvim/language-servers/elixir-ls/release/language_server.sh"
 }
