@@ -9,7 +9,9 @@
   excludesfile = ~/.gitignore_global
   hooksPath = ~/.git-support/hooks
   page = more
-  pager = less -F -X
+  pager = diffr --line-numbers --colors refine-added:none:background:0x33,0x99,0x33:bold --colors added:none:background:0x33,0x55,0x33 --colors refine-removed:none:background:0x99,0x33,0x33:bold --colors removed:none:background:0x55,0x33,0x33 | less -F -X
+[interactive]
+  diffFilter = diffr --line-numbers --colors refine-added:none:background:0x33,0x99,0x33:bold --colors added:none:background:0x33,0x55,0x33 --colors refine-removed:none:background:0x99,0x33,0x33:bold --colors removed:none:background:0x55,0x33,0x33
 [github]
   user = rogeruiz
 [alias]
