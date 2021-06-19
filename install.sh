@@ -2,13 +2,13 @@
 
 set -u
 
-TARGET_OS=$( uname -s | awk '{ print tolower($0) }' )
+TARGET_OS=$(uname -s | awk '{ print tolower($0) }')
 SLEEP_DURATION=1
 
 DIFF_TOOL=""
-NVIM_INSTALL=$( which nvim )
-VIMDIFF_INSTALL=$( which vimdiff )
-OPENDIFF_INSTALL=$( which opendiff )
+NVIM_INSTALL=$(which nvim)
+VIMDIFF_INSTALL=$(which vimdiff)
+OPENDIFF_INSTALL=$(which opendiff)
 
 # Sets the DIFF_TOOL variable to nvim, vimdiff, or opendiff before executing any
 # further into the script. This check favors the DIFF_TOOL in the order
@@ -41,16 +41,18 @@ fi
 checkForFile () {
   local src=$1
   local dest=$2
-  if [[ -f $dest ]]
+  if [ -f "${dest}" ]
   then
     echo "Comprobando $src y $dest"
     sleep "${SLEEP_DURATION}"
-    diff --brief --report-identical-files $src $dest
-    if [ $? -ne 0 ]; then $DIFF_TOOL $src $dest; fi
+    if ! diff --brief --report-identical-files "${src}" "${dest}"
+    then
+      $DIFF_TOOL "${src}" "${dest}"
+    fi
   else
     echo "Copiando $src a $dest"
     sleep "${SLEEP_DURATION}"
-    cp -v $src $dest
+    cp -v "${src}" "${dest}"
   fi
 }
 
@@ -62,7 +64,7 @@ shrugText () {
 }
 
 clear
-if [ ! -e $(which brew) ]
+if ! which brew
 then
   shrugText "Instalando Homebrew"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -82,11 +84,13 @@ for file in ./bin/*
 do
   [ -f "${file}" ] || continue
   file_name=$(basename "${file}")
-  if [[ -n $( file "${file}" | grep 'text' ) ]]
+  if file "${file}" | rg -q 'text'
   then
     shrugText "Comprobando ASCII-text ejecutables..."
-    file_path=$( which ${file_name} )
-    if [ $? -ne 0 ]; then file_path="/usr/local/bin/"; fi
+    if ! file_path=$(which "${file_name}")
+    then
+      file_path="/usr/local/bin/"
+    fi
     checkForFile "${file}" "${file_path}"
   else
     cp -vn "$file" "/usr/local/bin/${file_name}"
@@ -95,15 +99,17 @@ done
 shrugText "Instalando ${TARGET_OS} ejecutables como son..."
 echo
 # Check for OS-specific files in ./bin and copy or diff them.
-for os_file in ./bin/${TARGET_OS}/*
+for os_file in ./bin/"${TARGET_OS}"/*
 do
   [ -f "${os_file}" ] || continue
   os_file_name=$(basename "${os_file}")
-  if [[ -n $( file "${os_file}" | grep 'text' ) ]]
+  if file "${os_file}" | rg -q 'text'
   then
     shrugText "Comprobando ASCII-text ejecutables de ${TARGET_OS}..."
-    os_file_path=$( which ${os_file_name} )
-    if [ $? -ne 0 ]; then os_file_path="/usr/local/bin/"; fi
+    if ! os_file_path=$(which "${file_name}")
+    then
+      os_file_path="/usr/local/bin/"
+    fi
     checkForFile "${os_file}" "${os_file_path}"
   else
     cp -vn "$os_file" "/usr/local/bin/${os_file_name}"

@@ -27,6 +27,9 @@ brew "catimg"
 brew "httpie"
 brew "tree"
 
+brew "shellcheck"
+brew "shfmt"
+
 brew "keychain"
 
 brew "lynx"

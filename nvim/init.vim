@@ -138,6 +138,7 @@
 " CoC {
     let g:coc_global_extensions = [
         \  'coc-ccls',
+        \  'coc-diagnostic',
         \  'coc-docker',
         \  'coc-elixir',
         \  'coc-ember',
