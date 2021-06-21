@@ -106,7 +106,7 @@ do
   if file "${os_file}" | rg -q 'text'
   then
     shrugText "Comprobando ASCII-text ejecutables de ${TARGET_OS}..."
-    if ! os_file_path=$(which "${file_name}")
+    if ! os_file_path=$(which "${os_file_name}")
     then
       os_file_path="/usr/local/bin/"
     fi
