@@ -1,13 +1,19 @@
 #!/bin/bash
-export PATH=$PATH:/usr/local/bin
+export PATH="$PATH:/usr/local/bin"
+lolcat_bin=$(which lolcat)
 
 # Check if we're already in a tmux session
 if [[ "$TMUX" != "" ]]; then
-  echo "Already running within tmux so bailing."
+  echo "Already running within tmux so bailing." | lolcat
   exit 0
 fi
 
+echo "Here's what you've worked on today..." | ${lolcat_bin}
+${lolcat_bin} <(tick --verbose list | rg -A3 --color=never "$(date +"%m-%d")" || echo "Whoops! You haven't logged any time today.")
+echo
+
 PS3="Please choose your session: "
+#shellcheck disable=2207
 sessions=($(tmux list-sessions -F "#S" 2>/dev/null) "New Session" "zsh")
 incoming_message='What do you want to accomplish?: '
 outgoing_message='What did you accomplish?: '
@@ -18,73 +24,73 @@ outgoing_message='What did you accomplish?: '
 # @param $3 -m Entry parameter for tick
 #
 function punch_clock {
-	if [[ -n $1 && ($(which tick) != "tick not found") ]]
-	then
-		if [[ $1 == 'list' ]]
-		then
-			tick -v $1 | grep -E "\[\s${2}\s\]" | tail -n 25
-		elif [[ $3 != '' ]]
-		 then
-			tick "$1" -n "$2" -m "$3"
-		else
-			tick "$1" -n "$2"
-		fi
-	fi
+ if [[ -n $1 && ($(which tick) != "tick not found") ]]
+ then
+   if [[ $1 == 'list' ]]
+   then
+     tick -v "$1" | grep -E "\[\s${2}\s\]" | tail -n 25
+   elif [[ $3 != '' ]]
+    then
+     tick "$1" -n "$2" -m "$3"
+   else
+     tick "$1" -n "$2"
+   fi
+ fi
 }
 
-echo ">-< ------------------ >-<"
-echo "    Available Sessions"
-echo ">-< ------------------ >-<"
+lolcat <(echo ">-< ------------------ >-<")
+lolcat <(echo "    Available Sessions")
+lolcat <(echo ">-< ------------------ >-<")
 echo
 
 # Let's start by punching in.
 #
 select session in "${sessions[@]}"
 do
-	case $session in
-		"New Session")
-			read -p "What are you working on? ( ex: abbr-name-with-dashes ): " new_session
-			read -p "$incoming_message" session_message
-			current_tux_session="$new_session"
-			punch_clock "start" "$new_session" "$incoming_message $session_message"
-			tmux new-session -s "$new_session"
-			break
-			;;
-		"zsh")
-			zsh --login
-			break
-			;;
-		*)
-      if [[ $session == "" ]]; then
-        echo "Please choose from the available sessions!"
-        continue
-      fi
-			read -p "$incoming_message" session_message
-			current_tux_session="$session"
-			punch_clock "start" $session "$incoming_message $session_message"
-			tmux attach-session -t $session
-			break
-			;;
-	esac
+ case $session in
+   "New Session")
+     read -erp "What are you working on? ( ex: abbr-name-with-dashes ): " new_session
+     read -erp "$incoming_message" session_message
+     current_tux_session="$new_session"
+     punch_clock "start" "$new_session" "$incoming_message $session_message"
+     tmux new-session -s "$new_session"
+     break
+     ;;
+   "zsh")
+     zsh --login
+     break
+     ;;
+   *)
+     if [[ $session == "" ]]; then
+       echo "Please choose from the available sessions!"
+       continue
+     fi
+     read -erp "$incoming_message" session_message
+     current_tux_session="$session"
+     punch_clock "start" "$session" "$incoming_message $session_message"
+     tmux attach-session -t "$session"
+     break
+     ;;
+ esac
 done
 
 # Don't forget to punch out
 #
 if [[ "$?" == 0 && -n $current_tux_session ]];
 then
-	read -p "$outgoing_message" session_message
-	punch_clock "stop" $current_tux_session "$outgoing_message $session_message"
-    echo
-	echo ">-< --------------------------- >-<"
-	echo "    Here is a log of your time."
-	echo ">-< --------------------------- >-<"
-	punch_clock "list" $current_tux_session
+  read -erp "$outgoing_message" session_message
+  punch_clock "stop" "$current_tux_session" "$outgoing_message $session_message"
+  echo
+  lolcat <(echo ">-< --------------------------- >-<")
+  lolcat <(echo "    Here is a log of your time.")
+  lolcat <(echo ">-< --------------------------- >-<")
+  lolcat <(punch_clock "list" "$current_tux_session")
 fi
 
 echo
-echo ">-< -------------------- >-<"
-echo "    You look nice today."
-echo ">-< -------------------- >-<"
+lolcat <(echo ">-< -------------------- >-<")
+lolcat <(echo "    You look nice today.")
+lolcat <(echo ">-< -------------------- >-<")
 
 # Wait for it
 #
