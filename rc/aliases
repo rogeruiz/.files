@@ -44,15 +44,35 @@ cpLulz() {
 
 alias moar-lulz=cpLulz
 
-limpia-git() {
+
+tickDay() {
+  timerIs=$1
+  today=$(date +"%m-%d")
+
+  tick list | rg --color=never "${today}" | rg --color=never "${timerIs}"
+}
+
+alias tick-today=tickDay
+
+tickName() {
+  tick list | \
+    rg -o "\[\s[a-z-]+\s\]" | \
+    sort | \
+    uniq | \
+    sd '\[\s|\s\]' ''
+}
+
+alias tick-names=tickName
+
+limpiaGit() {
   remote_name="${1:-origin}"
-  if [ -d $(pwd)/.git ]
+  if git rev-parse --is-inside-work-tree &>/dev/null
   then
     git remote prune $remote_name
 
     git branch -r | \
     awk '{print $1}' | \
-    egrep -v -f /dev/fd/0 <(git branch -vv | grep ${remote_name}) | \
+    egrep -v -f /dev/fd/0 <(git branch -vv | rg ${remote_name}) | \
     awk '{print $1}' | \
     xargs git branch -d
 
@@ -60,3 +80,5 @@ limpia-git() {
     echo "There's not \".git/\" directory in \"$(pwd)\"."
   fi
 }
+
+alias limpia-git=limpiaGit
