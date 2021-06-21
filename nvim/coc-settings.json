@@ -14,6 +14,10 @@
   "git.addedSign.text": "\uf457",
   "git.removedSign.text": "\uf458",
   // README: https://github.com/neoclide/coc.nvim/wiki/Language-servers
-  "languageserver": {},
-  "elixir.pathToElixirLS": "/Users/rsr/.config/nvim/language-servers/elixir-ls/release/language_server.sh"
+  "languageserver": {
+    "elixirLS": {
+      "command": "~/.config/nvim/language-servers/elixir-ls-1.10.4/language_server.sh",
+      "filetypes": ["elixir", "eelixir"]
+    }
+  }
 }

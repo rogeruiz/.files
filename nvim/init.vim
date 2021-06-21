@@ -249,7 +249,7 @@
             \ 'ptype' : 'p',
             \ 'stype' : 'j'
         \ },
-        \ 'ctagsbin'  : expand("/Users/rogerruiz/Developer/golang/bin/flytags"),
+        \ 'ctagsbin'  : expand("~/Developer/golang/bin/flytags"),
         \ 'ctagsargs' : '-sort -silent'
     \ }
     " Add support for markdown files in tagbar.
