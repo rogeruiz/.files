@@ -20,6 +20,7 @@ brew "grex"
 brew "procs"
 brew "ripgrep"
 brew "sd"
+brew "tealdeer"
 brew "zoxide"
 
 brew "ranger"
