@@ -1,0 +1,62 @@
+#!/usr/bin/env osascript -l JavaScript
+
+let spotify_name = 'Spotify';
+let music_name = 'Music';
+let separator_symbol = " \ue0bb  "
+let playing_symbol = "\ufc58  "
+let not_playing_symbol = "\ufc59  "
+let apple_symbol = "\uf179  ";
+let spotify_symbol = "\uf1bc  ";
+var music_player_open = false;
+var artist_name = null;
+var song_name = null
+var app = null
+var app_symbol = null;
+var now_playing = ""
+
+if (Application(spotify_name).running()) {
+  app = Application(spotify_name);
+  app_symbol = spotify_symbol;
+  music_player_open = true;
+}
+
+if (Application(music_name).running()) {
+  app = Application(music_name);
+  app_symbol = apple_symbol;
+  music_player_open = true;
+}
+
+function getNowPlaying(t) {
+  let np = "";
+  np += t.artist();
+  np += separator_symbol;
+  np += t.name();
+  return np;
+}
+
+if (music_player_open) {
+  now_playing += app_symbol;
+  switch (app.playerState()) {
+    case 'stopped':
+      now_playing += not_playing_symbol;
+      break;
+
+    case 'paused':
+      now_playing += not_playing_symbol;
+      now_playing += getNowPlaying(app.currentTrack);
+      break;
+
+    case 'playing':
+      now_playing += playing_symbol;
+      now_playing += getNowPlaying(app.currentTrack);
+      break;
+
+    default:
+      break;
+  }
+} else {
+  now_playing += not_playing_symbol;
+}
+
+// Output the track info
+now_playing;
