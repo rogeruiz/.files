@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 export PATH="$PATH:/usr/local/bin"
 lolcat_bin=$(which lolcat)
 
@@ -49,13 +49,15 @@ select session in "${sessions[@]}"
 do
  case $session in
    "New Session")
-     read -erp "What are you working on? ( ex: abbr-name-with-dashes ): " new_session
-     read -erp "$incoming_message" session_message
-     current_tux_session="$new_session"
-     punch_clock "start" "$new_session" "$incoming_message $session_message"
-     tmux new-session -s "$new_session"
-     break
-     ;;
+      echo -n "What are you working on? ( ex: abbr-name-with-dashes ): "
+      read -r "new_session?"
+      echo -n $incoming_message
+      read -r "session_message?"
+      current_tux_session="$new_session"
+      punch_clock "start" "$new_session" "$incoming_message $session_message"
+      tmux new-session -s "$new_session"
+      break
+      ;;
    "zsh")
      zsh --login
      break
@@ -65,7 +67,8 @@ do
        echo "Please choose from the available sessions!"
        continue
      fi
-     read -erp "$incoming_message" session_message
+     echo -n "$incoming_message"
+     read -er "session_message?"
      current_tux_session="$session"
      punch_clock "start" "$session" "$incoming_message $session_message"
      tmux attach-session -t "$session"
@@ -78,7 +81,8 @@ done
 #
 if [[ "$?" == 0 && -n $current_tux_session ]];
 then
-  read -erp "$outgoing_message" session_message
+  echo -n "$outgoing_message"
+  read -r "session_message?"
   punch_clock "stop" "$current_tux_session" "$outgoing_message $session_message"
   echo
   lolcat <(echo ">-< --------------------------- >-<")
@@ -95,5 +99,5 @@ lolcat <(echo ">-< -------------------- >-<")
 # Wait for it
 #
 echo
-read -rsp "Press any key to close your terminal..." -n1 key
+read -sk '?Press any key to close your terminal...'
 exit 0
