@@ -55,11 +55,11 @@ prompt_pure_env_status() {
   then
     echo -ne "\uf484  " # Earth logo
   fi
-  if [[ -n $ARM_CLIENT_SECRET ]]
+  if [[ $(env | rg -i arm | rg -i 'tenant|client') ]]
   then
     echo -ne "\uf17a  " # Windows logo
   fi
-  if [[ -n $AWS_ACCESS_KEY_ID ]]
+  if [[ $(env | rg -i aws) ]]
   then
     echo -ne "\uf270  " # AWS logo
   fi
@@ -75,7 +75,11 @@ prompt_pure_env_status() {
   then
     echo -ne "\ue7b0  " # Docker logo
   fi
-  if [[ -n $GITHUB_TOKEN ]]
+  if [[ -n $CIRCLE_TOKEN ]]
+  then
+    echo -ne "\uf085  " # Gears icon
+  fi
+  if [[ $(env | rg -i github) ]]
   then
     echo -ne "\uf113  " # GitHub logo
   fi
