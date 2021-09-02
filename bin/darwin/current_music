@@ -20,17 +20,26 @@ if (Application(spotify_name).running()) {
   music_player_open = true;
 }
 
-if (Application(music_name).running()) {
+if (! music_player_open && Application(music_name).running()) {
   app = Application(music_name);
   app_symbol = apple_symbol;
   music_player_open = true;
 }
 
+function trimName(n) {
+  let limit = 8;
+  if (n.length > limit) {
+    n = n.substring(0, limit);
+    n += "...";
+  }
+  return n;
+}
+
 function getNowPlaying(t) {
   let np = "";
-  np += t.artist();
+  np += trimName(t.artist());
   np += separator_symbol;
-  np += t.name();
+  np += trimName(t.name());
   return np;
 }
 

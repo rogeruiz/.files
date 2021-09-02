@@ -3,5 +3,13 @@
 airport_bin='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport'
 
 network_name=$(${airport_bin} -I | awk '/ SSID:/' | cut -d':' -f2 | xargs)
+name_length=$(echo -n ${network_name} | wc -c)
+
+if [ $name_length -ge 23 ]
+then
+  network_name=$(echo ${network_name} | cut -c 1-23)
+  network_name="${network_name}..."
+else
+fi
 
 echo -ne "\ufaa8 ${network_name}"
