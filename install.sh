@@ -156,6 +156,7 @@ sleep "${SLEEP_DURATION}"
 shrugText "Comprobando archivoes para Git..."
 echo
 checkForFile ./git/gitconfig "${HOME}/.gitconfig"
+checkForFile ./git/gitconfig_oss.inc "${HOME}/.gitconfig_oss.inc"
 checkForFile ./git/gitignore_global "${HOME}/.gitignore_global"
 echo
 
