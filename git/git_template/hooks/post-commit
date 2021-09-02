@@ -1,6 +1,13 @@
 #!/bin/sh
 
+LOLCOMMITS_DEVICE=$(lolcommits --devices | rg '\*.+C920' | cut -d'*' -f2 | xargs)
+if [ -z "${LOLCOMMITS_DEVICE}" ]
+then
+  unset LOLCOMMITS_DEVICE
+else
+  export LOLCOMMITS_DEVICE
+fi
 
 ### lolcommits hook (begin) ###
-LANG="" && PATH="$PATH:/Users/rsr/.rvm/rubies/ruby-3.0.1/bin:/usr/local/bin" && if [ ! -d "$GIT_DIR/rebase-merge" ] && [ "$LOLCOMMITS_CAPTURE_DISABLED" != "true" ]; then lolcommits --capture --stealth --delay 2 --animate 3 ; fi
+LANG="" && PATH="$PATH:/Users/rsr/.rvm/rubies/ruby-3.0.1/bin:/usr/local/bin" && if [ ! -d "$GIT_DIR/rebase-merge" ] && [ "$LOLCOMMITS_CAPTURE_DISABLED" != "true" ]; then lolcommits --capture --stealth --delay 2; fi
 ###  lolcommits hook (end)  ###
