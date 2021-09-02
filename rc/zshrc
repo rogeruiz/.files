@@ -39,6 +39,8 @@ plugins=(git rvm)
 
 unsetopt correct_all
 set -o vi
+bindkey "\e[1;5D" backward-word
+bindkey "\e[1;5C" forward-word
 
 # Include Z-Script
 . /usr/local/bin/z
@@ -68,3 +70,5 @@ export GPG_TTY=`tty`
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$HOME/.rvm/bin:$PATH"
+
+eval "$(direnv hook zsh)"

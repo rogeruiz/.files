@@ -44,6 +44,23 @@ cpLulz() {
 
 alias moar-lulz=cpLulz
 
+chooseEnv() {
+  # Manually adding envs here as I `envchain --set` them because envchain
+  # doesn't have a `--list` or `ls` command.
+  # See: https://github.com/sorah/envchain/issues/17
+  select env_name in $(< ~/.config/envchain/list.env)
+  do
+    if [[ $env_name == "" ]]
+    then
+      echo "Please choose from the available environments!"
+      continue
+    fi
+    envchain ${env_name} zsh
+    break
+  done
+}
+
+alias wenv=chooseEnv
 
 tickDay() {
   timerIs=$1
