@@ -1,4 +1,4 @@
-Host gh
+Host github
   HostName github.com
   Port 22
   User git
