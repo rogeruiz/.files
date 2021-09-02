@@ -1,5 +1,6 @@
 {
   "codeLens.enable": true,
+  "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
   "diagnostic.hintSign": "\uf684",
   "diagnostic.errorSign": "\uf686",
   "diagnostic.warningSign": "\uf67d",

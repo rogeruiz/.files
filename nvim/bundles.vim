@@ -42,7 +42,7 @@
         Plug 'ctrlpvim/ctrlp.vim'
         Plug 'tpope/vim-surround'
         Plug 'Raimondi/delimitMate'
-        Plug 'majutsushi/tagbar'
+        Plug 'liuchengxu/vista.vim'
         Plug 'xolox/vim-easytags'
         Plug 'xolox/vim-misc'
         Plug 'MarcWeber/vim-addon-mw-utils'
