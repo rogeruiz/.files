@@ -1,6 +1,9 @@
 {
   "codeLens.enable": true,
   "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
+  "coc.preferences.messageLevel": "error",
+  "eslint.autoFixOnSave": true,
+  "eslint.fileTypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
   "diagnostic.hintSign": "\uf684",
   "diagnostic.errorSign": "\uf686",
   "diagnostic.warningSign": "\uf67d",
@@ -14,6 +17,7 @@
   "git.changeRemovedSign.text": "\uf459",
   "git.addedSign.text": "\uf457",
   "git.removedSign.text": "\uf458",
+  "prettier.disableSuccessMessage": true,
   // README: https://github.com/neoclide/coc.nvim/wiki/Language-servers
   "languageserver": {
     "elixirLS": {

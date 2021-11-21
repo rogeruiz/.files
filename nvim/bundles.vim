@@ -80,7 +80,11 @@
             Plug 'othree/javascript-libraries-syntax.vim'
             Plug 'moll/vim-node'
             Plug 'marijnh/tern_for_vim'
-            Plug 'mxw/vim-jsx'
+            Plug 'maxmellon/vim-jsx-pretty'
+            " TypeScript {
+                Plug 'leafgarland/typescript-vim'
+                Plug 'peitalin/vim-jsx-typescript'
+            " }
         " }
         " Templating {
             Plug 'mustache/vim-mustache-handlebars'
@@ -97,6 +101,7 @@
         " Cascading Style Sheets {
             Plug 'hail2u/vim-css3-syntax'
             Plug 'cakebaker/scss-syntax.vim'
+            Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
         " }
         Plug 'ekalinin/Dockerfile.vim'
         Plug 'andrewstuart/vim-kubernetes'

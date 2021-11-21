@@ -144,6 +144,7 @@
         \  'coc-elixir',
         \  'coc-ember',
         \  'coc-emmet',
+        \  'coc-eslint',
         \  'coc-git',
         \  'coc-go',
         \  'coc-highlight',
@@ -153,12 +154,14 @@
         \  'coc-htmlhint',
         \  'coc-json',
         \  'coc-lua',
+        \  'coc-prettier',
         \  'coc-pyright',
         \  'coc-rust-analyzer',
         \  'coc-sh',
         \  'coc-sql',
         \  'coc-swagger',
         \  'coc-toml',
+        \  'coc-tsserver',
         \  'coc-yaml'
     \ ]
 
@@ -315,6 +318,13 @@
     autocmd BufWrite *.go :call RunGoFmt()
 
     autocmd FileType go let b:vcm_tab_complete = "omni"
+
+" }
+
+" JavaScript / TypeScript Preferences {
+
+    autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+    autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 " }
 
