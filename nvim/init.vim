@@ -131,7 +131,7 @@
     if $ITERM_PROFILE == 'hopscotch'
         set background=dark
         colorscheme base16-hopscotch
-        let g:airline_theme = 'kolor'
+        let g:airline_theme = 'soda'
     endif
     " }
 " }
