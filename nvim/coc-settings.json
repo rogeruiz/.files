@@ -1,9 +1,23 @@
 {
   "codeLens.enable": true,
-  "coc.source.emoji.filetypes": ["markdown", "gitcommit"],
   "coc.preferences.messageLevel": "error",
+  "coc.source.emoji.filetypes": [
+    "markdown",
+    "gitcommit",
+    "json",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html"
+  ],
   "eslint.autoFixOnSave": true,
-  "eslint.fileTypes": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  "eslint.fileTypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
   "diagnostic.hintSign": "\uf684",
   "diagnostic.errorSign": "\uf686",
   "diagnostic.warningSign": "\uf67d",
@@ -22,7 +36,10 @@
   "languageserver": {
     "elixirLS": {
       "command": "~/.config/nvim/language-servers/elixir-ls-1.10.4/language_server.sh",
-      "filetypes": ["elixir", "eelixir"]
+      "filetypes": [
+        "elixir",
+        "eelixir"
+      ]
     }
   }
 }
