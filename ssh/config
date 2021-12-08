@@ -1,6 +1,14 @@
-Host github
-  HostName github.com
+Host github.com
+  IdentityFile
   Port 22
   User git
   PreferredAuthentications publickey
-  IdentityFile /Users/rsr/.ssh/id_rsa
+
+Host git.sr.ht
+  IdentityFile
+  PreferredAuthentications publickey
+
+Host rw.rs
+  IdentityFile
+  PreferredAuthentications publickey
+  User rsr
