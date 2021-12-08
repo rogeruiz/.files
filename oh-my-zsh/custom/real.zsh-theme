@@ -171,7 +171,7 @@ prompt_pure_setup() {
 
     zstyle ':vcs_info:*' enable git
     zstyle ':vcs_info:git*' formats "%F{green}%F{242} %b"
-    zstyle ':vcs_info:git*' actionformats "%F{green}?%F{242} %b %F{green}%F{242} %a"
+    zstyle ':vcs_info:git*' actionformats "%F{green}%F{242} %b %F{green}%F{242} %a"
 
     # show username@host if logged in through SSH
     [[ "$SSH_CONNECTION" != '' ]] && prompt_pure_username='%n@%m '
