@@ -66,6 +66,9 @@
         " Golang {
             Plug 'fatih/vim-go'
         " }
+        " Gemini {
+            Plug 'https://git.sr.ht/~torresjrjr/gemini.vim'
+        " }
         " Configuration {
             Plug 'kevinoid/vim-jsonc'
             Plug 'roalddevries/yaml.vim'
@@ -73,6 +76,9 @@
             Plug 'toml-lang/toml'
             Plug 'cespare/vim-toml'
             Plug 'maralla/vim-toml-enhance'
+        " }
+        " GraphQL {
+            Plug 'jparise/vim-graphql'
         " }
         " JavaScript {
             Plug 'pangloss/vim-javascript'

@@ -54,6 +54,7 @@
     set si
     set nowrap
     set laststatus=2
+    set mmp=10240
 " }
 
 " Load Bundle config {
@@ -121,14 +122,14 @@
     syntax enable
     set t_Co=256
     " light {
-    if $ITERM_PROFILE == 'tomorrow'
+    if $ITERM_PROFILE ==? 'tomorrow'
         set background=light
         colorscheme tomorrow
         let g:airline_theme = 'tomorrow'
     endif
     " }
     " dark {
-    if $ITERM_PROFILE == 'hopscotch'
+    if $ITERM_PROFILE ==? 'hopscotch_truss' || $ITERM_PROFILE ==? 'hopscotch_personal'
         set background=dark
         colorscheme base16-hopscotch
         let g:airline_theme = 'soda'
@@ -190,18 +191,26 @@
     nmap <silent> gi <Plug>(coc-implementation)
     nmap <silent> gr <Plug>(coc-references)
 
-    " Use K to show documentation in preview window.
-    nnoremap <silent> K :call <SID>show_documentation()<CR>
+    " Performing code actions
+    nmap <leader>do <Plug>(coc-codeaction)
 
-    function! s:show_documentation()
-      if (index(['vim','help'], &filetype) >= 0)
-        execute 'h '.expand('<cword>')
-      elseif (coc#rpc#ready())
-        call CocActionAsync('doHover')
-      else
-        execute '!' . &keywordprg . " " . expand('<cword>')
+    " Renaming a symbol
+    nmap <leader>rn <Plug>(coc-rename)
+
+    " Show documentation tooltip as diagnostic otherwise documentation
+    function! ShowDocIfNoDiagnostic(timer_id)
+      if (coc#float#has_float() == 0 && CocHasProvider('hover') == 1)
+        silent call CocActionAsync('doHover')
       endif
     endfunction
+
+    function! s:show_hover_doc()
+      call timer_start(500, 'ShowDocIfNoDiagnostic')
+    endfunction
+
+    autocmd CursorHoldI * :call <SID>show_hover_doc()
+    autocmd CursorHold * :call <SID>show_hover_doc()
+
 
    if has('nvim-0.4.3') || has('patch-8.2.0750')
           nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
@@ -357,7 +366,7 @@
 
 " Control-P {
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|exports|bower_components|opencontrols|vendor|target|public|_site|rollup-cache.*|broccoli_.*|creator-.*|core_.*|funnel-.*|simple_.*|stub_generator.*)$',
+    \ 'dir':  '\v[\/]\.?(git|hg|svn|node_modules|exports|bower_components|opencontrols|vendor|target|public|_site|rollup-cache.*|broccoli_.*|creator-.*|core_.*|funnel-.*|simple_.*|stub_generator.*|build/docs/.*)$',
     \ 'file': '\v\.(exe|so|dll|metadata_never_index)$'
     \ }
 " }
@@ -369,7 +378,7 @@
       \'win'  : [ '#I #W #(echo "\uf248  ")' ],
       \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; elif [[ "#F" == "*M" ]]; then echo "\uf435:"; fi)' ],
       \'x'    : [ '#(battery -tp)  ', ' #(current_music)' ],
-      \'z'    : [ '#(~/.tmux/tmux-weather/scripts/weather.sh) #(echo " \uf017") %H:%M', '#(echo " \uf073 ") %A %d %B %y' ] }
+      \'z'    : [ '#(~/.tmux/tmux-weather/scripts/weather.sh)  #(echo " \uf017") %H:%M', '#(echo " \uf073 ") %A %d %B %y' ] }
     let g:tmuxline_separators = {
           \ 'left' : "\ue0b0",
           \ "left_alt": "\ue0c6",
@@ -397,7 +406,7 @@
 "}
 
 " NERDCommenter {
-    let g:NERDCustomDelimiters = { 'scss': { 'left': '// ', 'leftAlt': '/*', 'rightAlt': '*/' }, 'javascript': { 'left': '// ', 'leftAlt': '/**', 'rightAlt': '*/' } }
+    let g:NERDCustomDelimiters = { 'scss': { 'left': '// ', 'leftAlt': '/*', 'rightAlt': '*/' }, 'javascript.jsx': { 'left': '// ', 'leftAlt': '/**', 'rightAlt': '*/' } }
     let g:NERDCommentEmptyLines = 1
     let g:NERDTrimTrailingWhitespace = 1
 " }
@@ -425,7 +434,6 @@
     nnoremap <silent> <leader>gd :Git diff<CR>
     nnoremap <silent> <leader>gc :Git commit -v<CR>
     nnoremap <silent> <leader>gb :Git blame<CR>
-    nnoremap <silent> <leader>gl :Git log<CR>
     nnoremap <silent> <leader>gp :Git push<CR>
     nnoremap <silent> <leader>gr :Git read<CR>
     nnoremap <silent> <leader>gw :Git write<CR>
