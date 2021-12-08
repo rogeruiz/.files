@@ -1,75 +1,79 @@
 [user]
-  name = Roger Steve Ruiz
-  email =
+	name = Roger Steve Ruiz
+	email =
+	signingkey =
 [includeIf "gitdir:~/Developer/oss/"]
 	path = ~/.gitconfig_oss.inc
 [color]
-  ui = true
+	ui = true
 [core]
-  editor = nvim
-  quotepath = false
-  excludesfile = ~/.gitignore_global
-  hooksPath = ~/.git-support/hooks
-  page = more
-  pager = diffr --line-numbers --colors refine-added:none:background:0x33,0x99,0x33:bold --colors added:none:background:0x33,0x55,0x33 --colors refine-removed:none:background:0x99,0x33,0x33:bold --colors removed:none:background:0x55,0x33,0x33 | less -F -X
+	editor = nvim
+	quotepath = false
+	excludesfile = ~/.gitignore_global
+	page = more
+	pager = diffr --line-numbers --colors refine-added:none:background:0x33,0x99,0x33:bold --colors added:none:background:0x33,0x55,0x33 --colors refine-removed:none:background:0x99,0x33,0x33:bold --colors removed:none:background:0x55,0x33,0x33 | less -F -X
 [interactive]
-  diffFilter = diffr --line-numbers --colors refine-added:none:background:0x33,0x99,0x33:bold --colors added:none:background:0x33,0x55,0x33 --colors refine-removed:none:background:0x99,0x33,0x33:bold --colors removed:none:background:0x55,0x33,0x33
+	diffFilter = diffr --line-numbers --colors refine-added:none:background:0x33,0x99,0x33:bold --colors added:none:background:0x33,0x55,0x33 --colors refine-removed:none:background:0x99,0x33,0x33:bold --colors removed:none:background:0x55,0x33,0x33
 [github]
-  user = rogeruiz
+	user = rogeruiz
 [alias]
-  co = checkout
-  ci = commit -v
-  s = status -s
-  st = status
-  br = branch
-  fall = fetch --all
-  mr = merge
-  unstage = reset HEAD
-  pl = pull
-  ps = push
-  ls = stash list
-  save = stash save
-  pop = stash pop
+	co = checkout
+	ci = commit -v
+	s = status -s
+	st = status
+	br = branch
+	fall = fetch --all
+	mr = merge
+	unstage = reset HEAD
+	pl = pull
+	ps = push
+	ls = stash list
+	save = stash save
+	pop = stash pop
 	history = log --reverse --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n				 %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n		 %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n				%C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n		 %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
 	catchup = log FETCH_HEAD...HEAD --reverse --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n				 %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n		 %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n				%C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n		 %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
 	verbose = log --stat --patch --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n				 %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n		 %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n				%C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n		 %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
-  gist = log --pretty=format:' %C(green)%d%Creset%n%C(magenta)❯%Creset %C(red)<%h>%Creset %C(yellow)<%aE>%Creset %C(cyan)<%ar>%Creset%n%C(magenta)❯%Creset %s%n' --graph
-  continue = !git add . && git rebase --continue
-  out = merge --abort
-  url = config --local --get-regexp remote\\.\\.\\*\\.url
+	gist = log --pretty=format:' %C(green)%d%Creset%n%C(magenta)❯%Creset %C(red)<%h>%Creset %C(yellow)<%aE>%Creset %C(cyan)<%ar>%Creset%n%C(magenta)❯%Creset %s%n' --graph
+	continue = !git add . && git rebase --continue
+	out = merge --abort
+	url = config --local --get-regexp remote\\.\\.\\*\\.url
 	last = log --patch -1 --stat --pretty=format:'%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%n				 %C(magenta)hash%Creset : %C(yellow)<%h>%Creset ~= %C(magenta)%H%Creset%n		 %C(magenta)authored%Creset : %C(cyan)<%ar>%Creset by %C(red)%an%Creset%n				%C(magenta)blame%Creset : %C(yellow)<%cE>%Creset @ %C(green)%cD%Creset%n		 %C(magenta)message%Creset : %s%n%C(yellow)❯%Creset%C(yellow)❯%Creset%C(blue)❯%Creset%C(red)❯%Creset%C(red)❯%Creset%C(white)❯%Creset%C(blue)❯%Creset%+b'
-  all = !git add . && git commit -v
-  some = !git add $@ && git commit -v
-  amend = commit --amend -v
-  spl = !git svn fetch && git svn rebase
-  sps = !git svn dcommit
-  df = diff
-  dr = !"dr() { git fetch --all; clear; git diff --patch-with-stat $1 -- $2; }; dr"
-  patch = add --patch
-  cached = diff --cached --
-  discard = checkout --
-  local = branch --list
-  unpatch = reset HEAD --patch
-  up = reset HEAD --patch
-  p = add --patch
-  new = "!nu() { git checkout -b $1; }; nu"
-  find = "!gfind() { git grep -e $1 $(git rev-list --all -- $2) -- $2; }; gfind"
-  cima = "!cima() { git fetch --all && git rebase $1; }; cima"
+	all = !git add . && git commit -v
+	some = !git add $@ && git commit -v
+	amend = commit --amend -v
+	spl = !git svn fetch && git svn rebase
+	sps = !git svn dcommit
+	df = diff
+	dr = !"dr() { git fetch --all; clear; git diff --patch-with-stat $1 -- $2; }; dr"
+	patch = add --patch
+	cached = diff --cached --
+	discard = checkout --
+	local = branch --list
+	unpatch = reset HEAD --patch
+	up = reset HEAD --patch
+	p = add --patch
+	new = "!nu() { git checkout -b $1; }; nu"
+	find = "!gfind() { git grep -e $1 $(git rev-list --all -- $2) -- $2; }; gfind"
+	cima = "!cima() { git fetch --all && git rebase $1; }; cima"
+	alt = "!alt() { nvim -p $(git s | awk '{print $2}'); }; alt"
+	alt-conflicts = "!alt_conflicts() { nvim -p $(git s | rg 'UU' | awk '{print $2}'); }; alt_conflicts"
+	wtb = "!wtb() { git br -l | rg '\\*' | awk '{print $2}'; }; wtb"
+	who = "!who() { git log | rg 'Author: ' | rg -i "${1}" | sort | uniq | rg 'truss.works|noreply.github' | uniq; }; who"
 [push]
-  default = simple
+	default = simple
 [init]
-  templatedir = ~/.git_template
-  defaultBranch = main
+	templatedir = ~/.git_template
+	defaultBranch = main
 [filter "lfs"]
-  clean = git-lfs clean %f
-  smudge = git-lfs smudge %f
-  required = true
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
 [gitseekret]
-  version = 1
-  rulespath = ~/.git-support/rules
-  rulesenabled = aws.secret_access_key,aws.access_key_id,aws.account_id,mandrill.username,mandrill.password,mandrill.api_key,newrelic.license_key,slack.api_token
-  exceptionsfile = ""
+	version = 1
+	rulespath = ~/.git-support/rules
+	rulesenabled = aws.secret_access_key,aws.access_key_id,aws.account_id,mandrill.username,mandrill.password,mandrill.api_key,newrelic.license_key,slack.api_token
+	exceptionsfile = ""
 [commit]
-  gpgsign = true
+	gpgsign = true
 [pull]
-  ff = only
+	ff = only
