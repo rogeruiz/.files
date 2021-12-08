@@ -91,7 +91,7 @@ limpiaGit() {
     awk '{print $1}' | \
     egrep -v -f /dev/fd/0 <(git branch -vv | rg ${remote_name}) | \
     awk '{print $1}' | \
-    xargs git branch -d
+    xargs git branch -D
 
   else
     echo "There's not \".git/\" directory in \"$(pwd)\"."

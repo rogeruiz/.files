@@ -72,3 +72,17 @@ export GPG_TTY=`tty`
 export PATH="$HOME/.rvm/bin:$PATH"
 
 eval "$(direnv hook zsh)"
+
+################################################################################
+### Begin MacbookPro16,1
+################################################################################
+export PATH="/usr/local/bin:$PATH"
+
+source /usr/local/opt/asdf/libexec/asdf.sh
+
+export GOPATH=${GOPATH:-$(go env GOPATH)}
+
+export PATH=$(go env GOPATH)/bin:$PATH
+################################################################################
+### End MacbookPro16,1
+################################################################################
