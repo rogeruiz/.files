@@ -2,17 +2,17 @@
 
 let spotify_name = 'Spotify';
 let music_name = 'Music';
-let separator_symbol = " \ue0bb  "
-let playing_symbol = "\ufc58  "
-let not_playing_symbol = "\ufc59  "
-let apple_symbol = "\uf179  ";
-let spotify_symbol = "\uf1bc  ";
+let separator_symbol = ' \ue0bb  ';
+let playing_symbol = '\ufc58  ';
+let not_playing_symbol = '\ufc59  ';
+let apple_symbol = '\uf179  ';
+let spotify_symbol = '\uf1bc  ';
 var music_player_open = false;
 var artist_name = null;
 var song_name = null
 var app = null
 var app_symbol = null;
-var now_playing = ""
+var now_playing = '';
 
 if (Application(spotify_name).running()) {
   app = Application(spotify_name);
@@ -30,7 +30,7 @@ function trimName(n) {
   let limit = 8;
   if (n.length > limit) {
     n = n.substring(0, limit);
-    n += "...";
+    n += '...';
   }
   return n;
 }
