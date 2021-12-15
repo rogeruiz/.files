@@ -36,8 +36,12 @@ function trimName(n) {
 }
 
 function getNowPlaying(t) {
-  let np = "";
-  np += trimName(t.artist());
+  let np = '';
+  if (!t.artist()) {
+    np += trimName(t.album());
+  } else {
+    np += trimName(t.artist());
+  }
   np += separator_symbol;
   np += trimName(t.name());
   return np;
