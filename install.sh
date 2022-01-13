@@ -17,19 +17,19 @@ if [[ -x $NVIM_INSTALL ]]
 then
   DIFF_TOOL="${NVIM_INSTALL} -d"
 else
-  echo >&2 "Bichu: \`nvim\` no se encuentra, probando \`vimdiff\` como alternativa."
+  echo >&2 "Bicho: \`nvim\` no se encuentra, probando \`vimdiff\` como alternativa."
   sleep "${SLEEP_DURATION}"
   if [[ -x $VIMDIFF_INSTALL ]]
   then
     DIFF_TOOL=$VIMDIFF_INSTALL
   else
-    echo >&2 "Bichu: \`vimdiff\` no se encuentra, probando \`opendiff\` como alternativa."
+    echo >&2 "Bicho: \`vimdiff\` no se encuentra, probando \`opendiff\` como alternativa."
     sleep "${SLEEP_DURATION}"
     if [[ -x $OPENDIFF_INSTALL ]]
     then
       DIFF_TOOL=$OPENDIFF_INSTALL
     else
-      echo >&2 "Bichu: no se encontró ningún \${DIFF_TOOL}. Por favor instale nvim, vimdiff, or opendiff."
+      echo >&2 "Bicho: no se encontró ningún \${DIFF_TOOL}. Por favor instale nvim, vimdiff, or opendiff."
       sleep "${SLEEP_DURATION}"
       exit 1
     fi
@@ -126,7 +126,7 @@ if [[ -x $(which cargo) ]] && \
 then
   cargo install lolcat
 else
-  echo >&2 "Bichu: Rustup y Cargo no estan instalado"
+  echo >&2 "Bicho: Rustup y Cargo no estan instalado"
 fi
 
 sleep "${SLEEP_DURATION}"
