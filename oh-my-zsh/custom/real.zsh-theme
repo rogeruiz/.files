@@ -55,6 +55,10 @@ prompt_pure_env_status() {
   then
     echo -ne "\uf484  " # Earth logo
   fi
+  if [[ $(env | rg -i 'OP_SESSION_') ]]
+  then
+    echo -ne "\ufcf3  " # Textbox Password (1Pass Session is present)
+  fi
   if [[ $(env | rg -i arm | rg -i 'tenant|client') ]]
   then
     echo -ne "\uf17a  " # Windows logo
