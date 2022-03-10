@@ -55,12 +55,22 @@
     set nowrap
     set laststatus=2
     set mmp=10240
+    set smartindent
 " }
 
 " Load Bundle config {
     if filereadable(expand("~/.config/nvim/bundles.vim"))
         source ~/.config/nvim/bundles.vim
     endif
+" }
+
+" Load Null-LS Config {
+"
+" This is currenlty for Vale only, but would work for loading any Lua into
+" NeoVim.
+
+lua require("lsp/null-ls")
+
 " }
 
 " Worflow {
@@ -73,6 +83,8 @@
     map <leader>pp :setlocal paste!<cr>
     " Shortcut for enabling spelling
     map <leader>ss :setlocal spell!<cr>
+    map <leader>sen :setlocal spell spelllang=en_us<cr>
+    map <leader>ses :setlocal spell spelllang=es<cr>
     " Allow for macosx and tmux and vim clipboard sharing.
     " Following this blog post: http://evertpot.com/osx-tmux-vim-copy-paste-clipboard/
     set clipboard=unnamed
@@ -116,6 +128,16 @@
               \ containedin=.*Comment,vimCommentTitle
     augroup END
     hi def link CustomTodos Todo
+" }
+
+" Diagnostics {
+" These are diagnostic signs built into NeoVim and not CoC-Diagnostics. These
+" must match across both configurations.
+" TODO: Fix this so it's just configured in a single place.
+    sign define DiagnosticSignError text= texthl=DiagnosticSignError linehl= numhl=
+    sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=
+    sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=
+    sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=
 " }
 
 " Theme {
@@ -204,6 +226,8 @@
       endif
     endfunction
 
+    "silent! map <C-j> :call ShowDocIfNoDiagnostic()<CR>
+
     function! s:show_hover_doc()
       call timer_start(500, 'ShowDocIfNoDiagnostic')
     endfunction
@@ -211,7 +235,7 @@
     autocmd CursorHoldI * :call <SID>show_hover_doc()
     autocmd CursorHold * :call <SID>show_hover_doc()
 
-
+   " NVIM v0.7.0-dev+2169-gc09656104
    if has('nvim-0.4.3') || has('patch-8.2.0750')
           nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
           nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -256,7 +280,10 @@
     let g:vista_executive_for = {
       \ 'cpp': 'vim_lsp',
       \ 'php': 'vim_lsp',
-      \ 'yaml': 'vim_lsp',
+      \ 'yaml': 'coc',
+      \ 'go': 'coc',
+      \ 'javascript.jsx': 'coc',
+      \ 'javascriptreact': 'coc',
       \ }
 
     " To enable fzf's preview window set g:vista_fzf_preview.
@@ -293,6 +320,19 @@
 
 " Golang Preferences {
 
+    let g:go_auto_sameids = 0
+    let g:go_highlight_build_constraints = 1
+    let g:go_highlight_extra_types = 1
+    let g:go_highlight_fields = 1
+    let g:go_highlight_functions = 1
+    let g:go_highlight_function_parameters = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_types = 1
+    let g:go_highlight_variable_assignments = 1
+    let g:go_highlight_variable_declarations = 1
+
     "use K as 5k, not GoDoc
     let g:go_doc_keywordprg_enabled = 0
 
@@ -301,6 +341,9 @@
     nnoremap <leader>glf :GoFmt<CR>
     inoremap <leader>glf <ESC>:GoFmt<CR>
     vnoremap <leader>glf <ESC>:GoFmt<CR>
+    nnoremap <leader>glc :GoCallers<CR>
+    inoremap <leader>glc <ESC>:GoCallers<CR>
+    vnoremap <leader>glc <ESC>:GoCallers<CR>
     nnoremap <leader>glv :GoVet<CR>
     inoremap <leader>glv <ESC>:GoVet<CR>
     vnoremap <leader>glv <ESC>:GoVet<CR>
@@ -373,12 +416,12 @@
 
 " Tmuxline Preferences {
     let g:tmuxline_preset = {
-      \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P #(/usr/local/bin/outatime)' ],
-      \'b'    : [ ' #(current_wifi_network) ', ' #(~/.tmux/tmux-network-bandwidth/scripts/network-bandwidth.sh)' ],
+      \'a'    : [ '#(echo "\uf02b ") #S #(echo "\uf277 ") #I.#P' ],
+      \'b'    : [ ' #(current_wifi_network) ' ],
       \'win'  : [ '#I #W #(echo "\uf248  ")' ],
       \'cwin' : [ '#I #W #(if [[ "#F" == "*" ]]; then echo "\uf247  "; elif [[ "#F" == "*Z" ]]; then echo "\uf0b2 "; elif [[ "#F" == "*M" ]]; then echo "\uf435:"; fi)' ],
-      \'x'    : [ '#(battery -tp)  ', ' #(current_music)' ],
-      \'z'    : [ '#(~/.tmux/tmux-weather/scripts/weather.sh)  #(echo " \uf017") %H:%M', '#(echo " \uf073 ") %A %d %B %y' ] }
+      \'x'    : [ '#(battery -tp)  ' ],
+      \'z'    : [ '#(echo " \uf017") %H:%M', '#(echo " \uf073 ") %A %d %B %y' ] }
     let g:tmuxline_separators = {
           \ 'left' : "\ue0b0",
           \ "left_alt": "\ue0c6",
@@ -398,7 +441,6 @@
 
 " NERDTree {
     silent! nmap <C-k> :NERDTreeToggle<CR>
-    silent! map <C-j> :NERDTreeFind<CR>
     let g:NERDTreeShowHidden = 1
     if exists("g:loaded_webdevicons")
       call webdevicons#refresh()
@@ -469,16 +511,18 @@
     au BufNewFile,BufRead *.twig set ft=html.twig
     au BufNewFile,BufRead *.toml set ft=toml
     au BufNewFile,BufRead *.js set ft=javascript.jsx
+    au BufNewFile,BufRead *.jsx set ft=javascriptreact
     au BufNewFile,BufRead nginx.config set ft=nginx
     au BufRead,BufNewFile spec set ft=yaml
     au BufNewFile,BufRead *.ledger set ft=ledger
     au BufNewFile,BufRead .env* set ft=sh
     au BufNewFile,BufRead Brewfile set ft=ruby
+    au BufEnter *.json IndentLinesDisable
+    au BufEnter *.md IndentLinesDisable
 " }
 
 " File-type configuration {
-    au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list conceallevel=0
-    au FileType json setlocal conceallevel=0
+    au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list
     au FileType yaml setlocal shiftwidth=2 tabstop=2 nowrap spell expandtab tw=80 wm=0 linebreak list
     au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak list
 " }

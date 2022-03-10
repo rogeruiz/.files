@@ -82,11 +82,6 @@
         " }
         " JavaScript {
             Plug 'pangloss/vim-javascript'
-            Plug 'jelera/vim-javascript-syntax'
-            Plug 'othree/javascript-libraries-syntax.vim'
-            Plug 'moll/vim-node'
-            Plug 'marijnh/tern_for_vim'
-            Plug 'maxmellon/vim-jsx-pretty'
             " TypeScript {
                 Plug 'leafgarland/typescript-vim'
                 Plug 'peitalin/vim-jsx-typescript'
@@ -119,9 +114,13 @@
         Plug 'ledger/vim-ledger'
         Plug 'othree/html5.vim'
         Plug 'tpope/vim-ragtag'
+        Plug 'keith/swift.vim'
         Plug 'udalov/kotlin-vim'
         Plug 'davidhalter/jedi-vim'
         Plug 'neovim/nvim-lspconfig'
+        Plug 'nvim-lua/plenary.nvim'
+        Plug 'ray-x/lsp_signature.nvim'
+        Plug 'jose-elias-alvarez/null-ls.nvim'
     " }
 " }
 

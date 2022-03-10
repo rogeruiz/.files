@@ -1,11 +1,12 @@
 {
-  "codeLens.enable": true,
+  "codeLens.enable": false,
   "coc.preferences.messageLevel": "error",
   "coc.source.emoji.filetypes": [
     "markdown",
     "gitcommit",
     "json",
     "javascript",
+    "jsx",
     "javascriptreact",
     "typescript",
     "typescriptreact",
@@ -16,6 +17,7 @@
   "eslint.fileTypes": [
     "javascript",
     "javascriptreact",
+    "jsx",
     "typescript",
     "typescriptreact"
   ],
