@@ -58,7 +58,8 @@
 	alt = "!alt() { nvim -p $(git s | awk '{print $2}'); }; alt"
 	alt-conflicts = "!alt_conflicts() { nvim -p $(git s | rg 'UU' | awk '{print $2}'); }; alt_conflicts"
 	wtb = "!wtb() { git br -l | rg '\\*' | awk '{print $2}'; }; wtb"
-	who = "!who() { git log | rg 'Author: ' | rg -i "${1}" | sort | uniq | rg 'truss.works|noreply.github' | uniq; }; who"
+	who = "!who() { git log | rg 'Author: ' | rg -i "${1}" | sort | uniq; }; who"
+	cin = commit -v --no-verify
 [push]
 	default = simple
 [init]
