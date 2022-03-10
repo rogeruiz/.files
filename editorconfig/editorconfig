@@ -30,6 +30,11 @@ indent_style = tab
 indent_size = 8
 
 # 4 tab indentation
+[.{gitconfig,gitconfig_oss.inc}]
+indent_style = tab
+indent_size = 4
+
+# 4 tab indentation
 [Makefile]
 indent_style = tab
 indent_size = 4
