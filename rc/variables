@@ -28,6 +28,12 @@ export PATH=$PATH:~/.cargo/bin
 #
 export TERM="xterm-256color"
 
+# For Python3+ pipenv projects
+# https://pipenv.pypa.io/en/latest/diagnose/#valueerror-unknown-locale-utf-8
+#
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
 # Disable Tmux auto-titling of windows
 #
 export DISABLE_AUTO_TITLE=true
