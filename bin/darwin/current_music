@@ -26,10 +26,13 @@ if (! music_player_open && Application(music_name).running()) {
   music_player_open = true;
 }
 
-function trimName(n) {
-  let limit = 8;
-  if (n.length > limit) {
-    n = n.substring(0, limit);
+function trimName(n, l) {
+  let limit = 7;
+  if (! l) {
+    l = limit;
+  }
+  if (n.length > l) {
+    n = n.substring(0, l);
     n += '...';
   }
   return n;
@@ -38,9 +41,9 @@ function trimName(n) {
 function getNowPlaying(t) {
   let np = '';
   if (!t.artist()) {
-    np += trimName(t.album());
+    np += trimName(t.album(), 12);
   } else {
-    np += trimName(t.artist());
+    np += trimName(t.artist(), 12);
   }
   np += separator_symbol;
   np += trimName(t.name());
