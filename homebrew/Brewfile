@@ -45,6 +45,7 @@ brew "zsh-completions"
 
 brew "reattach-to-user-namespace"
 brew "tmux"
+brew "tree-sitter"
 brew "luajit", args: ["HEAD"]
 brew "neovim", args: ["HEAD"]
 brew "spark"
