@@ -2,6 +2,9 @@
 /.bundle
 /build
 
+# Packge compiled Lua code
+nvim/plugin/
+
 # Compass / Sass files
 .sass-cache
 
