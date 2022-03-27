@@ -127,10 +127,17 @@ return require('packer').startup(function()
 
   use 'tpope/vim-fugitive'
   use 'f-person/git-blame.nvim'
-  use {
-    'lewis6991/gitsigns.nvim',
-    tag = 'release', -- To use the latest release
-  }
+  use 'lewis6991/gitsigns.nvim'
 
+  use 'norcalli/nvim-colorizer.lua'
+
+  use 'liuchengxu/vista.vim'
+
+  -- Markdown preview
+  use({
+    'iamcco/markdown-preview.nvim',
+    ft = 'markdown',
+    run = 'cd app && yarn install',
+  })
 
 end)
