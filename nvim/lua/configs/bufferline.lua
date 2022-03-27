@@ -1,4 +1,9 @@
-require('bufferline').setup({
+local status_okay, bufferline = pcall(require, 'bufferline')
+if not status_okay then
+  return
+end
+
+bufferline.setup({
   diagnostics = 'nvim_lsp',
   diagnostics_indicator = function(count, level, diagnostics_dict, context)
     return '('..count..')'
