@@ -96,7 +96,6 @@ function M.enable_format_on_save()
       autocmd BufWritePre * lua vim.lsp.buf.formatting()
     augroup end
   ]]
-  vim.notify 'Enabled format on save'
 end
 
 function M.disable_format_on_save()
