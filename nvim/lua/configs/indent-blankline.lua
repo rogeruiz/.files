@@ -16,5 +16,6 @@ indent_blankline.setup({
     filetype_exclude = {
       'alpha',
       'NvimTree',
+      'packer',
     }
 })
