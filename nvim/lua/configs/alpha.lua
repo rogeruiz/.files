@@ -156,9 +156,17 @@ end
 -- Set header
 dashboard.section.header.val = random_header_figlet()
 
+-- This function returns the name of the current directory and the parent
+-- direcory and truncates the new path into two characters so it doesn't break
+-- the dashboard theme.
 local function get_current_directory()
+  local directory_length = 20
   local wd = os.getenv('PWD')
-  return wd:match('^.+/(.+/.+)$')
+  wd = wd:match('^.+/(.+/.+)$') -- Matches the last two directories.
+  if #wd > directory_length then
+    wd = string.sub(wd, 0, directory_length) .. '...' -- Truncates the second directory with three dots.
+  end
+  return wd
 end
 
 -- Set menu
