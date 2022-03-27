@@ -205,7 +205,6 @@ call <sid>hi("String",       s:gui0B, "", s:cterm0B, "", "")
 call <sid>hi("Structure",    s:gui0E, "", s:cterm0E, "", "")
 call <sid>hi("Tag",          s:gui0A, "", s:cterm0A, "", "")
 call <sid>hi("Todo",         s:gui0A, s:gui01, s:cterm0A, s:cterm01, "")
-call <sid>hi("Readme",       s:gui0A, s:gui01, s:cterm0A, s:cterm01, "")
 call <sid>hi("Type",         s:gui0A, "", s:cterm0A, "", "none")
 call <sid>hi("Typedef",      s:gui0A, "", s:cterm0A, "", "")
 
