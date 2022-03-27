@@ -1,5 +1,5 @@
 require('settings')
-require('theme');
+require('theme')
 require('plugins')
 
 require('lsp')
