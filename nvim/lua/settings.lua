@@ -6,7 +6,7 @@ vim.cmd([[
 language es_ES.UTF-8
 ]])
 
-vim.g.mapleader = ','
+vim.g.mapleader = ","
 
 set.tabstop = 2
 set.shiftwidth = 2
@@ -14,16 +14,16 @@ set.softtabstop = 2
 set.expandtab = true
 
 -- Turn on spelling and set language to either english or spanish.
-kmap('n', '<Leader>ss', ':setlocal spell!<CR>', opts)
-kmap('n', '<Leader>sen', ':setlocal spelllang=en_us<CR>', opts)
-kmap('n', '<Leader>ses', ':setlocal spelllang=es<CR>', opts)
+kmap("n", "<Leader>ss", ":setlocal spell!<CR>", opts)
+kmap("n", "<Leader>sen", ":setlocal spelllang=en_us<CR>", opts)
+kmap("n", "<Leader>ses", ":setlocal spelllang=es<CR>", opts)
 
-set.clipboard = 'unnamed'
+set.clipboard = "unnamed"
 set.splitbelow = true
 set.splitright = true
 
 -- Set spacebar to start search
-kmap('', '<space>', '/', opts)
+kmap("", "<space>", "/", opts)
 
 set.ignorecase = true
 set.smartcase = true
@@ -32,18 +32,18 @@ set.showmatch = true
 -- Fold method is being set in ./configs/treesitter.lua
 set.foldenable = false
 
-set.ffs = 'unix,dos,mac'
+set.ffs = "unix,dos,mac"
 
 set.lazyredraw = true
 
-set.whichwrap = '<,>,h,l'
+set.whichwrap = "<,>,h,l"
 
 set.swapfile = false
 
-set.listchars = 'eol:¬,tab:›·,trail:·,extends:›,precedes:‹'
+set.listchars = "eol:¬,tab:›·,trail:·,extends:›,precedes:‹"
 set.list = true
 
-set.completeopt = 'menuone'
+set.completeopt = "menuone"
 set.linebreak = true
 
 set.smartindent = true
@@ -56,7 +56,6 @@ kmap("n", "<C-Up>", ":resize +2<CR>", opts)
 kmap("n", "<C-Right>", ":vertical resize -2<CR>", opts)
 kmap("n", "<C-Left>", ":vertical resize +2<CR>", opts)
 
-
 -- Navigate buffers
 kmap("n", "<S-l>", ":bnext<CR>", opts)
 kmap("n", "<S-h>", ":bprevious<CR>", opts)
@@ -65,7 +64,6 @@ kmap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Stay in indent mode
 kmap("v", "<", "<gv", opts)
 kmap("v", ">", ">gv", opts)
-
 
 -- Filetype mappings
 vim.cmd([[
@@ -93,6 +91,7 @@ vim.cmd([[
 -- Filetypes configurations
 vim.cmd([[
   au FileType markdown setlocal shiftwidth=4 tabstop=4 wrap spell expandtab tw=80 wm=0 linebreak list
+  au FileType norg setlocal wrap spell expandtab tw=80 wm=0 linebreak list
   au FileType yaml setlocal shiftwidth=2 tabstop=2 nowrap spell expandtab tw=80 wm=0 linebreak list
   au FileType gitcommit setlocal shiftwidth=4 tabstop=4 expandtab wrap spell tw=72 wm=0 linebreak list
 ]])
