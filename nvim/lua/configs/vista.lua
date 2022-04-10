@@ -1,6 +1,6 @@
 vim.cmd([[
 " Shortcut for Vista
-nmap <F8> :Vista!!<CR>
+nmap <leader>vv :Vista!!<CR>
 let g:vista_default_executive = 'nvim_lsp'
 
 " Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
