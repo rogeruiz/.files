@@ -160,27 +160,34 @@ dashboard.section.header.val = random_header_figlet()
 -- direcory and truncates the new path into two characters so it doesn't break
 -- the dashboard theme.
 local function get_current_directory()
-  local directory_length = 20
-  local wd = os.getenv('PWD')
-  wd = wd:match('^.+/(.+/.+)$') -- Matches the last two directories.
-  if #wd > directory_length then
-    wd = string.sub(wd, 0, directory_length) .. '...' -- Truncates the second directory with three dots.
-  end
-  return wd
+	local directory_length = 20
+	local wd = os.getenv("PWD")
+	wd = wd:match("^.+/(.+/.+)$") -- Matches the last two directories.
+	if wd == nil then
+		return os.getenv("PWD")
+	end
+	if #wd > directory_length then
+		wd = string.sub(wd, 0, directory_length) .. "..." -- Truncates the second directory with three dots.
+	end
+	return wd
 end
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button( 'e', '  > Nuevo archivo' , ':ene <BAR> startinsert <CR>'),
-    dashboard.button( 'f', '  > Busque archivos en ' .. get_current_directory(), ':cd $PWD | Telescope find_files<CR>'),
-    dashboard.button( 'a', '  > Busque archivos en ~/Developer', ':cd $HOME/Developer | Telescope find_files<CR>'),
-    dashboard.button( 'r', '  > Reciente archivos'   , ':Telescope oldfiles<CR>'),
-    dashboard.button( 's', '  > Ajustes' , ':e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>'),
-    dashboard.button( 'q', '  > Salir de NVIM', ':qa<CR>'),
+	dashboard.button("e", "  > Nuevo archivo", ":ene <BAR> startinsert <CR>"),
+	dashboard.button(
+		"f",
+		"  > Busque archivos en " .. get_current_directory(),
+		":cd $PWD | Telescope find_files find_command=rg,--ignore,--hidden,--files <CR>"
+	),
+	dashboard.button("a", "  > Busque archivos en ~/Developer", ":cd $HOME/Developer | Telescope find_files<CR>"),
+	dashboard.button("r", "  > Reciente archivos", ":Telescope oldfiles<CR>"),
+	dashboard.button("s", "  > Ajustes", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+	dashboard.button("q", "  > Salir de NVIM", ":qa<CR>"),
 }
 
 -- Set footer
-local fortune = require('alpha.fortune')
+local fortune = require("alpha.fortune")
 dashboard.section.footer.val = fortune()
 
 -- Send config to alpha
