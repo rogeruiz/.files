@@ -182,7 +182,7 @@ dashboard.section.buttons.val = {
 	),
 	dashboard.button("a", "  > Busque archivos en ~/Developer", ":cd $HOME/Developer | Telescope find_files<CR>"),
 	dashboard.button("r", "  > Reciente archivos", ":Telescope oldfiles<CR>"),
-	dashboard.button("s", "  > Ajustes", ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+	dashboard.button("s", "  > Ajustes", ":e $MYVIMRC | :cd %:p:h | :NvimTreeToggle<CR>"),
 	dashboard.button("q", "  > Salir de NVIM", ":qa<CR>"),
 }
 
