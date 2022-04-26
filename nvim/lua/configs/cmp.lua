@@ -65,9 +65,7 @@ cmp.setup({
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			-- Kind icons
-			vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-
-			-- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+			vim_item.kind = string.format("%s %s", kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
 			-- NOTE: order matters
 			vim_item.menu = ({
 				nvim_lsp = "[LSP]",
@@ -75,6 +73,7 @@ cmp.setup({
 				snippy = "[Snippet]",
 				buffer = "[Buffer]",
 				path = "[Path]",
+				spell = "[Spell]",
 				emoji = "[Emoji]",
 			})[entry.source.name]
 			return vim_item
@@ -86,17 +85,21 @@ cmp.setup({
 		{ name = "snippy" },
 		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "spell" },
 		{ name = "emoji" },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
 		select = false,
 	},
-	documentation = {
-		border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
+	view = {
+		entries = "native",
 	},
 	experimental = {
 		ghost_text = true,
-		native_menu = false,
 	},
 })

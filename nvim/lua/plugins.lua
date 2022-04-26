@@ -117,6 +117,7 @@ return require("packer").startup(function()
 			"hrsh7th/cmp-cmdline",
 			"dcampos/nvim-snippy",
 			"dcampos/cmp-snippy",
+			"f3fora/cmp-spell",
 		},
 	})
 
