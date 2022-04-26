@@ -67,6 +67,9 @@ return require("packer").startup(function()
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
+		requires = {
+			"https://git.sr.ht/~p00f/nvim-ts-rainbow",
+		},
 	})
 
 	use("RRethy/vim-illuminate")
