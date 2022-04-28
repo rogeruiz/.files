@@ -31,3 +31,6 @@ Icon*
 *.psd
 *.ai
 *.indd/vendor/
+
+# Don't ignore the icons.lua though!
+!nvim/lua/icons.lua
