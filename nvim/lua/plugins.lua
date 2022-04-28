@@ -128,6 +128,8 @@ return require("packer").startup(function()
 
 	use("lukas-reineke/indent-blankline.nvim")
 
+	use("tpope/vim-dadbod")
+
 	use("tpope/vim-fugitive")
 	use("f-person/git-blame.nvim")
 	use("lewis6991/gitsigns.nvim")
