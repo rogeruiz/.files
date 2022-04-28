@@ -48,10 +48,9 @@ end
 local function lsp_highlight_document(client)
 	if client.resolved_capabilities.document_highlight then
 		local status_ok, illuminate = pcall(require, "illuminate")
-		if not status_ok then
-			return
+		if status_ok then
+			illuminate.on_attach(client)
 		end
-		illuminate.on_attach(client)
 	end
 end
 
@@ -83,11 +82,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
-if not status_ok then
-	return
+if status_ok then
+	M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 end
-
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 function M.enable_format_on_save()
 	vim.cmd([[
