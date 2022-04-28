@@ -17,8 +17,7 @@ telescope.setup({
 		},
 
 		file_ignore_patterns = {
-			".git/*",
-			"node%_modules/*",
+			".git/.*",
 		},
 
 		mappings = {
